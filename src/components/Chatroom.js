@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-class Chatroom extends Component {
+import { connect } from 'react-redux';
+import { updateChatHistory } from '../redux/actions/index';
+
+const mapDispatchToProps = dispatch => {
+	return {
+		updateChatHistory: chatHistory => dispatch(updateChatHistory(chatHistory))
+	}
+}
+
+class ConnectedChatroom extends Component {
 	constructor(){
 		super();
 		this.state = {
 
 		}
+		this.renderChat = this.renderChat.bind(this);
 	} 
 
+	renderChat(){
+		let count = 0;
+		
+	}
 	render(){
 		return(
 			<div className="chatroom">
@@ -18,6 +31,7 @@ class Chatroom extends Component {
 					<div className="chat-title">
 					</div>
 					<ul className="chat-history">
+
 					</ul>
 					<div className="input-wrapper">
 						<TextField 
@@ -39,5 +53,5 @@ class Chatroom extends Component {
 		)
 	}
 }
-
+const Chatroom = connect(null, mapDispatchToProps)(ConnectedChatroom)
 export default Chatroom;
