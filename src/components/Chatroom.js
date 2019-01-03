@@ -15,15 +15,20 @@ const mapStateToProps = state => {
 	return { chatHistory: state.chatHistory };
 }
 const ConnectChatHistory = ({ chatHistory }) => {
-	let history = chatHistory.map(message => {
-		return(
-			<div>{message.usr} ({message.time}): {message.msg}</div>
-		)
-	})
+	let history = chatHistory.map(entry => {
+		if(entry.usr == "server") {
+			return(
+				<div>{entry.usr}{entry.time ? `(${entry.time})` : "" }: {entry.msg}</div>
+			)
+		} else {
+			return(
+				<div>{entry.usr} ({entry.time}): {entry.msg}</div>
+			)
+		}
 
-	return(
-		history
-)}
+	})
+	return(history)
+}
 const ChatHistory = connect(mapStateToProps)(ConnectChatHistory);
 
 class ConnectedChatroom extends Component {
@@ -50,10 +55,12 @@ class ConnectedChatroom extends Component {
 	}
 	
 	onSendMessage(){
+		let newDate = new Date();
+		let currentTime = newDate.getHours() + ":" + newDate.getMinutes() + ":"+ newDate.getSeconds();
 		this.props.updateChatHistory({
-			usr: "usr test",
-			msg: "msg test",
-			time: "time test"
+			usr: "Current User",
+			msg: this.state.input,
+			time: currentTime
 		})
 		this.setState({
 			input: ""
