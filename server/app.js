@@ -11,10 +11,10 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname + '../index.html'))
 })
 app.get('/login', (req, res) => {
-	res.sendFile(path.join(__dirname + '../index.html'))
+	res.sendFile(path.join(__dirname + '../../index.html'))
 })
 app.get('/chat', (req, res) => {
-	res.sendFile(path.join(__dirname + '../index.html'))
+	res.sendFile(path.join(__dirname + '../../index.html'))
 })
 server.listen(PORT, (err) => {
 	console.log(`listening on port ${PORT}`);
