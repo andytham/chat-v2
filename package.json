@@ -2,10 +2,11 @@
   "name": "chat-redux",
   "version": "0.0.0",
   "description": "chat with redux for future dev",
-  "main": "index.js",
+  "main": "./server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open --hot"
+    "start": "webpack-dev-server --mode development --hot",
+    "build": "webpack"
   },
   "author": "andytham",
   "license": "ISC",
