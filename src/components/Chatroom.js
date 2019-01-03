@@ -11,6 +11,16 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
+const mapStateToProps = state => {
+	return { chatHistory: state.chatHistory };
+}
+const ConnectChatHistory = ({ chatHistory }) => (
+	<div>
+		{chatHistory[0].usr}
+	</div>
+)
+const ChatHistory = connect(mapStateToProps)(ConnectChatHistory);
+
 class ConnectedChatroom extends Component {
 	constructor(){
 		super();
@@ -19,7 +29,8 @@ class ConnectedChatroom extends Component {
 		}
 		this.renderChat = this.renderChat.bind(this);
 	} 
-
+	componentDidMount(){
+	}	
 	renderChat(){
 		let count = 0;
 		
@@ -31,7 +42,7 @@ class ConnectedChatroom extends Component {
 					<div className="chat-title">
 					</div>
 					<ul className="chat-history">
-
+						<ChatHistory />
 					</ul>
 					<div className="input-wrapper">
 						<TextField 
