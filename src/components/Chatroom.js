@@ -14,20 +14,27 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
 	return { chatHistory: state.chatHistory };
 }
-const ConnectChatHistory = ({ chatHistory }) => (
-	<div>
-		{chatHistory[0].usr}
-	</div>
-)
+const ConnectChatHistory = ({ chatHistory }) => {
+	let history = chatHistory.map(message => {
+		return(
+			<div>{message.usr} ({message.time}): {message.msg}</div>
+		)
+	})
+
+	return(
+		history
+)}
 const ChatHistory = connect(mapStateToProps)(ConnectChatHistory);
 
 class ConnectedChatroom extends Component {
 	constructor(){
 		super();
 		this.state = {
-
+			input: ""
 		}
 		this.renderChat = this.renderChat.bind(this);
+		this.onInput = this.onInput.bind(this);
+		this.onSendMessage = this.onSendMessage.bind(this);
 	} 
 	componentDidMount(){
 	}	
@@ -35,6 +42,24 @@ class ConnectedChatroom extends Component {
 		let count = 0;
 		
 	}
+
+	onInput(e){
+		this.setState({
+			input: e.target.value
+		})
+	}
+	
+	onSendMessage(){
+		this.props.updateChatHistory({
+			usr: "usr test",
+			msg: "msg test",
+			time: "time test"
+		})
+		this.setState({
+			input: ""
+		})
+	}
+
 	render(){
 		return(
 			<div className="chatroom">
@@ -51,11 +76,11 @@ class ConnectedChatroom extends Component {
 							placeholder="Enter a message."
 							rows={4}
 							rowsMax={4}
-							// onChange={this.onInput}
-							// value={this.state.input}
-							// onKeyPress={e => (e.key === 'Enter' ? this.onSendMessage() : null)}
+							onChange={this.onInput}
+							value={this.state.input}
+							onKeyPress={e => (e.key === 'Enter' ? this.onSendMessage() : null)}
 						/>
-						<Button>
+						<Button onClick={this.onSendMessage}>
 							Enter
 						</Button>
 					</div>
