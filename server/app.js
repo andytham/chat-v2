@@ -17,5 +17,10 @@ app.get('/chat', (req, res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
 server.listen(PORT, (err) => {
-	console.log(`listening on port ${PORT}`);
+	let t = new Date;
+	let tM = t.getMinutes();
+	if (t.getMinutes() < 10){
+		tM = "0" + t.getMinutes();
+	}
+	console.log(`Listening on port ${PORT}, ${t.getHours()}:${tM}`);
 })
