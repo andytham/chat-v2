@@ -16,6 +16,10 @@ app.get('/login', (req, res) => {
 app.get('/chat', (req, res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
+
+const historyRoutes = require('./mvc/history.js');
+app.use('/api/history', historyRoutes);
+
 server.listen(PORT, (err) => {
 	let t = new Date;
 	let tM = t.getMinutes();

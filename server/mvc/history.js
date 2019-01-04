@@ -1,5 +1,3 @@
-const History = require('../models/history');
-
 const historyController = {};
 const db = require('../db/config');
 const History = {};
