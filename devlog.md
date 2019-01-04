@@ -5,6 +5,7 @@ State handled by redux
 State handled by react
 - whatever is being typed on the page
 
+I need to either initialize redux's store on load or sync it with the backend's log of the chat history.
 
 
 ## Issues
