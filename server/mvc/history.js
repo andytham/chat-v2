@@ -4,8 +4,7 @@ const History = {};
 
 History.findAll = () => {
 	return db.query(
-		`
-		SELECT * FROM chat_history
+		`Retrieving chat_history
 		`
 	);
 };
@@ -42,7 +41,7 @@ historyController.create = (req, res) => {
 	})
 	.then(history => {
 		res.json({
-			message: "history entry created",
+			message: "History entry created",
 			data: history
 		})
 	})

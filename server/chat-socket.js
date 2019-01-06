@@ -5,7 +5,7 @@ module.exports = function () {
   axios.get(`http://localhost:8080/api/history`).then( data => {
     chatHistory = data.data;
   }).catch(err => {
-    console.log('most likely no server found');
+    console.log('Most likely no server found');
   })
 
   // function broadcastMessage(message) {
@@ -14,7 +14,7 @@ module.exports = function () {
 
   function addEntry(entry) {
     chatHistory = chatHistory.concat(entry)
-    console.log('this is entry', entry);
+    console.log('This is the entry being POSTed:', entry);
     axios.post(`http://localhost:8080/api/history`,
     {
       usr: entry.usr,
@@ -23,10 +23,10 @@ module.exports = function () {
     })
     .then(res => {
       // console.log(res);
-      console.log("post successful");
+      console.log("POST Success!");
     })
     .catch(err => {
-      console.log("post failed");
+      console.log("POST Failed");
       console.log(err);
     })
     // console.log("added to chat history: ", chatHistory);
