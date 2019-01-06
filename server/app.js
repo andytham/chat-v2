@@ -5,6 +5,13 @@ const path = require('path');
 const PORT = process.env.PORT || 8080;
 const server = require('http').createServer(app);
 
+// CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.header("Access-Control-Allow-Methods", "PATCH, POST")
+  next();
+});
 
 app.use(express.static('build'));
 app.get('/', (req, res) => {
