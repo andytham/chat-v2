@@ -4,7 +4,8 @@ const History = {};
 
 History.findAll = () => {
 	return db.query(
-		`Retrieving chat_history
+		`
+			SELECT * FROM chat_history
 		`
 	);
 };
