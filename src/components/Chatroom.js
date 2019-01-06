@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { updateChatHistory } from '../redux/actions/index';
 
+import chatSocket from '../chat-socket';
+
 const mapDispatchToProps = dispatch => {
 	return {
 		updateChatHistory: chatHistory => dispatch(updateChatHistory(chatHistory))
@@ -35,7 +37,8 @@ class ConnectedChatroom extends Component {
 	constructor(){
 		super();
 		this.state = {
-			input: ""
+			input: "",
+			chatSocket: chatSocket(),
 		}
 		this.renderChat = this.renderChat.bind(this);
 		this.onInput = this.onInput.bind(this);
@@ -57,6 +60,14 @@ class ConnectedChatroom extends Component {
 	onSendMessage(){
 		let newDate = new Date();
 		let currentTime = newDate.getHours() + ":" + newDate.getMinutes() + ":"+ newDate.getSeconds();
+		this.state.chatSocket.message({
+			// usr: this.state.username,
+			usr: "Current User",
+      msg: this.state.input, 
+      tme: currentTime
+		}, (err) => {
+			return console.log(err);
+		})
 		this.props.updateChatHistory({
 			usr: "Current User",
 			msg: this.state.input,
