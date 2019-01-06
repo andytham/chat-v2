@@ -19,6 +19,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+//body parser to handle request bodies incoming from the client
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
+
 //socket.io
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
