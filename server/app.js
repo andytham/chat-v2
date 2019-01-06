@@ -38,6 +38,18 @@ io.on('connection', function(socket){
 				usersList[socket.id] = user
 			}
 		})
+		socket.on('disconnect', function(){
+			if(usersList[socket.id]){
+				console.log(usersList[socket.id], 'user disconnected');
+				Chatroom.addEntry({usr: "server", msg: `${usersList[socket.id]} has disconnected.`})
+				io.emit('message', Chatroom.getChatHistory())
+			}
+		});
+		socket.on('message', function(msg){
+			console.log('message: ' + msg);
+			Chatroom.addEntry(msg)
+			io.emit('message', Chatroom.getChatHistory());
+		});
 })
 
 
