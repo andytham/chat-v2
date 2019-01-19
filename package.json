@@ -1,7 +1,7 @@
 {
-  "name": "chat-redux",
+  "name": "chat-v2",
   "version": "0.0.0",
-  "description": "chat with redux for future dev",
+  "description": "chat2",
   "main": "./server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

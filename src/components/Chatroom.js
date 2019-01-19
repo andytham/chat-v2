@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
-import { updateChatHistory } from '../redux/actions/index';
+import { updateChatHistory, updateTest } from '../redux/actions/index';
 
 import chatSocket from '../chat-socket';
 
@@ -11,7 +11,8 @@ import chatSocket from '../chat-socket';
 
 const mapDispatchToProps = dispatch => {
 	return {
-		updateChatHistory: chatHistory => dispatch(updateChatHistory(chatHistory))
+		updateChatHistory: (chatHistory) => {dispatch(updateChatHistory(chatHistory))},
+		updateTest: dispatch(updateTest)
 	}
 }
 
@@ -77,6 +78,7 @@ class ConnectedChatroom extends Component {
 			msg: this.state.input,
 			tme: currentTime
 		})
+		this.props.dispatch(updateTest(chatSocket, "test", "msg", "tme"));
 		this.setState({
 			input: ""
 		})
