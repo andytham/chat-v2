@@ -1,4 +1,4 @@
-import { UPDATE_CHAT_HISTORY } from "../constants/action-types";
+import { UPDATE_CHAT_HISTORY } from "../actions/index";
 
 const initialState = {
 	chatHistory: [

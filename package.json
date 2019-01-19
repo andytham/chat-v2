@@ -8,7 +8,7 @@
     "start": "webpack-dev-server --mode development --hot",
     "build": "webpack",
     "dev": "nodemon ./server/app.js",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch --mode development"
   },
   "author": "andytham",
   "license": "ISC",

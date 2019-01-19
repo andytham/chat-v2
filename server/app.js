@@ -2,15 +2,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+const timeGet = require('./timeGet');
 const PORT = process.env.PORT || 8080;
-const timeGet = function () {
-	let t = new Date;
-	let tM = t.getMinutes();
-	if (t.getMinutes() < 10){
-		tM = "0" + t.getMinutes();
-	}
-	return `${t.getHours()}:${tM}`;
-}
+
 // CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -77,5 +71,5 @@ app.use('/api/history', historyRoutes);
 
 server.listen(PORT, (err) => {
 
-	console.log(`Listening on port ${PORT}, ${timeGet()}`);
+	console.log(`Listening on port ${PORT}, ${timeGet("tm")}`);
 })

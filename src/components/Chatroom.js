@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ChatLog from './ChatLog';
 import chatSocket from '../chat-socket';
-
+import timeGet from '../../server/timeGet';
 //auth0
 
 
@@ -15,7 +15,6 @@ class Chatroom extends Component {
 			chatSocket: chatSocket(),
 			log: []
 		}
-		this.renderChat = this.renderChat.bind(this);
 		this.onInput = this.onInput.bind(this);
 		this.onSendMessage = this.onSendMessage.bind(this);
 	} 
@@ -30,15 +29,18 @@ class Chatroom extends Component {
 	}
 	
 	onSendMessage(){
-		let newDate = new Date();
-		let currentTime = newDate.getHours() + ":" + newDate.getMinutes() + ":"+ newDate.getSeconds();
 		let msg = {
 			usr: "Current User",
       msg: this.state.input, 
-      tme: currentTime
+      tme: timeGet()
 		}
 		this.state.chatSocket.message(msg, (err) => {
 			return console.log(err);
+		})
+		let log = this.state.log.slice()
+		log.push(msg);
+		this.setState({
+			log: log
 		})
 	}
 
@@ -49,7 +51,7 @@ class Chatroom extends Component {
 					<div className="chat-title">
 					</div>
 					<ul className="chat-history">
-						<ChatLog />
+						<ChatLog log={this.state.log} />
 					</ul>
 					<div className="input-wrapper">
 						<TextField 
