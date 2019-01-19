@@ -21,7 +21,9 @@ class Chatroom extends Component {
 	componentDidMount(){
 
 	}
-		
+	componentDidUpdate(){
+		// this.state.chatSocket.receive()
+	}
 	onInput(e){
 		this.setState({
 			input: e.target.value
