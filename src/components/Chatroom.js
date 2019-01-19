@@ -4,8 +4,6 @@ import Button from '@material-ui/core/Button';
 import ChatLog from './ChatLog';
 import chatSocket from '../chat-socket';
 import timeGet from '../../server/timeGet';
-//auth0
-
 
 class Chatroom extends Component {
 	constructor(){
@@ -23,14 +21,13 @@ class Chatroom extends Component {
 		this.state.chatSocket.receive(this.updateChatLog)
 
 	}
-	componentDidUpdate(){
-		
-	}
+
 	onInput(e){
 		this.setState({
 			input: e.target.value
 		})
 	}
+
 	updateChatLog(msg){
 		let log = this.state.log.slice()
 		log.push(msg);
@@ -38,6 +35,7 @@ class Chatroom extends Component {
 			log: log
 		})
 	}
+
 	onSendMessage(){
 		let msg = {
 			usr: "Current User",
@@ -79,4 +77,5 @@ class Chatroom extends Component {
 		)
 	}
 }
+
 export default Chatroom;

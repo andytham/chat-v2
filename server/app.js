@@ -73,5 +73,5 @@ app.use('/api/history', historyRoutes);
 
 server.listen(PORT, (err) => {
 
-	console.log(`Listening on port ${PORT}, ${timeGet("tm")}`);
+	console.log(`Listening on port ${PORT}, ${timeGet("hm")}`);
 })

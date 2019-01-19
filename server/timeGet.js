@@ -1,6 +1,6 @@
 module.exports =  (type) => {
 	let t = new Date;	
-
+	console.log(type);
 	let tH = t.getHours();
 	if (t.getHours() < 10){
 		tH = "0" + t.getHours();
@@ -15,12 +15,10 @@ module.exports =  (type) => {
 	if (t.getSeconds() < 10){
 		ts = "0" + t.getSeconds();
 	}
-	if (arguments > 0){
-		if (type == "hms"){
-			return `${tH}:${tM}:${tS}`;
-		} else if (type == "hm"){
-			return `${tH}:${tM}`;
-		}
+	if (type == "hms"){
+		return `${tH}:${tM}:${tS}`;
+	} else if (type == "hm"){
+		return `${tH}:${tM}`;	
 	} else {
 		return `${tH}:${tM}:${tS}`;
 	}
