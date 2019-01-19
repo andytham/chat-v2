@@ -1,6 +1,5 @@
 module.exports =  (type) => {
-	let t = new Date;	
-	console.log(type);
+	let t = new Date;
 	let tH = t.getHours();
 	if (t.getHours() < 10){
 		tH = "0" + t.getHours();

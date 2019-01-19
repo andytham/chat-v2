@@ -1,17 +1,32 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import '../css/App.css';
 
 //components
 import Home from './Home';
 import Chatroom from './Chatroom';
 import AuthComponent from './AuthComponent';
-import lock from '../Auth/auth-config';
-
-
-
+import lock from '../Auth/auth-config.js';
+function AuthChatroom ({component: Chatroom, authed, ...rest}){
+	console.log(authed);
+	return(
+		<Route
+			{...rest}
+			render={(props) => authed === true
+				? <Chatroom {...props} />
+				: <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+		/>
+	)
+}
 
 class App extends React.Component {
+	constructor(){
+		super();
+		this.state = {
+			authed: false
+		}
+		this.toggleAuth = this.toggleAuth.bind(this);
+	}
 	componentDidMount(){
 		let self = this
 		lock.on("authenticated", function(authResult) {
@@ -20,32 +35,36 @@ class App extends React.Component {
 					// Handle error
 					return;
 				}
+				console.log("state update");
+				self.setState({
+					authed: true
+					// username: profile.nickname
+				});
+				this.toggleAuth();
 				localStorage.setItem('accessToken', authResult.accessToken);
 				localStorage.setItem('profile', JSON.stringify(profile));
-				self.setState({
-					username: profile.nickname
-				});
+
 			});
+
 		});
 		lock.on("authorization_error", function(authResult){
+			console.log('auth error');
 			self.setState({
 				authed: false
 			})
 		})
 	}
+	componentDidUpdate(){
+		console.log(this.state.authed);
+	}
+
+	toggleAuth(){
+		this.setState({
+			authed:true
+		})
+	}
 
 	render(){
-		// function AuthChatroom ({component: Chatroom, authed, ...rest}){
-		// 	return(
-		// 		<Route
-		// 			{...rest}
-		// 			render={(props) => authed === true
-		// 				? <Chatroom {...props} />
-		// 				: <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
-		// 		/>
-		// 	)
-		// }
-
 		return(
 			<div id="auth" className="App">
 				<Route exact path="/" render={(props) => <Home />} />
