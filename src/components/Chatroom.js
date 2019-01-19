@@ -16,20 +16,28 @@ class Chatroom extends Component {
 			log: []
 		}
 		this.onInput = this.onInput.bind(this);
+		this.updateChatLog = this.updateChatLog.bind(this);
 		this.onSendMessage = this.onSendMessage.bind(this);
 	} 
 	componentDidMount(){
+		this.state.chatSocket.receive(this.updateChatLog)
 
 	}
 	componentDidUpdate(){
-		// this.state.chatSocket.receive()
+		
 	}
 	onInput(e){
 		this.setState({
 			input: e.target.value
 		})
 	}
-	
+	updateChatLog(msg){
+		let log = this.state.log.slice()
+		log.push(msg);
+		this.setState({
+			log: log
+		})
+	}
 	onSendMessage(){
 		let msg = {
 			usr: "Current User",
@@ -39,11 +47,7 @@ class Chatroom extends Component {
 		this.state.chatSocket.message(msg, (err) => {
 			return console.log(err);
 		})
-		let log = this.state.log.slice()
-		log.push(msg);
-		this.setState({
-			log: log
-		})
+		this.updateChatLog(msg)
 	}
 
 	render(){

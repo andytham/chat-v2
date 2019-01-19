@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 //socket.io
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-const cr = require('./chat-socket.js');
+const cr = require('./chat-func.js');
 let Chatroom = cr();
 let usersList = {};
 //server side socket emitters
@@ -49,7 +49,9 @@ io.on('connection', function(socket){
 		socket.on('message', function(msg){
 			console.log('message: ' + msg);
 			Chatroom.addEntry(msg)
-			io.emit('message', Chatroom.getChatHistory());
+			// io.emit('message', Chatroom.getChatHistory());
+			// io.emit('message', msg)
+			socket.broadcast.emit('message',msg)
 		});
 })
 

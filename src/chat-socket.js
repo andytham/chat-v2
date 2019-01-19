@@ -6,6 +6,7 @@ export default function() {
 
   function receive(updateChat){
     socket.on('message', msg => {
+      console.log("updating");
       updateChat(msg)
     })
   }
