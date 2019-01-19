@@ -14,7 +14,7 @@ module.exports = function () {
 
   function addEntry(entry) {
     chatHistory = chatHistory.concat(entry)
-    console.log('This is the entry being POSTed:', entry);
+    // console.log('This is the entry being POSTed:', entry);
     axios.post(`http://localhost:8080/api/history`,
     {
       usr: entry.usr,

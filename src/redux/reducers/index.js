@@ -5,7 +5,7 @@ const initialState = {
 		{
 			usr: "server",
 			msg: "Welcome to the chatroom!",
-			time: ""
+			tme: ""
 		}
 	]
 }

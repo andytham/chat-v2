@@ -7,6 +7,8 @@ import { updateChatHistory } from '../redux/actions/index';
 
 import chatSocket from '../chat-socket';
 
+//auth0
+
 const mapDispatchToProps = dispatch => {
 	return {
 		updateChatHistory: chatHistory => dispatch(updateChatHistory(chatHistory))
@@ -45,7 +47,9 @@ class ConnectedChatroom extends Component {
 		this.onSendMessage = this.onSendMessage.bind(this);
 	} 
 	componentDidMount(){
-	}	
+
+	}
+		
 	renderChat(){
 		let count = 0;
 		
@@ -71,7 +75,7 @@ class ConnectedChatroom extends Component {
 		this.props.updateChatHistory({
 			usr: "Current User",
 			msg: this.state.input,
-			time: currentTime
+			tme: currentTime
 		})
 		this.setState({
 			input: ""
