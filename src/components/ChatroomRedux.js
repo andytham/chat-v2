@@ -2,12 +2,41 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import { connect } from 'react-redux';
+import { updateChatHistory, updateTest } from '../redux/actions/index';
+
 import chatSocket from '../chat-socket';
 
 //auth0
 
+const mapDispatchToProps = dispatch => {
+	return {
+		updateChatHistory: (chatHistory) => {dispatch(updateChatHistory(chatHistory))},
+		updateTest: dispatch(updateTest)
+	}
+}
 
-class Chatroom extends Component {
+const mapStateToProps = state => {
+	return { chatHistory: state.chatHistory };
+}
+const ConnectChatHistory = ({ chatHistory }) => {
+	let history = chatHistory.map(entry => {
+		if(entry.usr == "server") {
+			return(
+				<div>{entry.usr}{entry.time ? `(${entry.time})` : "" }: {entry.msg}</div>
+			)
+		} else {
+			return(
+				<div>{entry.usr} ({entry.time}): {entry.msg}</div>
+			)
+		}
+
+	})
+	return(history)
+}
+const ChatHistory = connect(mapStateToProps)(ConnectChatHistory);
+
+class ConnectedChatroom extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -36,13 +65,22 @@ class Chatroom extends Component {
 	onSendMessage(){
 		let newDate = new Date();
 		let currentTime = newDate.getHours() + ":" + newDate.getMinutes() + ":"+ newDate.getSeconds();
-		let msg = {
+		this.state.chatSocket.message({
+			// usr: this.state.username,
 			usr: "Current User",
       msg: this.state.input, 
       tme: currentTime
-		}
-		this.state.chatSocket.message(msg, (err) => {
+		}, (err) => {
 			return console.log(err);
+		})
+		this.props.updateChatHistory({
+			usr: "Current User",
+			msg: this.state.input,
+			tme: currentTime
+		})
+		this.props.dispatch(updateTest(chatSocket, "test", "msg", "tme"));
+		this.setState({
+			input: ""
 		})
 	}
 
@@ -75,4 +113,5 @@ class Chatroom extends Component {
 		)
 	}
 }
+const Chatroom = connect(null, mapDispatchToProps)(ConnectedChatroom)
 export default Chatroom;

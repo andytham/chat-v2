@@ -7,7 +7,8 @@ import Root from './components/Root';
 
 
 render(
-	<Root store={store} />, document.getElementById('root')
+	// <Root store={store} />, document.getElementById('root')
+	<App />, document.getElementById('root')
 )
 
 if (module.hot) {
