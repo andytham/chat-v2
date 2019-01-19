@@ -1,7 +1,6 @@
 import chatSocket from '../chat-socket';
 import React from 'react';
-const ChatLog = function ChatLog (props) {
-	console.log(props.log);
+const ChatLog = React.memo(function ChatLog (props) {
 	let count = 0;
 	let log = props.log.map(entry => {
 		if(entry.usr == "server") {
@@ -17,6 +16,6 @@ const ChatLog = function ChatLog (props) {
 	})
 	return log
 	// return (<div>	</div>)
-}
+})
 
 export default ChatLog;
