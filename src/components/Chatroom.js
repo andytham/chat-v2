@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import ChatLog from './ChatLog';
 import chatSocket from '../chat-socket';
 
 //auth0
@@ -13,6 +13,7 @@ class Chatroom extends Component {
 		this.state = {
 			input: "",
 			chatSocket: chatSocket(),
+			log: []
 		}
 		this.renderChat = this.renderChat.bind(this);
 		this.onInput = this.onInput.bind(this);
@@ -22,11 +23,6 @@ class Chatroom extends Component {
 
 	}
 		
-	renderChat(){
-		let count = 0;
-		
-	}
-
 	onInput(e){
 		this.setState({
 			input: e.target.value
@@ -53,7 +49,7 @@ class Chatroom extends Component {
 					<div className="chat-title">
 					</div>
 					<ul className="chat-history">
-						<ChatHistory />
+						<ChatLog />
 					</ul>
 					<div className="input-wrapper">
 						<TextField 

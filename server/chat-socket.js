@@ -8,10 +8,6 @@ module.exports = function () {
     console.log('Most likely no server found');
   })
 
-  // function broadcastMessage(message) {
-  //   members.forEach(m => m.emit('message', message))
-  // }
-
   function addEntry(entry) {
     chatHistory = chatHistory.concat(entry)
     // console.log('This is the entry being POSTed:', entry);
@@ -22,24 +18,19 @@ module.exports = function () {
       tme: entry.tme
     })
     .then(res => {
-      // console.log(res);
       console.log("POST Success!");
     })
     .catch(err => {
       console.log("POST Failed");
       console.log(err);
     })
-    // console.log("added to chat history: ", chatHistory);
   }
 
   function getChatHistory() {
-    // console.log("getting chat history: ", chatHistory);
     return chatHistory.slice()
   }
 
-
   return {
-    // broadcastMessage,
     addEntry,
     getChatHistory,
   }
