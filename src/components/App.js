@@ -5,18 +5,7 @@ import '../css/App.css';
 //components
 import Home from './Home';
 import Chatroom from './Chatroom';
-import Login from './Login';
-function AuthChatroom ({component: Chatroom, authed, ...rest}){
-	console.log(authed);
-	return(
-		<Route
-			{...rest}
-			render={(props) => authed === true
-				? <Chatroom {...props} />
-				: <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
-		/>
-	)
-}
+import {Login} from './Login';
 
 class App extends React.Component {
 	constructor(){

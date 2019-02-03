@@ -10,6 +10,10 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
+
+import { connect } from 'react-redux';
+import { userActions } from '../redux/actions';
+
 class Login extends React.Component{
 	constructor(props){
 		super(props)
@@ -32,7 +36,12 @@ class Login extends React.Component{
     this.setState(state => ({ showPassword: !state.showPassword }));
 	};
 	onSubmit(){
-		console.log('submit');
+		console.log(this.props);
+		const { username, password } = this.state;
+		const { dispatch } = this.props;
+		if (username && password) {
+			dispatch(userActions.login(username, password));
+		}
 		//auth
 	}
 	render(){
@@ -76,5 +85,12 @@ class Login extends React.Component{
 		)
 	}
 }
+function mapStateToProps(state) {
+	const { loggingIn } = state.auth;
+	return {
+			loggingIn
+	};
+}
 
-export default Login;
+const connectedLogin = connect(mapStateToProps)(Login);
+export { connectedLogin as Login }; 
