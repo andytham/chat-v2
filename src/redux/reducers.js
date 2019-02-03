@@ -1,6 +1,6 @@
 import { UPDATE_CHAT_HISTORY } from "./actions";
-
-const initialState = {
+import { combineReducers } from 'redux';
+const chatInitialState = {
 	chatHistory: [
 		{
 			usr: "server",
@@ -10,13 +10,16 @@ const initialState = {
 	]
 }
 
+let user = JSON.parse(localStorage.getItem('user'));
+const initialState = user ? { loggedIn: true, user } : {};
+
 export const rootReducer = combineReducers({
 	auth,
 	chat
 })
 
 
-export function chat(state = initialState, action){
+export function chat(state = chatInitialState, action){
 	switch (action.type) {
 		case UPDATE_CHAT_HISTORY:
 			return { ...state, chatHistory: [...state.chatHistory, action.payload]};
@@ -26,7 +29,7 @@ export function chat(state = initialState, action){
 };
 export default rootReducer;
 
-import userConstants from './constants';
+import { userConstants } from './constants';
 export function auth(state = initialState, action){
 	switch (action.type){
 		case userConstants.LOGIN_REQUEST:
