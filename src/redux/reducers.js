@@ -1,5 +1,6 @@
 import { UPDATE_CHAT_HISTORY } from "./actions";
 import { combineReducers } from 'redux';
+
 const chatInitialState = {
 	chatHistory: [
 		{

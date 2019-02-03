@@ -17,7 +17,7 @@ export const updateTest = (socket, usr, msg, tme) => {
 	}
 }
 
-import { userContants } from './constants';
+import { userConstants } from './constants';
 import { userService } from './services';
 
 export const userActions = {
