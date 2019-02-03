@@ -1,4 +1,4 @@
-import chatSocket from '../chat-socket';
+import chatSocket from '../helpers/chat-socket';
 import React from 'react';
 const ChatLog = React.memo(function ChatLog (props) {
 	let count = 0;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ChatLog from './ChatLog';
-import chatSocket from '../chat-socket';
+import chatSocket from '../helpers/chat-socket';
 import timeGet from '../../server/timeGet';
 
 class Chatroom extends Component {
