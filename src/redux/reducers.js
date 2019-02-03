@@ -27,7 +27,6 @@ export function chat(state = chatInitialState, action){
 			return state;
 	}
 };
-export default rootReducer;
 
 import { userConstants } from './constants';
 export function auth(state = initialState, action){
