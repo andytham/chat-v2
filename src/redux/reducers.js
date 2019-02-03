@@ -10,7 +10,13 @@ const initialState = {
 	]
 }
 
-const rootReducer = (state = initialState, action) => {
+export const rootReducer = combineReducers({
+	auth,
+	chat
+})
+
+
+export function chat(state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_CHAT_HISTORY:
 			return { ...state, chatHistory: [...state.chatHistory, action.payload]};
@@ -18,5 +24,26 @@ const rootReducer = (state = initialState, action) => {
 			return state;
 	}
 };
-
 export default rootReducer;
+
+import userConstants from './constants';
+export function auth(state = initialState, action){
+	switch (action.type){
+		case userConstants.LOGIN_REQUEST:
+			return {
+				loggingIn: true,
+				user: action.user
+			}
+		case userConstants.LOGIN_SUCESS:
+			return {
+				loggedIn: true,
+				user: action.user
+			}
+		case userConstants.LOGIN_FAILURE:
+			return {};
+		case userConstants.LOGOUT:
+			return {};
+		default: 
+			return state;
+	}
+}
