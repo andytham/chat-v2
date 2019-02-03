@@ -16,7 +16,7 @@ export const rootReducer = combineReducers({
 })
 
 
-export function chat(state = initialState, action) => {
+export function chat(state = initialState, action){
 	switch (action.type) {
 		case UPDATE_CHAT_HISTORY:
 			return { ...state, chatHistory: [...state.chatHistory, action.payload]};
