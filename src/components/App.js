@@ -23,9 +23,9 @@ class App extends React.Component {
 	constructor(){
 		super();
 		this.state = {
-			authed: false
+			isLoggedIn: false,
+			username: ""
 		}
-		this.toggleAuth = this.toggleAuth.bind(this);
 	}
 	componentDidMount(){
 		let self = this
@@ -37,8 +37,8 @@ class App extends React.Component {
 				}
 				console.log("state update");
 				self.setState({
-					authed: true
-					// username: profile.nickname
+					isLoggedIn: true,
+					username: profile.nickname
 				});
 				this.toggleAuth();
 				localStorage.setItem('accessToken', authResult.accessToken);
@@ -50,17 +50,8 @@ class App extends React.Component {
 		lock.on("authorization_error", function(authResult){
 			console.log('auth error');
 			self.setState({
-				authed: false
+				isLoggedIn: false
 			})
-		})
-	}
-	componentDidUpdate(){
-		console.log(this.state.authed);
-	}
-
-	toggleAuth(){
-		this.setState({
-			authed:true
 		})
 	}
 
@@ -69,7 +60,7 @@ class App extends React.Component {
 			<div id="auth" className="App">
 				<Route exact path="/" render={(props) => <Home />} />
 				<Route exact path="/login" render={(props) => <AuthComponent /> } />
-				<Route exact path="/chat" render={(props) => <Chatroom /> } />
+				<Route exact path="/chat" render={(props) => <Chatroom username={this.state.username} isLoggedIn={this.state.isLoggedIn}/> } />
 				{/* <AuthChatroom authed={this.state.authed} path='/chat' component={Chatroom} /> */}
 			</div>
 		)
