@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import '../css/App.css';
 
 //components
-import Home from './Home';
+import {Home} from './Home';
 import Chatroom from './Chatroom';
 import {Login} from './Login';
 

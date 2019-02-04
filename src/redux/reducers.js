@@ -11,7 +11,8 @@ const chatInitialState = {
 	]
 }
 
-let user = JSON.parse(localStorage.getItem('user'));
+// let user = JSON.parse(localStorage.getItem('user'));
+let user = localStorage.getItem('user')
 const initialState = user ? { loggedIn: true, user } : {};
 
 export const rootReducer = combineReducers({
