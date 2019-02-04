@@ -15,6 +15,9 @@ class App extends React.Component {
 			username: ""
 		}
 	}
+	componentDidMount(){
+		
+	}
 
 	render(){
 		return(
