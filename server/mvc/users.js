@@ -21,7 +21,12 @@ usersController.create = (req, res) => {
 }
 
 usersController.temp = (req, res) => {
-	return req.body;
+	//make sure req is valid, correct pw, actual user, etc, sanitized inputs
+	// do a search on registered users
+	//push into a list of active users?
+
+	//return if valid
+	res.json(req.body.username)
 }
 
 const express = require('express');

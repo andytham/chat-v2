@@ -15,7 +15,8 @@ function login(username, password){
 	return fetch(`${config.apiUrl}/users/authenticate`, reqOptions)
 		.then(handleResponse)
 		.then(user => {
-			localStorage.setItem('user', JSON.stringfy(user));
+			console.log("returned res from fetch:", user);
+			localStorage.setItem('user', user);
 			return user;
 		})
 		.catch(err => {
@@ -29,6 +30,7 @@ function logout(){
 
 
 function handleResponse(response) {
+	console.log("this is the response after fetch", response);
 	return response.text().then(text => {
 			const data = text && JSON.parse(text);
 			if (!response.ok) {
