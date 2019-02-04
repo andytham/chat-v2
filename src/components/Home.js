@@ -7,7 +7,10 @@ class Home extends Component {
 	}
 	render(){
 		return(
-			<div>Hello World</div>
+			<div>Hello World
+
+				<button onClick={()=>{console.log(this.state,this.props)}}>state and props</button>
+			</div>
 		)
 	}
 }
