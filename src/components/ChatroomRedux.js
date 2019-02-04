@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { updateChatHistory, updateTest } from '../redux/actions/index';
 
-import chatSocket from '../chat-socket';
+import chatSocket from '../helpers/chat-socket';
 
 //auth0
 

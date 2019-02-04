@@ -70,7 +70,8 @@ app.get('/chat', (req, res) => {
 
 const historyRoutes = require('./mvc/history.js');
 app.use('/api/history', historyRoutes);
-
+const userRoutes = require('./mvc/users.js');
+app.use('/users', userRoutes);
 server.listen(PORT, (err) => {
 
 	console.log(`Listening on port ${PORT}, ${timeGet("hm")}`);
