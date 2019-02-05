@@ -8,7 +8,8 @@
     "start": "webpack-dev-server --mode development --hot",
     "build": "webpack",
     "server": "nodemon ./server/app.js",
-    "watch": "webpack --watch --mode development"
+    "watch": "webpack --watch --mode development",
+    "debug": "set DEBUG=express:* node ./server/app.js"
   },
   "author": "andytham",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "express-jwt": "^5.3.1",
     "history": "^4.7.2",
     "jsonwebtoken": "^8.4.0",
+    "morgan": "^1.9.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",

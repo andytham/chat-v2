@@ -6,6 +6,8 @@ const timeGet = require('./timeGet');
 const PORT = process.env.PORT || 8080;
 const jwtMiddleware = require('express-jwt');
 const jwt = require('jsonwebtoken')
+const logger = require('morgan');
+app.use(logger("dev"));
 //body parser to handle request bodies incoming from the client
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -13,22 +15,22 @@ app.use(bodyParser.urlencoded({
   extended: false
 }))
 
-app.use(express.static('build')) //this should be top level so that the js files are served (will get unexpected token error)
+app.use(express.static('build'), (req,res,next)=>{console.log("static");next();}) //this should be top level so that the js files are served (will get unexpected token error)
 
 
 
 
-// app.use(function(req, res, next) {
-// 	//middleware that runs on every request incoming
+app.use(function(req, res, next) {
+	//middleware that runs on every request incoming
 	
-// 	// CORS
-//   res.header("Access-Control-Allow-Origin", "*");
-// 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-// 	res.header("Access-Control-Allow-Methods", "PATCH, POST, OPTIONS")
-// 	// console.log(req.headers);
-// 	console.log('middleware',req.headers.authorization);
-//   next();
-// });
+	// CORS
+  res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+	res.header("Access-Control-Allow-Methods", "PATCH, POST, OPTIONS, GET, HEAD")
+	// console.log(req.headers);
+	// console.log('middleware',req.headers.authorization);
+  next();
+});
 
 function verifyToken(req, res, next){
 	let token;
@@ -63,8 +65,8 @@ function checkToken(req, res, next){
 }
 
 function verifyJWT(req, res){
-	console.log("???????");
-	jwt.verify(req.token, 'privatekey', (err, authorizedData) => {
+
+	jwt.verify(req.token, 'secret', (err, authorizedData) => {
 		if(err){
 				//If error send Forbidden (403)
 				console.log('ERROR: Could not connect to the protected route');
@@ -79,6 +81,7 @@ function verifyJWT(req, res){
 		}
 })
 }
+
 let count = 0;
 function checkHeader(req,res,next){
 	count += 1;
@@ -97,23 +100,33 @@ function checkHeader(req,res,next){
 // 	next();
 // })
 //URL get
-app.get('/', (req, res) => {
-	console.log("i ran");
-	res.sendFile(path.join(__dirname + '../index.html'))
+// app.get('/', (req, res) => {
+// 	console.log("i ran");
+// 	res.sendFile(path.join(__dirname + '../index.html'))
+// })
+const logRoute = require('./mvc/testroutes')
+app.use('/login', logRoute);
+
+// app.get('/login', checkHeader, (req, res) => {
+// 	console.log("i ran too");
+// 	res.sendFile(path.join(__dirname + '../../index.html'))
+// })
+
+app.get('/chat', (req,res)=>{
+		res.sendFile(path.join(__dirname + '../../index.html'))
 })
-app.get('/login', checkHeader, (req, res) => {
-	console.log("i ran too");
-	res.sendFile(path.join(__dirname + '../../index.html'))
+app.head('/chat',(req, res) => {
+	console.log('HEAD IS HAPPENING HELLO??');	
 })
-app.get('/chat',  checkToken, (req, res) => {
-	console.log("i ran chat");
-	verifyJWT(req, res)
-	res.sendFile(path.join(__dirname + '../../index.html'))
-})
-const historyRoutes = require('./mvc/history.js');
-app.use('/api/history', historyRoutes);
-const userRoutes = require('./mvc/users.js');
-app.use('/users', userRoutes);
+// app.get('/chat',  checkToken, (req, res) => {
+// 	console.log("i ran chat");
+// 	verifyJWT(req, res)
+// 	res.sendFile(path.join(__dirname + '../../index.html'))
+// })
+// const historyRoutes = require('./mvc/history.js');
+// app.use('/api/history', historyRoutes);
+// const userRoutes = require('./mvc/users.js');
+// app.use('/users', userRoutes);
 //socket.io
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
