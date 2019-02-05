@@ -28,7 +28,8 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	res.header("Access-Control-Allow-Methods", "PATCH, POST")
-
+	console.log(req.headers);
+	console.log(req.headers.authorization);
   next();
 });
 
@@ -39,6 +40,7 @@ app.use(function(err, req, res, next) {
 	if (err.name === 'UnauthorizedError') {
 		res.redirect('/login')
 	}
+	next();
 })
 
 // app.get('/poop', (res,req,next)=>{console.log("wtf");next()},()=>{console.log('wtf2');})
@@ -87,9 +89,9 @@ io.on('connection', function(socket){
 
 
 //URL get
-// app.get('/', (req, res) => {
-// 	res.sendFile(path.join(__dirname + '../index.html'))
-// })
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname + '../index.html'))
+})
 app.get('/login', (req, res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })

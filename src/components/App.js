@@ -2,6 +2,16 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import '../css/App.css';
 
+function jwtRequest(url, token){
+	var req = new XMLHttpRequest();
+	req.open('GET', url, true);
+	req.setRequestHeader('Authorization', 'Bearer ' + token);
+	req.send();
+}
+// let token = localStorage.getItem(token) || "dsgsdg";
+let token = "344141"
+jwtRequest("/fgdg", token); //can't be empty url? same with fetch
+
 //components
 import {Home} from './Home';
 import Chatroom from './Chatroom';
@@ -16,7 +26,7 @@ class App extends React.Component {
 		}
 	}
 	componentDidMount(){
-		
+
 	}
 
 	render(){
