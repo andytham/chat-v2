@@ -38,8 +38,12 @@ usersController.temp = (req, res) => {
 	
 	// console.log(req.body.username);
 	// res.json(req.body.username)
-	console.log(body);
+	// res.setHeader('x-access-token', token);
 	res.json(body)
+	// res.json({
+	// 	token: token,
+	// 	user: req.body.username
+	// })
 }
 
 const express = require('express');

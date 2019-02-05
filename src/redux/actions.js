@@ -32,8 +32,7 @@ function login(username, password) {
 		userService.login(username, password)
 			.then(
 				user => {
-					dispatch(success(user));
-					history.push('/')
+					dispatch(success(user));		
 					// history.push('/')
 				},
 				error => {
@@ -45,6 +44,7 @@ function login(username, password) {
 	function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
 	function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
 	function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+
 }
 
 function logout() {

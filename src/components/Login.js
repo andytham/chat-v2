@@ -35,7 +35,8 @@ class Login extends React.Component{
   handleClickShowPassword(){
     this.setState(state => ({ showPassword: !state.showPassword }));
 	};
-	onSubmit(){
+	onSubmit(e){
+		e.preventDefault();
 		console.log(this.props);
 		const { username, password } = this.state;
 		const { dispatch } = this.props;
@@ -53,7 +54,7 @@ class Login extends React.Component{
 						id="form-username"
 						value={this.state.username}
 						onChange={e => this.handleChange('username', e)}
-						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit() : null)}
+						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
 					/>
 				</FormControl>
         <FormControl className="form">
@@ -65,7 +66,7 @@ class Login extends React.Component{
             type={this.state.showPassword ? 'text' : 'password'}
             value={this.state.password}
 						onChange={(event) => this.handleChange('password', event)}
-						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit() : null)}
+						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
