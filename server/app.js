@@ -8,22 +8,23 @@ const jwtMiddleware = require('express-jwt');
 
 app.use(express.static('build')); //this should be top level so that the js files are served (will get unexpected token error)
 
-app.use(jwtMiddleware({
-	secret: "secret"
-}).unless({path: ['/login']}))
+app.use(jwtMiddleware({secret: "secret"}).unless({path: ['/login']}))
 // app.use(jwtMiddleware({ secret: 'secret'}).unless({path: ['/login']}));
-app.use('/', jwtMiddleware({secret:"secret"}))
+// app.use('/chat', jwtMiddleware({secret:"secret"}))
+app.get('/',(req, res) => {res.redirect('/chat')})//doesnt work
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
 
 		res.redirect('/login')
-		//error msg instead
+		// error msg instead
     // return res.status(403).send({
     //   success: false,
     //   message: 'No token provided.'
     // });
 	}
 });
+
+
 // CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

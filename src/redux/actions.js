@@ -1,3 +1,4 @@
+import { history } from './helper';
 //constants
 export const UPDATE_CHAT_HISTORY = "UPDATE_CHAT_HISTORY";
 
@@ -32,6 +33,7 @@ function login(username, password) {
 			.then(
 				user => {
 					dispatch(success(user));
+					history.push('/')
 					// history.push('/')
 				},
 				error => {

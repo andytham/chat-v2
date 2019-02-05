@@ -4,13 +4,14 @@ import App from './components/App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Root from './components/Root';
-
-import { BrowserRouter as Router } from 'react-router-dom'
+import { history } from './redux/helper';
+// import { BrowserRouter as Router } from 'react-router-dom'
+import { Router } from 'react-router-dom';
 
 render(
 	// <Root store={store} />, document.getElementById('root')
 	<Provider store={store}>
-		<Router>
+		<Router history={history}>
 			<App />
 		</Router> 
 	</Provider>,
