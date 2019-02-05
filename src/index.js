@@ -7,6 +7,8 @@ import Root from './components/Root';
 import { history } from './redux/helper';
 // import { BrowserRouter as Router } from 'react-router-dom'
 import { Router } from 'react-router-dom';
+import xhr from './helpers/header';
+xhr();
 
 render(
 	// <Root store={store} />, document.getElementById('root')

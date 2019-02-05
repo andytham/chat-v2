@@ -14,10 +14,14 @@ function login(username, password){
 
 	return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
 		.then(handleResponse)
-		.then(user => {
-			console.log('test');
-			console.log("returned res from fetch:", user);
-			localStorage.setItem('user', user);
+		.then(data => {
+			console.log("returned res from fetch:", data);
+			let parsed = JSON.parse(data);
+			let { user, token } = parsed;
+			
+			localStorage.setItem('username', user);
+			localStorage.setItem('token', token)
+			localStorage.setItem('user', data)
 			// jwtRequest()
 			return user;
 		})
@@ -35,6 +39,8 @@ function login(username, password){
 
 function logout(){
 	localStorage.removeItem('user');
+	localStorage.removeItem('username');
+	localStorage.removeItem('token');
 }
 
 

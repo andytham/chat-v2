@@ -2,15 +2,31 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import '../css/App.css';
 
-function jwtRequest(url, token){
-	var req = new XMLHttpRequest();
-	req.open('GET', url, true);
-	req.setRequestHeader('Authorization', 'Bearer ' + token);
-	req.send();
-}
-// let token = localStorage.getItem(token) || "dsgsdg";
-let token = "344141"
-jwtRequest("/fgdg", token); //can't be empty url? same with fetch
+// function jwtRequest(url, token){
+// 	var req = new XMLHttpRequest();
+// 	req.open('GET', url, true);
+// 	req.setRequestHeader('Authorization', 'Bearer ' + token);
+// 	req.send();
+// }
+// let test = JSON.parse(localStorage.getItem("user"))
+// if (!test){ test = ""}
+// let token = test.token || "No token";
+// jwtRequest("/fgdg", token); //can't be empty url? same with fetch
+
+// import axios from 'axios';
+// let test = JSON.parse(localStorage.getItem("user"))
+// if (!test){ test = ""}
+// let token = test.token || "No token";
+// axios.defaults.baseURL = 'http://localhost8080';
+// axios.defaults.headers.common['Authorization'] = token;
+
+// fetch('/login', {
+// 	method: "get",
+// 	headers: new Headers({
+// 		'Authorization': 'Bearer ' + token
+// 	})
+// })
+
 
 //components
 import {Home} from './Home';
