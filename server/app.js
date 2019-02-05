@@ -15,15 +15,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }))
+const historyRoutes = require('./mvc/history.js');
+app.use('/api/history', historyRoutes);
+const userRoutes = require('./mvc/users.js');
+app.use('/users', userRoutes);
 
-
-app.use(function(err, req, res, next) {
-	console.log(err);
-	console.log(req);
-	console.log("hello");
-	if (err.name === 'UnauthorizedError') {
-		res.redirect('/login')
-	}
+app.use(function(req, res, next) {
+	//middleware that runs on every request incoming
+	console.log("middleware: no err");
 	
 	// CORS
   res.header("Access-Control-Allow-Origin", "*");
@@ -33,9 +32,17 @@ app.use(function(err, req, res, next) {
   next();
 });
 
+app.use(jwtMiddleware({secret: "secret"}).unless({path: ['/login']}))
+app.use(function(err, req, res, next) {
+	
+	console.log("middleware err");
+	if (err.name === 'UnauthorizedError') {
+		res.redirect('/login')
+	}
+})
+
 // app.get('/poop', (res,req,next)=>{console.log("wtf");next()},()=>{console.log('wtf2');})
 
-// app.use(jwtMiddleware({secret: "secret"}).unless({path: ['/login']}))
 // app.use(jwtMiddleware({ secret: 'secret'}).unless({path: ['/chat']}));
 // app.use('/chat', jwtMiddleware({secret:"secret"}))
 // app.get('/',(req, res) => {res.redirect('/chat')})//doesnt work
@@ -90,10 +97,7 @@ app.get('/chat', (req, res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
 
-const historyRoutes = require('./mvc/history.js');
-app.use('/api/history', historyRoutes);
-const userRoutes = require('./mvc/users.js');
-app.use('/users', userRoutes);
+
 server.listen(PORT, (err) => {
 
 	console.log(`Listening on port ${PORT}, ${timeGet("hm")}`);
