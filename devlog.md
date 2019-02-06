@@ -12,3 +12,19 @@ I need to either initialize redux's store on load or sync it with the backend's 
 
 For some reason, I keep running into issues when trying to serve the express app until I added babel polyfill.
 But then it suddenly works after I install and uninstall it?
+
+So after spending several days working with JWT and trying to figure out the workflow here's what I gathered so far.
+
+Create JWT in backend on login.
+Send JWT to client/frontend, store in cookie.
+When trying to access private route, check HTTP-headers for Authorization: Bearer 'JWT goes here'
+When verified in the backend with jwt.verify, allow user to go in, otherwise status 403.
+
+Problems I've spent a long time dealing with.
+Trying ot use XHR to send a http request to the express backend
+However, I want to do it right, and everytime you access a URL through a browser a get request naturally occurs, and it seems you can't modify it (most likely for security reasons), so I can't set the headers for this request (a lot of guides seem to miss this as they use POSTMAN to send the headers directly).
+The XHR request then goes through, so the authorization headers comes in after the first one, thereby running into a problem.
+
+I discovered cookies are sent with every request, so that is currently my goal rather than trying to find another workaround to (contemplating skipping the first 'GET' request in authorization as a workaround).
+
+Storing tokens in cookies seems to be vulnerable to CSRF (but auth0 warns that web storage is vulnerable to XSS)
