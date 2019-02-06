@@ -9,8 +9,6 @@ router.head('/', (req, res, next)=>{
 	next();
 })
 router.get('/',(req, res,next)=>{
-	console.log('the router thing');
-	console.log(req.headers.authorization);
 	res.sendFile(path.join(__dirname + '../../../index.html'))
 })
 module.exports = router;
