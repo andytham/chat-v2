@@ -2,7 +2,7 @@
 //server side socket emitters
 function startEmitters(server){
 	const io = require('socket.io')(server);
-	const cr = require('./chat-func.js');
+	const { cr, timeGet } = require('./helpers');
 	let Chatroom = cr();
 	let usersList = {};
 	

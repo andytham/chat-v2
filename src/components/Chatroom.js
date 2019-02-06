@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ChatLog from './ChatLog';
 import chatSocket from '../helpers/chat-socket';
-import timeGet from '../../server/timeGet';
+import { timeGet }  from '../../server/helpers';
 
 class Chatroom extends Component {
 	constructor(){

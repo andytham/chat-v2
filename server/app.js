@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-const timeGet = require('./timeGet');
+const { timeGet } = require('./helpers');
 const PORT = process.env.PORT || 8080;
 const jwt = require('jsonwebtoken')
 //debug log in console
@@ -47,6 +47,8 @@ app.get('/', (req,res) => {
 
 const privateRoute = require('./routes/private')
 app.use('/chat', privateRoute);
+
+//login POST
 const userRoute = require('./routes/users')
 app.use('/users', userRoute);
 

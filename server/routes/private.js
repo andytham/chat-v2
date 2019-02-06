@@ -13,7 +13,7 @@ function verifyToken(token){
 	}
 }
 
-router.get('/',(req, res,next)=>{
+router.get('/',(req, res,next) => {
 	let token;
 	token = req.session.cookie;
 	if (verifyToken(req.session.token)){
@@ -23,6 +23,6 @@ router.get('/',(req, res,next)=>{
 		res.sendStatus(403);
 		return;
 	}
-
 })
+
 module.exports = router;
