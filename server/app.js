@@ -36,19 +36,21 @@ app.use(session({
 	}
 }))
 
+app.get('/login', (req,res)=>{
+	res.sendFile(path.join(__dirname + '../../index.html'))
+})
+
+
 app.get('/', (req,res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
 
-const logRoute = require('./mvc/testroutes')
-app.use('/chat', logRoute);
-const userRoute = require('./mvc/users')
+const privateRoute = require('./routes/private')
+app.use('/chat', privateRoute);
+const userRoute = require('./routes/users')
 app.use('/users', userRoute);
 
 
-app.get('/login', (req,res)=>{
-		res.sendFile(path.join(__dirname + '../../index.html'))
-})
 
 const server = require('http').createServer(app);
 //socket.io

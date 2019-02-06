@@ -28,7 +28,7 @@ usersController.temp = (req, res) => {
 	let token = jwt.sign({
 								exp: Math.floor(Date.now() / 1000) + (60),
 								data: req.body.username
-								}, "secredt")
+								}, "secret")
 	//return several things if valid: username, token?
 	// res.json(req.body.username)
 	req.session.token = token;
