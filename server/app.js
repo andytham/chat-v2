@@ -16,22 +16,16 @@ app.use(bodyParser.urlencoded({
   extended: false
 }))
 
-app.head('*', (req, res, next)=> {
-	console.log('global head');
-	console.log(req.headers.authorization);
-	next();
-})
-
 //without this middleware get, app.head on '*' runs twice?
 app.get('/', (req,res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
 
+app.use(express.static('build')) 
 //near top level otherwise will get unexpected token error and other errors
 // express.static is also serving '/'? overwriting any other calls to the root, so place those over?
-app.use(express.static('build')) 
 
-//middleware that runs on every request incoming
+// middleware that runs on every request incoming
 app.use(function(req, res, next) {	
 	// CORS
   res.header("Access-Control-Allow-Origin", "*");
@@ -113,14 +107,15 @@ function checkHeader(req,res,next){
 // 	res.sendFile(path.join(__dirname + '../index.html'))
 // })
 const logRoute = require('./mvc/testroutes')
-app.use('/login', logRoute);
-
+app.use('/chat', logRoute);
+const userRoute = require('./mvc/users')
+app.use('/users', userRoute);
 // app.get('/login', checkHeader, (req, res) => {
 // 	console.log("i ran too");
 // 	res.sendFile(path.join(__dirname + '../../index.html'))
 // })
 
-app.get('/chat', (req,res)=>{
+app.get('/login', (req,res)=>{
 		res.sendFile(path.join(__dirname + '../../index.html'))
 })
 app.head('/chat',(req, res) => {
