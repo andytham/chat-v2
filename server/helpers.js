@@ -12,7 +12,7 @@ function timeGet(type){
 
 	let tS = t.getSeconds();
 	if (t.getSeconds() < 10){
-		ts = "0" + t.getSeconds();
+		tS = "0" + t.getSeconds();
 	}
 	if (type == "hms"){
 		return `${tH}:${tM}:${tS}`;
