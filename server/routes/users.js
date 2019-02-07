@@ -31,16 +31,21 @@ usersController.temp = (req, res) => {
 								}, "secret")
 
 	req.session.token = token;
+	req.session.username = req.body.username;
 	let body = {
-		user: req.body.username,
+		username: req.body.username,
 		token: token
 	}
-	req.session.username = req.body.username;
 	res.json(body)
 }
 usersController.current = (req, res) => {
 	let response = {username: req.session.username}
-	res.json(response)
+	console.log(response);
+	if(req.session.username){
+		res.json(response)
+	} else {
+		res.json({message: "no one logged in"})
+	}
 }
 const express = require('express');
 const usersRouter = express.Router();

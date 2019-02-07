@@ -48,8 +48,8 @@ const privateRoute = require('./routes/private');
 app.use('/chat', privateRoute);
 
 //login POST
-const userRoute = require('./routes/users');
-app.use('/users', userRoute);
+const usersRoute = require('./routes/users');
+app.use('/users', usersRoute);
 
 //chat history routes
 const historyRoute = require('./routes/history');

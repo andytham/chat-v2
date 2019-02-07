@@ -17,12 +17,9 @@ function login(username, password){
 		.then(handleResponse)
 		.then(data => {
 			let parsed = JSON.parse(data);
-			let { user, token } = parsed;
-			
-			localStorage.setItem('username', user);
-
-			history.push('/chat')
-			return user;
+			let { username, token } = parsed;
+			localStorage.setItem('username', username);
+			return username;
 		})
 		.catch(err => {
 			console.log(err);

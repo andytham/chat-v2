@@ -5,6 +5,8 @@ import ChatLog from './ChatLog';
 import chatSocket from '../helpers/chat-socket';
 import { timeGet }  from '../../server/helpers';
 import { connect } from 'react-redux';
+import config from 'config';
+import axios from 'axios';
 
 class Chatroom extends Component {
 	constructor(){
@@ -21,16 +23,18 @@ class Chatroom extends Component {
 	} 
 	componentDidMount(){
 		this.state.chatSocket.receive(this.updateChatLog)
-		fetch('/users/current')
-			.then((data) => {
-				console.log(data);
-				this.setState({
-					username: data.username
-				})
-			})
-			.catch(err => {
-				console.log(err);
-			})
+
+		// just pull from redux state instead
+		// axios.get(`${config.apiUrl}/users/current`)
+		// .then( data => {
+		// 	this.setState({
+		// 		username: data.data.username
+		// 	})
+		// })
+		// .catch(err => {
+		// 	console.log("GET in CR failed");
+		// })
+
 	}
 
 	onInput(e){
@@ -48,9 +52,9 @@ class Chatroom extends Component {
 	}
 
 	onSendMessage(){
-		console.log(this.state);
+		console.log(this.props);
 		let msg = {
-			usr: this.state.username || localStorage.getItem('username'),
+			usr: this.props.username || localStorage.getItem('username'),
 			// usr: this.props.username,
       msg: this.state.input, 
       tme: timeGet()
@@ -94,10 +98,10 @@ class Chatroom extends Component {
 	}
 }
 function mapStateToProps(state) {
-	const { loggedIn, username } = state.auth;
+	const { isLoggedIn, username } = state.auth;
 	return {
-			loggedIn,
-			username
+		isLoggedIn,
+		username
 	};
 }
 

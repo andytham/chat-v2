@@ -28,3 +28,7 @@ The XHR request then goes through, so the authorization headers comes in after t
 I discovered cookies are sent with every request, so that is currently my goal rather than trying to find another workaround to (contemplating skipping the first 'GET' request in authorization as a workaround).
 
 Storing tokens in cookies seems to be vulnerable to CSRF (but auth0 warns that web storage is vulnerable to XSS)
+
+##
+
+In the reducer, I'm passing the next state as action.username. However, when I am mapping the state to props in my component, and then pulling out state.auth.username, it's nesting the username as an object of itself and its value? Might have to do with combing the reducers incorrectly...

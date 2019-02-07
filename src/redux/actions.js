@@ -31,9 +31,9 @@ function login(username, password) {
 		dispatch(request({ username }))
 		userService.login(username, password)
 			.then(
-				user => {
-					dispatch(success(user));		
-					// history.push('/')
+				username => {
+					dispatch(success(username));	
+					history.push('/chat')
 				},
 				error => {
 					dispatch(failure(error.toString()));
@@ -41,8 +41,8 @@ function login(username, password) {
 			)
 	}
 
-	function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-	function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+	function request(username) { return { type: userConstants.LOGIN_REQUEST, username } }
+	function success(username) { return { type: userConstants.LOGIN_SUCCESS, username } }
 	function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 
 }

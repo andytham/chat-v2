@@ -26,12 +26,10 @@ let user = localStorage.getItem('user')
 // getUser()
 // console.log(currentUser, "this is current user...");
 
-const initialState = user ? { loggedIn: true, user } : {};
+const initialState = user ? { isLoggedIn: true, user } : {};
+// const initialState = {};
 
-export const rootReducer = combineReducers({
-	auth,
-	chat
-})
+
 
 
 export function chat(state = chatInitialState, action){
@@ -49,21 +47,26 @@ export function auth(state = initialState, action){
 		case userConstants.LOGIN_REQUEST:
 			return {
 				loggingIn: true,
-				username: action.username
+				username: action.username.username //???????? why is this nested
 			}
 		case userConstants.LOGIN_SUCESS:
 			return {
-				isloggedIn: true,
+				isLoggedIn: true,
 				username: action.username
 			}
 		case userConstants.LOGIN_FAILURE:
 			return {};
 		case userConstants.LOGOUT:
 			return {
-				isloggedIn: false,
+				isLoggedIn: false,
 				username: ""
 			};
 		default: 
 			return state;
 	}
 }
+
+export const rootReducer = combineReducers({
+	auth,
+	chat
+})
