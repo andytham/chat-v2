@@ -1,4 +1,5 @@
 import config from 'config'; //webpack externals
+import { history } from './helpers';
 
 export const userService = {
 	login,
@@ -19,7 +20,8 @@ function login(username, password){
 			let { user, token } = parsed;
 			
 			localStorage.setItem('username', user);
-			// jwtRequest()
+
+			history.push('/chat')
 			return user;
 		})
 		.catch(err => {

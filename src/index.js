@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import App from './components/App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { history } from './redux/helper';
+import { history } from './redux/helpers';
 // import { BrowserRouter as Router } from 'react-router-dom'
 import { Router } from 'react-router-dom';
 import xhr from './helpers/header';

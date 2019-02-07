@@ -10,7 +10,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
-
 import { connect } from 'react-redux';
 import { userActions } from '../redux/actions';
 

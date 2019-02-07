@@ -1,4 +1,4 @@
-import { history } from './helper';
+import { history } from './helpers';
 //constants
 export const UPDATE_CHAT_HISTORY = "UPDATE_CHAT_HISTORY";
 
