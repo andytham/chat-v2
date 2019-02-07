@@ -55,6 +55,13 @@ app.use('/users', userRoute);
 const historyRoute = require('./routes/history');
 app.use('/api/history', historyRoute);
 
+//not working at the moment
+app.use(function(err, req, res, next) {
+	console.log("do something");
+	if(403 == err.status) {
+		res.redirect('/login')
+	}
+});
 
 const server = require('http').createServer(app);
 //socket.io

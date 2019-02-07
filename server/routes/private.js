@@ -8,7 +8,8 @@ function verifyToken(token){
 		jwt.verify(token, "secret")
 		return true;
 	} catch (err){
-		console.log(err);
+		// console.log(err);
+		console.log('JWT verification failed');
 		return false;
 	}
 }
@@ -20,7 +21,8 @@ router.get('/',(req, res,next) => {
 		res.sendFile(path.join(__dirname + '../../../index.html'))
 		return;
 	} else {
-		res.sendStatus(403);
+		// res.sendStatus(403);
+		res.redirect('/login')
 		return;
 	}
 })
