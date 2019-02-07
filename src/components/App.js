@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import '../css/App.css';
 //components
 import {Home} from './Home';
-import Chatroom from './Chatroom';
+import {Chatroom} from './Chatroom';
 import {Login} from './Login';
 import { Logout } from './Logout';
 class App extends React.Component {

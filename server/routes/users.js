@@ -26,7 +26,7 @@ usersController.temp = (req, res) => {
 	// do a search on registered users
 	//push into a list of active users?
 	let token = jwt.sign({
-								exp: Math.floor(Date.now() / 1000) + (60),
+								exp: Math.floor(Date.now() / 1000) + (60 * 60),
 								data: req.body.username
 								}, "secret")
 
@@ -39,7 +39,8 @@ usersController.temp = (req, res) => {
 	res.json(body)
 }
 usersController.current = (req, res) => {
-	res.send(req.session.username)
+	let response = {username: req.session.username}
+	res.json(response)
 }
 const express = require('express');
 const usersRouter = express.Router();

@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import ChatLog from './ChatLog';
 import chatSocket from '../helpers/chat-socket';
 import { timeGet }  from '../../server/helpers';
+import { connect } from 'react-redux';
 
 class Chatroom extends Component {
 	constructor(){
@@ -11,7 +12,8 @@ class Chatroom extends Component {
 		this.state = {
 			input: "",
 			chatSocket: chatSocket(),
-			log: []
+			log: [],
+			username: ""
 		}
 		this.onInput = this.onInput.bind(this);
 		this.updateChatLog = this.updateChatLog.bind(this);
@@ -21,6 +23,7 @@ class Chatroom extends Component {
 		this.state.chatSocket.receive(this.updateChatLog)
 		fetch('/users/current')
 			.then((data) => {
+				console.log(data);
 				this.setState({
 					username: data.username
 				})
@@ -45,9 +48,10 @@ class Chatroom extends Component {
 	}
 
 	onSendMessage(){
-
+		console.log(this.state);
 		let msg = {
 			usr: this.state.username || localStorage.getItem('username'),
+			// usr: this.props.username,
       msg: this.state.input, 
       tme: timeGet()
 		}
@@ -55,6 +59,9 @@ class Chatroom extends Component {
 			return console.log(err);
 		})
 		this.updateChatLog(msg)
+		this.setState({
+			input: ""
+		})
 	}
 
 	render(){
@@ -86,5 +93,13 @@ class Chatroom extends Component {
 		)
 	}
 }
+function mapStateToProps(state) {
+	const { loggedIn, username } = state.auth;
+	return {
+			loggedIn,
+			username
+	};
+}
 
-export default Chatroom;
+const ConnectedChatroom = connect(mapStateToProps)(Chatroom)
+export { ConnectedChatroom as Chatroom };

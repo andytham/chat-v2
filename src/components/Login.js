@@ -54,6 +54,7 @@ class Login extends React.Component{
 					<InputLabel htmlFor="username">Username</InputLabel>
 					<Input
 						id="form-username"
+						autoFocus={true}
 						value={this.state.username}
 						onChange={e => this.handleChange('username', e)}
 						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}

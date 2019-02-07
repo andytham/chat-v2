@@ -13,6 +13,19 @@ const chatInitialState = {
 
 // let user = JSON.parse(localStorage.getItem('user'));
 let user = localStorage.getItem('user')
+// let currentUser;
+// let getUser = async () => {
+// 	await fetch('/users/current')
+// 	.then((username)=>{
+// 		currentUser = username;
+// 	})
+// 	.catch(err => {
+// 		console.log(err);
+// 	})
+// }
+// getUser()
+// console.log(currentUser, "this is current user...");
+
 const initialState = user ? { loggedIn: true, user } : {};
 
 export const rootReducer = combineReducers({
@@ -36,18 +49,19 @@ export function auth(state = initialState, action){
 		case userConstants.LOGIN_REQUEST:
 			return {
 				loggingIn: true,
-				user: action.user
+				username: action.username
 			}
 		case userConstants.LOGIN_SUCESS:
 			return {
-				loggedIn: true,
-				user: action.user
+				isloggedIn: true,
+				username: action.username
 			}
 		case userConstants.LOGIN_FAILURE:
 			return {};
 		case userConstants.LOGOUT:
 			return {
-				loggedIn: false
+				isloggedIn: false,
+				username: ""
 			};
 		default: 
 			return state;
