@@ -25,7 +25,7 @@ function startEmitters(server){
 			}
 		});
 		socket.on('message', function(msg){
-			console.log('message: ' + msg);
+			console.log('server socket.on message fired');
 			Chatroom.addEntry(msg)
 			// io.emit('message', Chatroom.getChatHistory());
 			// io.emit('message', msg)

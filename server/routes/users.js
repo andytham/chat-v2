@@ -29,24 +29,21 @@ usersController.temp = (req, res) => {
 								exp: Math.floor(Date.now() / 1000) + (60),
 								data: req.body.username
 								}, "secret")
-	//return several things if valid: username, token?
-	// res.json(req.body.username)
+
 	req.session.token = token;
 	let body = {
 		user: req.body.username,
 		token: token
 	}
-	
+	req.session.username = req.body.username;
 	res.json(body)
-	// res.json({
-	// 	token: token,
-	// 	user: req.body.username
-	// })
 }
-
+usersController.current = (req, res) => {
+	res.send(req.session.username)
+}
 const express = require('express');
 const usersRouter = express.Router();
 
 usersRouter.post('/authenticate', usersController.temp)
-
+usersRouter.get('/current', usersController.current)
 module.exports = usersRouter;

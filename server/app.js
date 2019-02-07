@@ -4,7 +4,6 @@ const path = require('path');
 
 const { timeGet } = require('./helpers');
 const PORT = process.env.PORT || 8080;
-const jwt = require('jsonwebtoken')
 //debug log in console
 const logger = require('morgan');
 app.use(logger("dev"));
@@ -45,13 +44,16 @@ app.get('/', (req,res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
 
-const privateRoute = require('./routes/private')
+const privateRoute = require('./routes/private');
 app.use('/chat', privateRoute);
 
 //login POST
-const userRoute = require('./routes/users')
+const userRoute = require('./routes/users');
 app.use('/users', userRoute);
 
+//chat history routes
+const historyRoute = require('./routes/history');
+app.use('/api/history', historyRoute);
 
 
 const server = require('http').createServer(app);
@@ -60,6 +62,5 @@ const socket = require('./chat-socket');
 socket(server);
 
 server.listen(PORT, (err) => {
-
 	console.log(`Listening on port ${PORT}, ${timeGet("hm")}`);
 })

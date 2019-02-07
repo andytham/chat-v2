@@ -19,7 +19,15 @@ class Chatroom extends Component {
 	} 
 	componentDidMount(){
 		this.state.chatSocket.receive(this.updateChatLog)
-
+		fetch('/users/current')
+			.then((data) => {
+				this.setState({
+					username: data.username
+				})
+			})
+			.catch(err => {
+				console.log(err);
+			})
 	}
 
 	onInput(e){
@@ -37,8 +45,9 @@ class Chatroom extends Component {
 	}
 
 	onSendMessage(){
+
 		let msg = {
-			usr: "Current User",
+			usr: this.state.username || localStorage.getItem('username'),
       msg: this.state.input, 
       tme: timeGet()
 		}
