@@ -1,4 +1,3 @@
-
 //server side socket emitters
 function startEmitters(server){
 	const io = require('socket.io')(server);

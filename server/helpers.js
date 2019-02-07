@@ -23,6 +23,7 @@ function timeGet(type){
 	}
 }
 
+//backend for chatroom, seperate?
 const axios = require('axios');
 function chatroom() {
   let chatHistory = [{usr: 'server', msg: 'welcome to the chatroom!', tme: ''}] //fallback
