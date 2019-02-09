@@ -87,6 +87,12 @@ export function sessions(state = sessionsInitialState, action){
 					}
 				}
 			}
+		case sessionsConstants.REQUEST:
+			return {
+				sessions: {
+					...action.sessions
+				}
+			}
 		case sessionsConstants.UPDATE:
 			return {
 				...state,

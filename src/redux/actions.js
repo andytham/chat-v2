@@ -68,7 +68,7 @@ function createSession(username){
 			lastOnline,
 			currentStatus
 		}
-		dispatch((user)=>{
+		dispatch(()=>{
 			return { type: sessionsConstants.CREATE, user}
 		})
 	}
@@ -82,7 +82,7 @@ function updateSession(username){
 			lastOnline,
 			currentStatus
 		}
-		dispatch((user)=>{
+		dispatch(()=>{
 			return { type: sessionsConstants.UPDATE, user}
 		})
 	}
@@ -90,8 +90,8 @@ function updateSession(username){
 
 function populateSessions(){
 	return dispatch => {
-		dispatch(()=>{
-			return { type: sessionsConstants.REQUEST }
+		dispatch((sessions)=>{
+			return { type: sessionsConstants.REQUEST, sessions }
 		})
 	}
 }
