@@ -5,8 +5,6 @@ import ChatLog from './ChatLog';
 import chatSocket from '../helpers/chat-socket';
 import { timeGet }  from '../../server/helpers';
 import { connect } from 'react-redux';
-import config from 'config';
-import axios from 'axios';
 
 class Chatroom extends Component {
 	constructor(){
@@ -23,18 +21,6 @@ class Chatroom extends Component {
 	} 
 	componentDidMount(){
 		this.state.chatSocket.receive(this.updateChatLog)
-
-		// just pull from redux state instead
-		// axios.get(`${config.apiUrl}/users/current`)
-		// .then( data => {
-		// 	this.setState({
-		// 		username: data.data.username
-		// 	})
-		// })
-		// .catch(err => {
-		// 	console.log("GET in CR failed");
-		// })
-
 	}
 
 	onInput(e){
