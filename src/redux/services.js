@@ -50,3 +50,43 @@ function handleResponse(response) {
 			return data;
 	});
 }
+
+function getSessions(){
+	const requestOptions = {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' }
+	};
+
+	return fetch(`${config.apiUrl}/sessions`, requestOptions)
+		.then(
+			data => {return data}
+		)
+		.then(res => {
+			console.log(res);
+		})
+		.catch(err => {
+			console.log(err);
+		})
+}
+
+function patchSession(username, lastOnline, currentStatus){
+	const requestOptions = {
+		method: 'PATCH',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ username, lastOnline, currentStatus })
+	};
+
+	fetch(`${config.apiUrl}/sessions`, requestOptions)
+		.then(handleResponse)
+		.then(data => {
+			let parsed = JSON.parse(data);
+			return parsed;
+		})
+		.catch(err => {
+			console.log(err);
+		})
+}
+export const sessionsService = {
+	getSessions,
+	patchSession
+}

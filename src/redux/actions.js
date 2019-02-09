@@ -53,6 +53,8 @@ function logout() {
 }
 
 import { sessionsConstants } from './constants';
+import { sessionsService } from './services';
+
 export const sessionsActions = {
 	createSession,
 	updateSession,
@@ -82,6 +84,9 @@ function updateSession(username){
 			lastOnline,
 			currentStatus
 		}
+		//PATCH to db
+		sessionsService.patchSession(...user)
+		//updates redux state
 		dispatch(()=>{
 			return { type: sessionsConstants.UPDATE, user}
 		})
