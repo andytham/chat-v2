@@ -33,3 +33,51 @@ const UsersSession = { //model
 		);
 	}
 }
+
+const usersSessionsController = {
+	create: function(req, res){
+		let user = req.body
+		UsersSession.create({
+			username: user.username,
+			lastOnline: user.lastOnline,
+			currentState: user.currentStatus
+		})
+		.then(user => {
+			res.json({
+				message: "User session created"
+			})
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	},
+	index: function(req, res){
+		UsersSession.findAll()
+		.then(usersSessions => {
+			res.json({
+				message: "Users sessions grabbed",
+				data: usersSessions
+			})
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	},
+	update: function(req, res){
+		let user = req.body
+		UsersSession.update({
+			username: user.username,
+			lastOnline: user.lastOnline,
+			currentState: user.currentStatus
+		})
+		.then(user => {
+			res.json({
+				message: "User session updated"
+			})
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	}
+
+}
