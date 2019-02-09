@@ -51,3 +51,37 @@ function logout() {
 	userService.logout();
 	return { type: userConstants.LOGOUT };
 }
+
+import { sessionsConstants } from './constants';
+export const sessionsActions = {
+	createSession,
+	updateSession
+}
+function createSession(username){
+	return dispatch => {
+		let lastOnline;
+		let currentStatus;
+		let user = {
+			username,
+			lastOnline,
+			currentStatus
+		}
+		dispatch((username)=>{
+			return { type: sessionsConstants.CREATE, user}
+		})
+	}
+}
+function updateSession(username){
+	return dispatch => {
+		let lastOnline;
+		let currentStatus;
+		let user = {
+			username,
+			lastOnline,
+			currentStatus
+		}
+		dispatch((username)=>{
+			return { type: sessionsConstants.UPDATE, user}
+		})
+	}
+}
