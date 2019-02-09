@@ -26,7 +26,7 @@ const UsersSession = { //model
 				UPDATE users_sessions SET
 					last_online = $1,
 					current_status = $2
-				WHERE user = $3
+				WHERE username = $3
 				RETURNING *
 			`,
 			[user.lastOnline, user.currentStatus, user.username]
@@ -37,14 +37,16 @@ const UsersSession = { //model
 const usersSessionsController = {
 	create: function(req, res){
 		let user = req.body
+		console.log(user.currentStatus);
 		UsersSession.create({
 			username: user.username,
 			lastOnline: user.lastOnline,
-			currentState: user.currentStatus
+			currentStatus: user.currentStatus
 		})
 		.then(user => {
 			res.json({
-				message: "User session created"
+				message: "User session created",
+				data: user
 			})
 		})
 		.catch(err => {
@@ -65,14 +67,17 @@ const usersSessionsController = {
 	},
 	update: function(req, res){
 		let user = req.body
+		console.log(req.body);
+		console.log(res.body);
 		UsersSession.update({
 			username: user.username,
 			lastOnline: user.lastOnline,
-			currentState: user.currentStatus
+			currentStatus: user.currentStatus
 		})
 		.then(user => {
 			res.json({
-				message: "User session updated"
+				message: "User session updated",
+				data: user
 			})
 		})
 		.catch(err => {

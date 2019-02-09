@@ -77,9 +77,19 @@ function createSession(username){
 }
 function updateSession(username, lastOnline, currentStatus){
 	return dispatch => {
-		let user = arguments
+		// let user = arguments;
+		// sessionsService.patchSession(...user)
+
+		// I feel like this is less prone to errors
+		let user = {
+			username,
+			lastOnline,
+			currentStatus
+		}
 		//PATCH to db
-		sessionsService.patchSession(...user)
+		sessionsService.patchSession(username, lastOnline, currentStatus) 
+
+
 		//updates redux state
 		dispatch(()=>{
 			return { type: sessionsConstants.UPDATE, user}

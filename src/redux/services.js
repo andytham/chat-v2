@@ -73,7 +73,7 @@ function patchSession(username, lastOnline, currentStatus){
 	const requestOptions = {
 		method: 'PATCH',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({ username, lastOnline, currentStatus })
+		body: {username, lastOnline, currentStatus}
 	};
 
 	fetch(`${config.apiUrl}/sessions`, requestOptions)
