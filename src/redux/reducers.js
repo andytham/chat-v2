@@ -47,7 +47,7 @@ export function auth(state = initialState, action){
 		case userConstants.LOGIN_REQUEST:
 			return {
 				loggingIn: true,
-				username: action.username.username //???????? why is this nested
+				username: action.username.username //???????? why does this need to be nested? addressed in devlog
 			}
 		case userConstants.LOGIN_SUCESS:
 			return {
