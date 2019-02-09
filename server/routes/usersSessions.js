@@ -79,5 +79,13 @@ const usersSessionsController = {
 			console.log(err);
 		})
 	}
-
 }
+
+const express = require('express');
+const usersSessionsRouter = express.Router();
+
+usersSessionsRouter.post('/', usersSessionsController.create)
+usersSessionsRouter.get('/', usersSessionsController.index);
+usersSessionsRouter.patch('/', usersSessionsController.update);
+
+module.exports = usersSessionsRouter;

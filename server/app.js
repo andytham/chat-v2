@@ -55,6 +55,9 @@ app.use('/users', usersRoute);
 const historyRoute = require('./routes/history');
 app.use('/api/history', historyRoute);
 
+const sessionsRoute = require('./routes/usersSessions');
+app.use('/sessions', sessionsRoute);
+
 //not working at the moment
 app.use(function(err, req, res, next) {
 	console.log("do something");
@@ -62,6 +65,7 @@ app.use(function(err, req, res, next) {
 		res.redirect('/login')
 	}
 });
+
 
 const server = require('http').createServer(app);
 //socket.io

@@ -28,6 +28,7 @@ function login(username, password){
 
 function logout(){
 	localStorage.removeItem('username');
+	//PUT/POST to sessions table? who's online and what not? or last online
 }
 
 
