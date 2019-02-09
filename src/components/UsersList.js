@@ -36,9 +36,11 @@ class UsersList extends React.Component {
 
 
 function mapStatetoProps(state) {
-	const { sessions } = state.sessions
+	const { sessions } = state.sessions;
+	const { username } = state.auth;
 	return{
-		sessions
+		sessions,
+		username
 	}
 }
 
