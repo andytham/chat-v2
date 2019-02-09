@@ -5,4 +5,4 @@ DROP TABLE  IF EXISTS  chat_history CASCADE;
 \i 'server/db/seeds/history-seed.sql'
 
 DROP TABLE IF EXISTS users_sessions CASCADE;
-\i 'server/db/seeds/session-migration'
+\i 'server/db/migrations/session-migration.sql'
