@@ -55,8 +55,10 @@ function logout() {
 import { sessionsConstants } from './constants';
 export const sessionsActions = {
 	createSession,
-	updateSession
+	updateSession,
+	populateSessions
 }
+
 function createSession(username){
 	return dispatch => {
 		let lastOnline;
@@ -66,7 +68,7 @@ function createSession(username){
 			lastOnline,
 			currentStatus
 		}
-		dispatch((username)=>{
+		dispatch((user)=>{
 			return { type: sessionsConstants.CREATE, user}
 		})
 	}
@@ -80,8 +82,16 @@ function updateSession(username){
 			lastOnline,
 			currentStatus
 		}
-		dispatch((username)=>{
+		dispatch((user)=>{
 			return { type: sessionsConstants.UPDATE, user}
+		})
+	}
+}
+
+function populateSessions(){
+	return dispatch => {
+		dispatch(()=>{
+			return { type: sessionsConstants.REQUEST }
 		})
 	}
 }
