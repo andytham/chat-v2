@@ -66,7 +66,44 @@ export function auth(state = initialState, action){
 	}
 }
 
+const sessionsInitialState = {} //should do a GET request from the server
+/*
+	{
+		username: {lastOnline: DATE, currentStatus: offline/online/away }
+
+	}
+*/
+import { sessionsConstants } from './constants';
+export function sessions(state = sessionsInitialState, action){
+	switch (action.type){
+		case sessionsConstants.CREATE: //might be unnecessary since we're using objects
+			return {
+        ...state,
+        sessions: {
+					...state,
+					[action.username]: {
+						lastOnline: [action.lastOnline],
+						currentStatus: [action.currentStatus]
+					}
+				}
+			}
+		case sessionsConstants.UPDATE:
+			return {
+				...state,
+				sessions: {
+					...state,
+					[action.username]: {
+						lastOnline: [action.lastOnline],
+						currentStatus: [action.currentStatus]
+					}
+				}
+			}
+		default:
+			return state;
+	}
+}
 export const rootReducer = combineReducers({
 	auth,
-	chat
+	chat,
+	sessions
 })
