@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
 import ChatLog from './ChatLog';
+import { UsersList } from './UsersList';
+
 import chatSocket from '../helpers/chat-socket';
 import { timeGet }  from '../../server/helpers';
 import { connect } from 'react-redux';
+
+
 
 class Chatroom extends Component {
 	constructor(){
@@ -79,6 +84,7 @@ class Chatroom extends Component {
 						</Button>
 					</div>
 				</div>
+				<UsersList />
 			</div>
 		)
 	}
