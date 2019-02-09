@@ -75,15 +75,9 @@ function createSession(username){
 		})
 	}
 }
-function updateSession(username){
+function updateSession(username, lastOnline, currentStatus){
 	return dispatch => {
-		let lastOnline;
-		let currentStatus;
-		let user = {
-			username,
-			lastOnline,
-			currentStatus
-		}
+		let user = arguments
 		//PATCH to db
 		sessionsService.patchSession(...user)
 		//updates redux state
