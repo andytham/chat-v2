@@ -54,12 +54,10 @@ const usersSessionsController = {
 		})
 	},
 	index: function(req, res){
+		res.setHeader('Last-Modified', (new Date()).toUTCString());
 		UsersSession.findAll()
 		.then(usersSessions => {
-			res.json({
-				message: "Users sessions grabbed",
-				data: usersSessions
-			})
+			res.json({usersSessions})
 		})
 		.catch(err => {
 			console.log(err);
