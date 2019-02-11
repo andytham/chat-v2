@@ -1,19 +1,32 @@
 function timeGet(type){
-	let t = new Date;
-	let tH = t.getHours();
-	if (t.getHours() < 10){
-		tH = "0" + t.getHours();
-	}
+  let t = new Date;
+  
+  function addZero(num){
+    if (num < 10){
+      return "0" + num;
+    }
+    return num;
+  }
 
-	let tM = t.getMinutes();
-	if (t.getMinutes() < 10){
-		tM = "0" + t.getMinutes();
-	}
-
-	let tS = t.getSeconds();
-	if (t.getSeconds() < 10){
-		tS = "0" + t.getSeconds();
-	}
+	let tH = addZero(t.getHours());
+	let tM = addZero(t.getMinutes());
+	let tS = addZero(t.getSeconds());
+  let yy = t.getFullYear();
+  let mm = addZero(t.getMonth() + 1);
+  let dd = addZero(t.getDate())
+  
+  switch (type){
+    case "hms":
+      return `${tH}:${tM}:${tS}`;
+    case "hm":
+      return `${tH}:${tM}`;	
+    case "yymmdd":
+      return `${yy}-${mm}-${dd}`
+    case "full":
+    return `${yy}-${mm}-${dd} ${tH}:${tM}:${tS}`
+    default:
+      return `${tH}:${tM}:${tS}`;
+  }
 	if (type == "hms"){
 		return `${tH}:${tM}:${tS}`;
 	} else if (type == "hm"){

@@ -89,20 +89,8 @@ export function sessions(state = initialSessionsState, action){
 				let timestamp = action.sessions[i].last_online;
 				let dateTime = timestamp.split('T');
 				let leftHand = dateTime[0]
-
-				let tempTime = dateTime[1].split('.')
-				let splitTime = tempTime[0].split(':')
-				let tH = splitTime[0];
-				let tM = splitTime[1];
-				let tS = splitTime[2];
-				// let rightHand = tempTime;
-				let rightHand;
-				if (Number(tH) > 12){
-					let newHour = Number(tH) - 12;
-					rightHand = newHour + ":" + tM + ":" + tS + " PM" 
-				} else {
-					rightHand = tH + ":" + tM + ":" + tS + " AM" 
-				}
+				let tempTime = dateTime[1].split(/[.,]/)
+				let rightHand = tempTime[0];
 
 				let newTimestamp = leftHand + " " + rightHand;
 				sessionsObject[action.sessions[i].username] = {

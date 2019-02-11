@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { sessionsActions } from '../redux/actions';
 import { sessionsService } from '../redux/services';
 import axios from 'axios'
+import { timeGet } from '../../server/helpers';
+
 class UsersList extends React.Component {
 	constructor(props){
 		super(props)
@@ -17,20 +19,13 @@ class UsersList extends React.Component {
 	componentDidUpdate(prevProps, prevState){
 		const { dispatch } = this.props;
 		if(this.props.sessions && !this.state.sessionsLoaded){
-			let timestamp = new Date();
 			let sessions = this.props.sessions;
-			let username = this.props.username;
-			let options  = {hc: "h24"}
-			let dateFix = timestamp.toLocaleDateString().split('/')
-			// console.log(dateFix);
-			let newDate = `${dateFix[2]}-${dateFix[0]}-${dateFix[1]}`
-			// console.log(newDate);
 			let user = {
-				username: username,
-				lastOnline:  newDate + " " + timestamp.toLocaleTimeString(),
+				username: this.props.username,
+				lastOnline:  timeGet("full"),
 				currentStatus: "online"
 			}
-			if(sessions[username]){
+			if(sessions[this.props.username]){
 				dispatch(sessionsActions.updateSession(user))
 			} else {
 				dispatch(sessionsActions.createSession(user))
