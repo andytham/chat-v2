@@ -51,22 +51,21 @@ function handleResponse(response) {
 	});
 }
 
-function getSessions(){
+import axios from 'axios';
+
+async function getSessions(){
 	const requestOptions = {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' }
 	};
-
-	return fetch(`${config.apiUrl}/sessions`, requestOptions)
-		.then(
-			data => {return data}
-		)
-		.then(res => {
-			console.log(res);
-		})
-		.catch(err => {
-			console.log(err);
-		})
+	try {
+		let resp = await axios(`${config.apiUrl}/sessions`)
+		let data = resp.data;
+		console.log(data);
+		return data
+	} catch (err){
+		console.log(err);
+	}
 }
 
 function patchSession(username, lastOnline, currentStatus){

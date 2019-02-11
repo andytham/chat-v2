@@ -58,7 +58,7 @@ import { sessionsService } from './services';
 export const sessionsActions = {
 	createSession,
 	updateSession,
-	populateSessions
+	getSessions
 }
 
 function createSession(username){
@@ -97,10 +97,17 @@ function updateSession(username, lastOnline, currentStatus){
 	}
 }
 
-function populateSessions(){
-	return dispatch => {
-		dispatch((sessions)=>{
-			return { type: sessionsConstants.REQUEST, sessions }
-		})
+function getSessions(){
+	return async dispatch => {
+		try {
+			let sessions = await sessionsService.getSessions()		
+			console.log(sessions.usersSessions, "run actions");
+			dispatch(()=>{
+				return { type: sessionsConstants.REQUEST, sessions }
+			})
+		} catch (err) {
+			console.log(err);
+		}
+
 	}
 }

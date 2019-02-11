@@ -65,8 +65,11 @@ export function auth(state = initialState, action){
 			return state;
 	}
 }
-
-const sessionsInitialState = {} //should do a GET request from the server
+import { sessionsService } from './services';
+// let blah = sessionsService.getSessions()
+// console.log(blah);
+const sessionsInitialState = {};
+// const sessionsInitialState = sessionsService.getSessions() //should do a GET request from the server
 /*
 	{
 		username: {lastOnline: DATE, currentStatus: offline/online/away }

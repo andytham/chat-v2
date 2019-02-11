@@ -55,6 +55,7 @@ const usersSessionsController = {
 	},
 	index: function(req, res){
 		res.setHeader('Last-Modified', (new Date()).toUTCString());
+		//https://vlasenko.org/2011/10/12/expressconnect-static-set-last-modified-to-now-to-avoid-304-not-modified/
 		UsersSession.findAll()
 		.then(usersSessions => {
 			res.json({usersSessions})

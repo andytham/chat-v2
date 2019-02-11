@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sessionsActions } from '../redux/actions';
-
+import { sessionsService } from '../redux/services';
+import axios from 'axios'
 class UsersList extends React.Component {
 	constructor(props){
 		super(props)
-		
 		this.mapUsers = this.mapUsers.bind(this)
 	}
 	componentDidMount(){
@@ -17,10 +17,12 @@ class UsersList extends React.Component {
 				lastOnline: timestamp.toLocaleDateString() + timestamp.toLocaleTimeString(),
 				currentStatus: "online"
 			}
-			dispatch(sessionsActions.populateSessions())
-			dispatch(sessionsActions.updateSession(data))
+			dispatch(sessionsActions.getSessions())
+			// dispatch(sessionsActions.updateSession(data))
 		}
 	}
+
+
 	mapUsers(){
 		console.log('props from userslist');
 		console.log(this.props);
@@ -29,6 +31,7 @@ class UsersList extends React.Component {
 		return(
 			<div className="users-list">
 				<button onClick={this.mapUsers}>users list</button>
+				<button onClick={this.getTest}>GET SESSIONS</button>
 			</div>
 		)
 	}
