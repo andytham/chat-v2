@@ -97,6 +97,7 @@ function patchSession(user){
 		})
 }
 export const sessionsService = {
+	createSession,
 	getSessions,
 	patchSession
 }

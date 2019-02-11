@@ -61,39 +61,18 @@ export const sessionsActions = {
 	getSessions
 }
 
-function createSession(username){
+function createSession(user){
 	return dispatch => {
-		let lastOnline;
-		let currentStatus;
-		let user = {
-			username,
-			lastOnline,
-			currentStatus
-		}
-		dispatch(()=>{
-			return { type: sessionsConstants.CREATE, user}
-		})
+		sessionsService.createSession(user)
+		dispatch({ type: sessionsConstants.CREATE, user})
 	}
 }
-function updateSession(username, lastOnline, currentStatus){
+function updateSession(user){
 	return dispatch => {
-		// let user = arguments;
-		// sessionsService.patchSession(...user)
-
-		// I feel like this is less prone to errors
-		let user = {
-			username,
-			lastOnline,
-			currentStatus
-		}
 		//PATCH to db
-		sessionsService.patchSession(username, lastOnline, currentStatus) 
-
-
+		sessionsService.patchSession(user) 
 		//updates redux state
-		dispatch(()=>{
-			return { type: sessionsConstants.UPDATE, user}
-		})
+		dispatch({ type: sessionsConstants.UPDATE, user})
 	}
 }
 

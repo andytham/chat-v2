@@ -6,31 +6,35 @@ import axios from 'axios'
 class UsersList extends React.Component {
 	constructor(props){
 		super(props)
+		this.state = {
+			sessionsLoaded: false
+		}
 		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
 	}
 	componentDidMount(){
-		const { dispatch } = this.props;
-		if(this.props.username){
-			let timestamp = new Date();
-			let data = {
-				username: this.props.username,
-				lastOnline: timestamp.toLocaleDateString() + timestamp.toLocaleTimeString(),
-				currentStatus: "online"
-			}
-			console.log(this.props);
-			// dispatch(sessionsActions.updateSession(data))
-		}
 	}
 	componentDidUpdate(prevProps, prevState){
 		const { dispatch } = this.props;
-		if(this.props.sessions){
+		if(this.props.sessions && !this.state.sessionsLoaded){
+			let timestamp = new Date();
 			let sessions = this.props.sessions;
 			let username = this.props.username;
+			let user = {
+				username: username,
+				lastOnline: timestamp.toLocaleDateString() + timestamp.toLocaleTimeString(),
+				currentStatus: "online"
+			}
 			if(sessions[username]){
 				console.log("exists in session");
+				dispatch(sessionsActions.updateSession(user))
 			} else {
+				console.log("doesnt exist yet");
+				dispatch(sessionsActions.createSession(user))
 			}
+			this.setState({
+				sessionsLoaded: true
+			})
 		}
 	}
 	getTest(){
