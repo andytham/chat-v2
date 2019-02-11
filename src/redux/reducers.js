@@ -74,12 +74,14 @@ export function sessions(state = initialSessionsState, action){
 
 	switch (action.type){
 		case sessionsConstants.CREATE: //might be unnecessary since we're using objects
+		console.log("this is state form create", state);
+		console.log("this is payload", action);
 			return {
         sessions: {
-					...state,
-					[action.username]: {
-						lastOnline: [action.lastOnline],
-						currentStatus: [action.currentStatus]
+					...state.sessions,
+					[action.user.username]: {
+						lastOnline: action.user.lastOnline,
+						currentStatus: action.user.currentStatus
 					}
 				}
 			}
@@ -100,10 +102,10 @@ export function sessions(state = initialSessionsState, action){
 		case sessionsConstants.UPDATE:
 			return {
 				sessions: {
-					...state,
-					[action.username]: {
-						lastOnline: [action.lastOnline],
-						currentStatus: [action.currentStatus]
+					...state.sessions,
+					[action.user.username]: {
+						lastOnline: action.user.lastOnline,
+						currentStatus: action.user.currentStatus
 					}
 				}
 			}
