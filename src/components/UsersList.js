@@ -26,10 +26,8 @@ class UsersList extends React.Component {
 				currentStatus: "online"
 			}
 			if(sessions[username]){
-				console.log("exists in session");
 				dispatch(sessionsActions.updateSession(user))
 			} else {
-				console.log("doesnt exist yet");
 				dispatch(sessionsActions.createSession(user))
 			}
 			this.setState({

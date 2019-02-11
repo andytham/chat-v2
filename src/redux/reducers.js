@@ -43,8 +43,6 @@ export function chat(state = chatInitialState, action){
 
 import { userConstants } from './constants';
 export function auth(state = initialState, action){
-	
-	console.log('auth',action);
 	switch (action.type){
 		case userConstants.LOGIN_REQUEST:
 			return {
@@ -74,8 +72,6 @@ export function sessions(state = initialSessionsState, action){
 
 	switch (action.type){
 		case sessionsConstants.CREATE: //might be unnecessary since we're using objects
-		console.log("this is state form create", state);
-		console.log("this is payload", action);
 			return {
         sessions: {
 					...state.sessions,
