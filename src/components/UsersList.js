@@ -18,8 +18,19 @@ class UsersList extends React.Component {
 				lastOnline: timestamp.toLocaleDateString() + timestamp.toLocaleTimeString(),
 				currentStatus: "online"
 			}
-			dispatch(sessionsActions.getSessions())
+			console.log(this.props);
 			// dispatch(sessionsActions.updateSession(data))
+		}
+	}
+	componentDidUpdate(prevProps, prevState){
+		const { dispatch } = this.props;
+		if(this.props.sessions){
+			let sessions = this.props.sessions;
+			let username = this.props.username;
+			if(sessions[username]){
+				console.log("exists in session");
+			} else {
+			}
 		}
 	}
 	getTest(){

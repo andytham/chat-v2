@@ -11,8 +11,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 import { connect } from 'react-redux';
-import { userActions } from '../redux/actions';
-
+import { userActions, sessionsActions } from '../redux/actions';
 class Login extends React.Component{
 	constructor(props){
 		super(props)
@@ -44,6 +43,7 @@ class Login extends React.Component{
 		const { dispatch } = this.props;
 		if (username && password) {
 			dispatch(userActions.login(username, password));
+			dispatch(sessionsActions.getSessions())
 		}
 		//auth
 	}

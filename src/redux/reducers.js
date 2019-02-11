@@ -67,24 +67,14 @@ export function auth(state = initialState, action){
 			return state;
 	}
 }
-import { sessionsService } from './services';
-// let blah = sessionsService.getSessions()
-// console.log(blah);
-const sessionsInitialState = {"username": {"lastOnline": "11-11-11 12:12:12", "currentStatus": "whatever"}};
-// const sessionsInitialState = sessionsService.getSessions() //should do a GET request from the server
-/*
-	{
-		username: {lastOnline: DATE, currentStatus: offline/online/away }
+const initialSessionsState = {}; // possibly can't do a GET request as it's async
 
-	}
-*/
 import { sessionsConstants } from './constants';
-export function sessions(state = sessionsInitialState, action){
+export function sessions(state = initialSessionsState, action){
 
 	switch (action.type){
 		case sessionsConstants.CREATE: //might be unnecessary since we're using objects
 			return {
-        ...state,
         sessions: {
 					...state,
 					[action.username]: {
@@ -109,7 +99,6 @@ export function sessions(state = sessionsInitialState, action){
 			}
 		case sessionsConstants.UPDATE:
 			return {
-				...state,
 				sessions: {
 					...state,
 					[action.username]: {

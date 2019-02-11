@@ -28,7 +28,6 @@ export const userActions = {
 
 function login(username, password) {
 	return dispatch => {
-		console.log(dispatch);
 		dispatch(request({ username }))
 		userService.login(username, password)
 			.then(
