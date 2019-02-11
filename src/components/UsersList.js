@@ -6,6 +6,7 @@ import axios from 'axios'
 class UsersList extends React.Component {
 	constructor(props){
 		super(props)
+		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
 	}
 	componentDidMount(){
@@ -21,7 +22,10 @@ class UsersList extends React.Component {
 			// dispatch(sessionsActions.updateSession(data))
 		}
 	}
-
+	getTest(){
+		const { dispatch } = this.props;
+		dispatch(sessionsActions.getSessions())
+	}
 
 	mapUsers(){
 		console.log('props from userslist');

@@ -58,7 +58,7 @@ const usersSessionsController = {
 		//https://vlasenko.org/2011/10/12/expressconnect-static-set-last-modified-to-now-to-avoid-304-not-modified/
 		UsersSession.findAll()
 		.then(usersSessions => {
-			res.json({usersSessions})
+			res.json(usersSessions)
 		})
 		.catch(err => {
 			console.log(err);

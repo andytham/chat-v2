@@ -28,6 +28,7 @@ export const userActions = {
 
 function login(username, password) {
 	return dispatch => {
+		console.log(dispatch);
 		dispatch(request({ username }))
 		userService.login(username, password)
 			.then(
@@ -98,16 +99,17 @@ function updateSession(username, lastOnline, currentStatus){
 }
 
 function getSessions(){
-	return async dispatch => {
+	return async (dispatch) => {
 		try {
-			let sessions = await sessionsService.getSessions()		
-			console.log(sessions.usersSessions, "run actions");
-			dispatch(()=>{
+			let sessions = await sessionsService.getSessions()
+			dispatch(request())
+			function request() {
 				return { type: sessionsConstants.REQUEST, sessions }
-			})
+			}
 		} catch (err) {
 			console.log(err);
 		}
 
 	}
+
 }

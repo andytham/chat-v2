@@ -43,6 +43,8 @@ export function chat(state = chatInitialState, action){
 
 import { userConstants } from './constants';
 export function auth(state = initialState, action){
+	
+	console.log('auth',action);
 	switch (action.type){
 		case userConstants.LOGIN_REQUEST:
 			return {
@@ -68,7 +70,7 @@ export function auth(state = initialState, action){
 import { sessionsService } from './services';
 // let blah = sessionsService.getSessions()
 // console.log(blah);
-const sessionsInitialState = {};
+const sessionsInitialState = {"username": {"lastOnline": "11-11-11 12:12:12", "currentStatus": "whatever"}};
 // const sessionsInitialState = sessionsService.getSessions() //should do a GET request from the server
 /*
 	{
@@ -78,6 +80,7 @@ const sessionsInitialState = {};
 */
 import { sessionsConstants } from './constants';
 export function sessions(state = sessionsInitialState, action){
+
 	switch (action.type){
 		case sessionsConstants.CREATE: //might be unnecessary since we're using objects
 			return {
@@ -91,9 +94,17 @@ export function sessions(state = sessionsInitialState, action){
 				}
 			}
 		case sessionsConstants.REQUEST:
+			//create object, easier to look up, rather than looping
+			let sessionsObject = {};
+			for (let i = 0; i < action.sessions.length; i++){
+				sessionsObject[action.sessions[i].username] = {
+					lastOnline: action.sessions[i].last_online,
+					currentStatus: action.sessions[i].current_status
+				}
+			}
 			return {
 				sessions: {
-					...action.sessions
+					...sessionsObject
 				}
 			}
 		case sessionsConstants.UPDATE:
