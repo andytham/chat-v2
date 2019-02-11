@@ -52,7 +52,18 @@ function handleResponse(response) {
 }
 
 import axios from 'axios';
-
+function createSession(user){
+	const requestOptions = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: { ...user }
+	}
+	axios(`${config.apiUrl}/sessions`, requestOptions)
+		.then(data => {
+			console.log("post success?", data);
+		})
+		.catch(err => console.log(err))
+}
 async function getSessions(){
 	const requestOptions = {
 		method: 'GET',
@@ -68,11 +79,11 @@ async function getSessions(){
 	}
 }
 
-function patchSession(username, lastOnline, currentStatus){
+function patchSession(user){
 	const requestOptions = {
 		method: 'PATCH',
 		headers: { 'Content-Type': 'application/json' },
-		body: {username, lastOnline, currentStatus}
+		body: {...user}
 	};
 
 	fetch(`${config.apiUrl}/sessions`, requestOptions)
