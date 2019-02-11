@@ -102,10 +102,7 @@ function getSessions(){
 	return async (dispatch) => {
 		try {
 			let sessions = await sessionsService.getSessions()
-			dispatch(request())
-			function request() {
-				return { type: sessionsConstants.REQUEST, sessions }
-			}
+			dispatch({ type: sessionsConstants.REQUEST, sessions })
 		} catch (err) {
 			console.log(err);
 		}
