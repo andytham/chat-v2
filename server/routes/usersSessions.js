@@ -37,7 +37,7 @@ const UsersSession = { //model
 const usersSessionsController = {
 	create: function(req, res){
 		let user = req.body
-		console.log(user.currentStatus);
+		console.log(user);
 		UsersSession.create({
 			username: user.username,
 			lastOnline: user.lastOnline,

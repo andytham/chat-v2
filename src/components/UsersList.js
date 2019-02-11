@@ -22,7 +22,7 @@ class UsersList extends React.Component {
 			let username = this.props.username;
 			let user = {
 				username: username,
-				lastOnline: timestamp.toLocaleDateString() + timestamp.toLocaleTimeString(),
+				lastOnline: timestamp.toLocaleDateString() + " " + timestamp.toLocaleTimeString(),
 				currentStatus: "online"
 			}
 			if(sessions[username]){

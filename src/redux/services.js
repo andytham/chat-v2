@@ -53,16 +53,30 @@ function handleResponse(response) {
 
 import axios from 'axios';
 function createSession(user){
+	console.log("create ses", user);
 	const requestOptions = {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: { ...user }
+		body: JSON.stringify({ ...user })
 	}
-	axios(`${config.apiUrl}/sessions`, requestOptions)
+	//working fetch version
+
+	// fetch(`${config.apiUrl}/sessions`, requestOptions)
+	// 	.then(data => {
+	// 		console.log("post success?", data);
+	// 	})
+	// 	.then(data => {
+	// 		console.log("HELLO?");
+	// 	})
+	// 	.catch(err => console.log(err))
+	axios.post(`${config.apiUrl}/sessions`, {
+		...user
+	})
 		.then(data => {
-			console.log("post success?", data);
-		})
+		console.log("post success?", data);
+	})
 		.catch(err => console.log(err))
+
 }
 async function getSessions(){
 	const requestOptions = {
