@@ -20,9 +20,14 @@ class UsersList extends React.Component {
 			let timestamp = new Date();
 			let sessions = this.props.sessions;
 			let username = this.props.username;
+			let options  = {hc: "h24"}
+			let dateFix = timestamp.toLocaleDateString().split('/')
+			// console.log(dateFix);
+			let newDate = `${dateFix[2]}-${dateFix[0]}-${dateFix[1]}`
+			// console.log(newDate);
 			let user = {
 				username: username,
-				lastOnline: timestamp.toLocaleDateString() + " " + timestamp.toLocaleTimeString(),
+				lastOnline:  newDate + " " + timestamp.toLocaleTimeString(),
 				currentStatus: "online"
 			}
 			if(sessions[username]){

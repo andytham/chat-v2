@@ -1,16 +1,22 @@
+let time = "2006-01-01T17:12:12.000Z"
+let dateTime = time.split('T');
+let leftHand = dateTime[0]
 
-let axios = require('axios')
-let obj = {fuck: "me"}
-
-async function go() {
-	try {
-		const poop = await axios(`http://localhost:8080/sessions`)
-		obj = poop.data;
-		console.log('inside',obj);
-		return await poop
-	} catch (err){ console.log(err);}
+let tempTime = dateTime[1].split('.')
+let splitTime = tempTime[0].split(':')
+let tH = splitTime[0];
+let tM = splitTime[1];
+let tS = splitTime[2];
+let rightHand;
+if (Number(tH) > 12){
+	let newHour = Number(tH) - 12;
+	rightHand = newHour + ":" + tM + ":" + tS + " PM" 
+} else {
+	rightHand = tH + ":" + tM + ":" + tS + " AM" 
 }
 
-let god = go().then(data => obj = data.data);
-console.log('1',obj);
-console.log('2',god);
+console.log(leftHand + rightHand);
+
+let timestamp = new Date();
+// let options  = {hc: "h24"}
+console.log(timestamp.toLocaleDateString('ko-KR') + " " + timestamp.toLocaleTimeString("options"))
