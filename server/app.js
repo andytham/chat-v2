@@ -58,9 +58,8 @@ app.use('/api/history', historyRoute);
 const sessionsRoute = require('./routes/usersSessions');
 app.use('/sessions', sessionsRoute);
 
-//not working at the moment
+//redirect on 403
 app.use(function(err, req, res, next) {
-	console.log("do something");
 	if(403 == err.status) {
 		res.redirect('/login')
 	}

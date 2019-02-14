@@ -53,7 +53,6 @@ function handleResponse(response) {
 
 import axios from 'axios';
 function createSession(user){
-	console.log("create ses", user);
 	const requestOptions = {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -86,7 +85,6 @@ async function getSessions(){
 	try {
 		let resp = await axios(`${config.apiUrl}/sessions`)
 		let data = resp.data;
-		console.log(data);
 		return data
 	} catch (err){
 		console.log(err);

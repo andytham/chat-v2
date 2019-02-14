@@ -59,7 +59,6 @@ class Chatroom extends Component {
 		this.setState({
 			log: log
 		})
-		console.log(msg);
 		if (msg.usr == "server"){
 			const { dispatch } = this.props
 			dispatch(sessionsActions.getSessions())
@@ -67,7 +66,6 @@ class Chatroom extends Component {
 	}
 
 	onSendMessage(){
-		console.log(this.props);
 		let msg = {
 			usr: this.props.username || localStorage.getItem('username'),
 			// usr: this.props.username,
