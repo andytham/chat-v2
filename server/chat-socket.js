@@ -20,9 +20,10 @@ function startEmitters(server){
 			}
 		})
 		socket.on('disconnect', function(){
+			console.log("disconnect socket running");
 			if(usersList[socket.id]){
 				console.log(usersList[socket.id], 'user disconnected');
-				let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`}
+				let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`, tme: timeGet()}
 				Chatroom.addEntry(disconnectMsg)
 				// io.emit('message', Chatroom.getChatHistory())
 				io.emit('message',disconnectMsg)
