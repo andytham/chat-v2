@@ -69,7 +69,7 @@ const initialSessionsState = {}; // possibly can't do a GET request as it's asyn
 
 import { sessionsConstants } from './constants';
 export function sessions(state = initialSessionsState, action){
-
+	console.log(action);
 	switch (action.type){
 		case sessionsConstants.CREATE: //might be unnecessary since we're using objects
 			return {
@@ -112,9 +112,9 @@ export function sessions(state = initialSessionsState, action){
 				// }
 				sessionsObject[action.sessions[i].username] = 1
 				sessionsArr.push({
-					username: action.user.username,
+					username: action.sessions[i].username,
 					lastOnline: newTimestamp,
-					currentStatus: action.user.current_status
+					currentStatus: action.sessions[i].current_status
 				})
 			}
 			return {

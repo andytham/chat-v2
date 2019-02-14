@@ -48,7 +48,7 @@ class UsersList extends React.Component {
 		return this.props.sessions.map(
 			session => {
 					return(
-						<div key={count++}>{session.username}
+						<div key={count++}>{session.username} {session.lastOnline} {session.currentStatus}
 						
 						</div>
 					)
