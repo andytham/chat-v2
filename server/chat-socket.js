@@ -22,8 +22,10 @@ function startEmitters(server){
 		socket.on('disconnect', function(){
 			if(usersList[socket.id]){
 				console.log(usersList[socket.id], 'user disconnected');
-				Chatroom.addEntry({usr: "server", msg: `${usersList[socket.id]} has disconnected.`})
-				io.emit('message', Chatroom.getChatHistory())
+				let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`}
+				Chatroom.addEntry(disconnectMsg)
+				// io.emit('message', Chatroom.getChatHistory())
+				io.emit('message',disconnectMsg)
 			}
 		});
 		socket.on('message', function(msg){
