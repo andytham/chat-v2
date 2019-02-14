@@ -9,7 +9,8 @@ class UsersList extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			sessionsLoaded: false
+			sessionsLoaded: false,
+			selectStatus: "showOnlineOnly"
 		}
 		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
@@ -43,17 +44,26 @@ class UsersList extends React.Component {
 	}
 
 	mapUsers(){
-		// console.log(this.props.sessions, "heyo map");
 		let count = 0
-		return this.props.sessions.map(
-			session => {
-					return(
-						<div key={count++}>{session.username} {session.lastOnline} {session.currentStatus}
-						
-						</div>
-					)
-			}
-		)
+		switch (this.state.selectStatus){
+			case "showOnlineOnly":
+				return this.props.sessions.map(
+					session => {
+						if (session.currentStatus == "online"){
+							return(
+								<div key={count++}>
+									{session.username}
+								</div>
+							)
+						}
+					})
+			case "showAway":
+				return
+			case "showAll":
+				return
+			default:
+				return
+		}
 	}
 	render(){
 		return(
