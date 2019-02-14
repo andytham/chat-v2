@@ -27,7 +27,6 @@ class UsersList extends React.Component {
 				currentStatus: "online"
 			}
 			if(this.props.allUsers[this.props.username]){
-				console.log("patching current user");
 				dispatch(sessionsActions.updateSession(user))
 			} else {
 				dispatch(sessionsActions.createSession(user))
