@@ -8,12 +8,14 @@ function startEmitters(server){
 	io.on('connection', function(socket){
 	  //when user joins the server
 		socket.on('join', function(user){
+			console.log('server join fired');
 			io.emit('history', Chatroom.getChatHistory())
 			if(user){
 				console.log(user, "has joined");
-
-				Chatroom.addEntry({usr: "server", msg: `${user} has joined the server`, tme: timeGet()})
-				io.emit('message', Chatroom.getChatHistory())
+				let joinMsg = {usr: "server", msg: `${user} has joined the server`, tme: timeGet()}
+				Chatroom.addEntry(joinMsg)
+				// io.emit('message', Chatroom.getChatHistory())
+				io.emit('message',joinMsg)
 				usersList[socket.id] = user
 			}
 		})

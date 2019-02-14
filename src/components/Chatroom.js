@@ -26,6 +26,7 @@ class Chatroom extends Component {
 	} 
 	componentDidMount(){
 		this.state.chatSocket.receive(this.updateChatLog)
+		this.state.chatSocket.join(this.props.username || localStorage.getItem('username'))
 	}
 
 	onInput(e){
