@@ -27,6 +27,7 @@ class UsersList extends React.Component {
 				currentStatus: "online"
 			}
 			if(this.props.allUsers[this.props.username]){
+				console.log("patching current user");
 				dispatch(sessionsActions.updateSession(user))
 			} else {
 				dispatch(sessionsActions.createSession(user))
@@ -35,10 +36,13 @@ class UsersList extends React.Component {
 				sessionsLoaded: true
 			})
 		}
+		if (JSON.stringify(prevProps.sessions) != JSON.stringify((this.props.sessions))){
+			dispatch(sessionsActions.getSessions())
+		}
 	}
 	getTest(){
 		const { dispatch } = this.props;
-		// dispatch(sessionsActions.getSessions())
+		dispatch(sessionsActions.getSessions())
 		console.log('props from userslist');
 		console.log(this.props);
 	}
@@ -52,7 +56,7 @@ class UsersList extends React.Component {
 						if (session.currentStatus == "online"){
 							return(
 								<div key={count++}>
-									{session.username}
+									{session.username} {session.lastOnline}
 								</div>
 							)
 						}

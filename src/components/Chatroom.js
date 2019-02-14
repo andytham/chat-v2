@@ -8,7 +8,7 @@ import { UsersList } from './UsersList';
 import chatSocket from '../helpers/chat-socket';
 import { timeGet }  from '../../server/helpers';
 import { connect } from 'react-redux';
-
+import { sessionsActions } from '../redux/actions';
 
 
 class Chatroom extends Component {
@@ -25,6 +25,24 @@ class Chatroom extends Component {
 		this.onSendMessage = this.onSendMessage.bind(this);
 	} 
 	componentDidMount(){
+		const { dispatch } = this.props
+		let user = {
+			username: this.props.username,
+			lastOnline:  timeGet("full"),
+			currentStatus: "online"
+		}
+		let disconnectMsg = {
+			usr: "server",
+			msg: this.props.username + " has disconnected.",
+			tme: timeGet()
+
+		}
+		window.onbeforeunload = function(){
+			dispatch(sessionsActions.updateSession(user))
+			this.state.chatSocket.message(disconnectMsg)
+			return false;
+		}
+
 		this.state.chatSocket.receive(this.updateChatLog)
 		this.state.chatSocket.join(this.props.username || localStorage.getItem('username'))
 	}
@@ -41,6 +59,11 @@ class Chatroom extends Component {
 		this.setState({
 			log: log
 		})
+		console.log(msg);
+		if (msg.usr == "server"){
+			const { dispatch } = this.props
+			dispatch(sessionsActions.getSessions())
+		}
 	}
 
 	onSendMessage(){

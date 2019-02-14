@@ -4,12 +4,13 @@ function startEmitters(server){
 	const { cr, timeGet } = require('./helpers');
 	let Chatroom = cr();
 	let usersList = {};
-	
+	const axios = require('axios');
 	io.on('connection', function(socket){
 	  //when user joins the server
 		socket.on('join', function(user){
 			console.log('server join fired');
 			io.emit('history', Chatroom.getChatHistory())
+			trackUser = user;
 			if(user){
 				console.log(user, "has joined");
 				let joinMsg = {usr: "server", msg: `${user} has joined the server`, tme: timeGet()}
@@ -27,6 +28,12 @@ function startEmitters(server){
 				Chatroom.addEntry(disconnectMsg)
 				// io.emit('message', Chatroom.getChatHistory())
 				io.emit('message',disconnectMsg)
+				axios.patch(`http://localhost:8080/sessions`,
+				{
+					username: usersList[socket.id],
+					lastOnline: timeGet("full"),
+					currentStatus: "offline"
+				}).catch(err => console.log(err))
 			}
 		});
 		socket.on('message', function(msg){

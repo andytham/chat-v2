@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { userActions, sessionsActions } from '../redux/actions';
+import { timeGet } from '../../server/helpers';
+
 class Logout extends React.Component {
 	constructor(){
 		super();

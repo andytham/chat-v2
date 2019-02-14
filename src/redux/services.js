@@ -94,21 +94,23 @@ async function getSessions(){
 }
 
 function patchSession(user){
-	const requestOptions = {
-		method: 'PATCH',
-		headers: { 'Content-Type': 'application/json' },
-		body: {...user}
-	};
+	axios.patch(`${config.apiUrl}/sessions`,{...user})
+		.catch(err => console.log(err))
+	// const requestOptions = {
+	// 	method: 'PATCH',
+	// 	headers: { 'Content-Type': 'application/json' },
+	// 	body: {...user}
+	// };
 
-	fetch(`${config.apiUrl}/sessions`, requestOptions)
-		.then(handleResponse)
-		.then(data => {
-			let parsed = JSON.parse(data);
-			return parsed;
-		})
-		.catch(err => {
-			console.log(err);
-		})
+	// fetch(`${config.apiUrl}/sessions`, requestOptions)
+	// 	.then(handleResponse)
+	// 	.then(data => {
+	// 		let parsed = JSON.parse(data);
+	// 		return parsed;
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 	})
 }
 export const sessionsService = {
 	createSession,
