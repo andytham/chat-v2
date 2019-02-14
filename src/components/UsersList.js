@@ -25,7 +25,7 @@ class UsersList extends React.Component {
 				lastOnline:  timeGet("full"),
 				currentStatus: "online"
 			}
-			if(sessions[this.props.username]){
+			if(this.props.allUsers[this.props.username]){
 				dispatch(sessionsActions.updateSession(user))
 			} else {
 				dispatch(sessionsActions.createSession(user))
@@ -37,17 +37,28 @@ class UsersList extends React.Component {
 	}
 	getTest(){
 		const { dispatch } = this.props;
-		dispatch(sessionsActions.getSessions())
+		// dispatch(sessionsActions.getSessions())
+		console.log('props from userslist');
+		console.log(this.props);
 	}
 
 	mapUsers(){
-		console.log('props from userslist');
-		console.log(this.props);
+		// console.log(this.props.sessions, "heyo map");
+		let count = 0
+		return this.props.sessions.map(
+			session => {
+					return(
+						<div key={count++}>{session.username}
+						
+						</div>
+					)
+			}
+		)
 	}
 	render(){
 		return(
 			<div className="users-list">
-				<button onClick={this.mapUsers}>users list</button>
+				{this.props.sessions ? this.mapUsers() : ""}
 				<button onClick={this.getTest}>GET SESSIONS</button>
 			</div>
 		)
@@ -56,10 +67,11 @@ class UsersList extends React.Component {
 
 
 function mapStatetoProps(state) {
-	const { sessions } = state.sessions;
+	const { sessions, allUsers } = state.sessions;
 	const { username } = state.auth;
 	return{
 		sessions,
+		allUsers,
 		username
 	}
 }
