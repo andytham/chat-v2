@@ -26,14 +26,13 @@ const Users = {
 		)
 	},
 	find: user => {
-		res.setHeader('Last-Modified', (new Date()).toUTCString());
-		Users.findAll()
-		.then(users => {
-			res.json(users)
-		})
-		.catch(err => {
-			console.log(err);
-		})
+		return db.oneOrNone(
+			`
+				SELECT * FROM users
+				WHERE username = $1
+			`,
+			[user.username]
+		)
 	}
 };
 
@@ -50,6 +49,7 @@ const usersController = {
 					email: req.body.email
 				}).then(user => {
 					res.json({
+						...user, 
 						message: "User created"
 					})
 				})
@@ -60,12 +60,35 @@ const usersController = {
 		});
 	},
 	login: (req, res) => {
-		let token = jwt.sign({
-			exp: Math.floor(Date.now() / 1000) + (60 * 60),
-			data: req.body.username
-			}, "secret")
-		req.session.token = token;
-		req.session.username = req.body.username;
+		Users.find({
+			username: req.body.username
+		})
+		.then(user => {
+			bcrypt.compare(req.body.password, user.password, function(err, bcryptRes){
+				if (bcryptRes){
+					let token = jwt.sign({
+						exp: Math.floor(Date.now() / 1000) + (60 * 60),
+						data: req.body.username
+						}, "secret")
+					req.session.token = token;
+					req.session.username = req.body.username;
+					res.json({
+						username: req.body.username,
+						token: token,
+						message: "User found",
+						success: true
+					})
+				} else {
+					res.json({
+						// pw: user.password,
+						success: false
+					})
+				}
+			})
+		})
+		.catch(err => {
+			console.log(err);
+		})
 	},
 	current: (req, res) => {
 		let response = {username: req.session.username}
