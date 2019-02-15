@@ -115,3 +115,12 @@ export const sessionsService = {
 	getSessions,
 	patchSession
 }
+
+export const registerService = {
+	register: function(user){
+		axios.post(
+			`${config.apiUrl}/users/create`,
+			{...user})
+		.catch(err => console.log(err))
+	}
+}
