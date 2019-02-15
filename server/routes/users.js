@@ -3,8 +3,6 @@ const db = require('../db/config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-//put this in env later
-const salt = "supersecret"
 
 const Users = {
 	findAll: function(){
