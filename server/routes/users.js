@@ -47,7 +47,6 @@ const usersController = {
 					email: req.body.email
 				}).then(user => {
 					res.json({
-						...user, 
 						message: "User created"
 					})
 				})
