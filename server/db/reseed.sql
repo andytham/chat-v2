@@ -6,3 +6,6 @@ DROP TABLE  IF EXISTS  chat_history CASCADE;
 
 DROP TABLE IF EXISTS users_sessions CASCADE;
 \i 'server/db/migrations/session-migration.sql'
+
+DROP TABLE IF EXISTS users CASCADE;
+\i 'server/db/migrations/user-migration.sql'
