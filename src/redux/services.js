@@ -126,6 +126,12 @@ export const registerService = {
 		axios.post(
 			`${config.apiUrl}/users/create`,
 			{...user})
+		.then(res => {
+			console.log(res);
+			if (res.data.success){
+				history.push('/login')
+			}
+		})
 		.catch(err => console.log(err))
 	}
 }
