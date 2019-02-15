@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import { connect } from 'react-redux';
 import { userActions, sessionsActions } from '../redux/actions';
+import { Link } from 'react-router-dom';
 class Login extends React.Component{
 	constructor(props){
 		super(props)
@@ -85,6 +86,9 @@ class Login extends React.Component{
 				<Button onClick={this.onSubmit}>
 					Login
 				</Button>
+				<Link to='/register'>
+					Register
+				</Link>
 			</div>
 		)
 	}

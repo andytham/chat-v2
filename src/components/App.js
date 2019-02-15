@@ -5,6 +5,8 @@ import '../css/App.css';
 import {Home} from './Home';
 import {Chatroom} from './Chatroom';
 import {Login} from './Login';
+import Register from './Register';
+
 import { Logout } from './Logout';
 class App extends React.Component {
 	constructor(){
@@ -22,6 +24,7 @@ class App extends React.Component {
 				<Route exact path="/login" render={(props) => <Login /> } />
 				<Route exact path="/chat" render={(props) => <Chatroom username={this.state.username} isLoggedIn={this.state.isLoggedIn}/> } />
 				{/* <AuthChatroom authed={this.state.authed} path='/chat' component={Chatroom} /> */}
+				<Route exact path="/register" render={(props) => <Register />} />
 				<Logout />
 			</div>
 		)
