@@ -31,9 +31,13 @@ function login(username, password) {
 		dispatch(request({ username }))
 		userService.login(username, password)
 			.then(
-				username => {
-					dispatch(success(username));	
-					history.push('/chat')
+				res => {
+					if (res.success){
+						dispatch(success(res.username));	
+						history.push('/chat')
+					} else {
+						//login fail
+					}
 				},
 				error => {
 					dispatch(failure(error.toString()));

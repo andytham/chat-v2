@@ -17,9 +17,14 @@ function login(username, password){
 		.then(handleResponse)
 		.then(data => {
 			let parsed = JSON.parse(data);
-			let { username, token } = parsed;
-			localStorage.setItem('username', username);
-			return username;
+			let { username, token, success } = parsed;
+			let res = {
+				username: username,
+				token: token,
+				success: success
+			}
+			return res
+
 		})
 		.catch(err => {
 			console.log(err);
