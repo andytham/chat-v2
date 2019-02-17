@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 import ChatLog from './ChatLog';
 import { UsersList } from './UsersList';
-
+import Game from './Game';
 import chatSocket from '../helpers/chat-socket';
 import { timeGet }  from '../../server/helpers';
 import { connect } from 'react-redux';
@@ -107,6 +107,7 @@ class Chatroom extends Component {
 					</div>
 				</div>
 				<UsersList />
+				<Game />
 			</div>
 		)
 	}
