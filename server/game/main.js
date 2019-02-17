@@ -58,14 +58,16 @@ canvas.height = height;
 socket.emit('game create user', username)
 setInterval(function(){
 	socket.emit('game update', movement, username)
-}, 1000 / 30)
+}, 1000 / 60)
 
 import level from './level.js';
 socket.on('game update', function(players){
 	ctx.clearRect(0, 0, width, height)
+	ctx.beginPath();
+	
 	for (var i = 0; i < level.length; i++) {//print level
 		ctx.fillStyle = level[i].color;
-		ctx.rect(level[i].x, level[i].y, level[i].width, level[i].height);
+		ctx.fillRect(level[i].x, level[i].y, level[i].width, level[i].height);
 	}
 	let list = Object.entries(players);
 	for(let i = 0;i < list.length; i++){

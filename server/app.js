@@ -173,7 +173,7 @@ io.on('connection', function(socket){
 
 setInterval(function(){
 	io.emit('game update', players)
-}, 1000/30)
+}, 1000/60)
 // setInterval(function() {
 // 	io.emit('message', {usr: "dickhead",msg: "fuck", tme: timeGet()});
 // }, 1000 / 60);
