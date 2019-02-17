@@ -1,3 +1,4 @@
+const io = require('socket.io-client')
 const socket = io();
 
 let movement = {
@@ -66,6 +67,7 @@ socket.on('game update', function(players){
 		ctx.fillStyle = level[i].color;
 		ctx.rect(level[i].x, level[i].y, level[i].width, level[i].height);
 	}
+	let list = Object.entries(players);
 	for(let i = 0;i < list.length; i++){
 		let cPlayer = players[list[i][0]]
 		if (cPlayer.online){
