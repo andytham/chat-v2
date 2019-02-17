@@ -6,3 +6,4 @@ jwt
 bcrypt
 socket.io
 material-ui
+postgres

@@ -4,7 +4,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
-import { Link } from 'react-router-dom';
 import { registerService } from '../redux/services';
 class Register extends React.Component{
 	constructor(props){
