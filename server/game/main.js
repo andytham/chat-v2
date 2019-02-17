@@ -49,15 +49,17 @@ const canvas = document.getElementById('canvas'),
 			width = 300,
 			height = 300,
 			gravity = .8,
-			friction = .5
+			friction = .5,
+			username = localStorage.getItem('username')
 canvas.width = width;
 canvas.height = height;
 
-import level from './level.js';
+socket.emit('game create user', username)
 setInterval(function(){
-	socket.emit('game update', movement)
+	socket.emit('game update', movement, username)
 }, 1000 / 30)
 
+import level from './level.js';
 socket.on('game update', function(players){
 	ctx.clearRect(0, 0, width, height)
 	for (var i = 0; i < level.length; i++) {//print level

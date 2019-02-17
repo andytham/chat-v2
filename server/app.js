@@ -81,8 +81,7 @@ const gravity = .8,
 			
 const io = require('socket.io')(server);
 io.on('connection', function(socket){
-	let username = localStorage.getItem('username')
-	socket.on('game create user', function(){
+	socket.on('game create user', function(username){
 		players[username] = {
 			x: 300 / 2,
 			y: 300 / 2,
@@ -98,7 +97,7 @@ io.on('connection', function(socket){
 			online: true
 		}
 	})
-	socket.on('game update', function(movement) {
+	socket.on('game update', function(movement, username) {
 		let player = players[username] || {};
 		if (movement.up){
 			player.jumping = true;

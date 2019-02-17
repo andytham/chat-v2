@@ -7,7 +7,7 @@ class Game extends React.Component {
 		return(
 			<div>
 				
-				{/* <script src={require('../../server/game/main')}></script> */}
+				<script src={require('../../server/game/main')}></script>
 
 			</div>
 		)
