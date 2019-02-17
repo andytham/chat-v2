@@ -72,7 +72,8 @@ const server = require('http').createServer(app);
 //socket.io
 const socket = require('./chat-socket');
 socket(server);
-
+const test = require('./test')
+test(server)
 server.listen(PORT, (err) => {
 	console.log(`Listening on port ${PORT}, ${timeGet("hm")}`);
 })
