@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-const { timeGet , getRandomColor} = require('./helpers');
+const { cr, timeGet , getRandomColor} = require('./helpers');
 const PORT = process.env.PORT || 8080;
 //debug log in console
 const logger = require('morgan');
@@ -76,11 +76,50 @@ chat(server);
 // game(server)
 let players = {};
 const level = require('./game/level-require')
-const gravity = .8,
+const gravity = .1,
 			friction = .5
-			
+
+let Chatroom = cr();
+let usersList = {};
+const axios = require('axios');			
 const io = require('socket.io')(server);
 io.on('connection', function(socket){
+	socket.on('join', function(user){
+		console.log('server join fired');
+		io.emit('history', Chatroom.getChatHistory())
+		trackUser = user;
+		if(user){
+			console.log(user, "has joined");
+			let joinMsg = {usr: "server", msg: `${user} has joined the server`, tme: timeGet()}
+			Chatroom.addEntry(joinMsg)
+			// io.emit('message', Chatroom.getChatHistory())
+			io.emit('message',joinMsg)
+			usersList[socket.id] = user
+		}
+	})
+	socket.on('disconnect', function(){
+		// console.log("disconnect socket running");
+		if(usersList[socket.id]){
+			console.log(usersList[socket.id], 'user disconnected');
+			let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`, tme: timeGet()}
+			Chatroom.addEntry(disconnectMsg)
+			// io.emit('message', Chatroom.getChatHistory())
+			io.emit('message',disconnectMsg)
+			axios.patch(`http://localhost:8080/sessions`,
+			{
+				username: usersList[socket.id],
+				lastOnline: timeGet("full"),
+				currentStatus: "offline"
+			}).catch(err => console.log(err))
+		}
+	});
+	socket.on('message', function(msg){
+		console.log('server socket.on message fired');
+		Chatroom.addEntry(msg)
+		// io.emit('message', Chatroom.getChatHistory());
+		// io.emit('message', msg)
+		socket.broadcast.emit('message',msg)
+	});
 	socket.on('game create user', function(username){
 		players[username] = {
 			x: 300 / 2,
@@ -88,7 +127,7 @@ io.on('connection', function(socket){
 			width: 20,
 			height: 20,
 			jumpHeight: 5,
-			moveSpeed: 5,
+			moveSpeed: 3,
 			velX: 0,
 			velY: 0,
 			jumping: false,
@@ -103,7 +142,7 @@ io.on('connection', function(socket){
 			if (!player.jumping && player.grounded) {
 				player.jumping = true;
 				player.grounded = false;
-				player.velY = -player.jumpHeight * 2.5;//how high to jump
+				player.velY = -player.jumpHeight * 1;//how high to jump
 			}
 		}
 		if (movement.left){

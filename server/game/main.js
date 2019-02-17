@@ -62,6 +62,7 @@ setInterval(function(){
 
 import level from './level.js';
 socket.on('game update', function(players){
+	console.log(players);
 	ctx.clearRect(0, 0, width, height)
 	ctx.beginPath();
 	
