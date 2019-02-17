@@ -100,9 +100,11 @@ io.on('connection', function(socket){
 	socket.on('game update', function(movement, username) {
 		let player = players[username] || {};
 		if (movement.up){
-			player.jumping = true;
-			player.grounded = false;
-			player.velY = -player.jumpHeight * 2.5;//how high to jump
+			if (!player.jumping && player.grounded) {
+				player.jumping = true;
+				player.grounded = false;
+				player.velY = -player.jumpHeight * 2.5;//how high to jump
+			}
 		}
 		if (movement.left){
 			if (player.velX > -player.jumpHeight) {
