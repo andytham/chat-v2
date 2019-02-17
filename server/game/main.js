@@ -2,7 +2,9 @@ import collisionCheck from './collision.js';
 import level from './level.js';
 import constants from './constants.js';
 const { width, height, keys, gravity, friction } = constants;
-console.log("main game js loaded");
+
+import game from '../game-helper';
+// let Game = game();
 (function () {
 	window.requestAnimationFrame =	window.requestAnimationFrame ||
 																	window.mozRequestAnimationFrame ||
@@ -11,49 +13,14 @@ console.log("main game js loaded");
 })();
 
 const canvas = document.getElementById('canvas'),
-			ctx = canvas.getContext("2d"), //ie only supports 2d
-			players = {
-				"name": {
-					x: width / 2,
-					y: height / 1.5,
-					width: 20,
-					height: 20,
-					jumpHeight: 5,
-					moveSpeed: 5,
-					velX: 0,
-					velY: 0,
-					jumping: false,
-					grounded: false,
-					color: "red"
-				},
-				"test": {
-					x: width / 2,
-					y: height / 2,
-					width: 20,
-					height: 20,
-					jumpHeight: 5,
-					moveSpeed: 5,
-					velX: 0,
-					velY: 0,
-					jumping: false,
-					grounded: false,
-					color: "blue"
-				}
-			}, 
-			player1 = {
-				x: width / 2,
-				y: height / 2,
-				width: 20,
-				height: 20,
-				jumpHeight: 5,
-				moveSpeed: 5,
-				velX: 0,
-				velY: 0,
-				jumping: false,
-				grounded: false,
-				color: "red"
-			}
-let currentPlayer = "test";
+			ctx = canvas.getContext("2d") //ie only supports 2d
+
+let currentPlayer = localStorage.getItem("username");
+let checkList = game().getPlayers()
+if (!checkList[currentPlayer]){
+	game().addPlayer(currentPlayer)
+}
+
 // const switchPlayers = document.getElementById('switch');
 // switchPlayers.addEventListener('click',()=>{
 // 	console.log(currentPlayer);
@@ -67,6 +34,7 @@ canvas.width = width;
 canvas.height = height;
 function update(){
 	// check keys
+	let players = game().getPlayers()
 	let player = players[currentPlayer]
 	if (keys[38] || keys[32] || keys[87]) {// up arrow or space
 		if (!player.jumping && player.grounded) {
@@ -114,8 +82,7 @@ function update(){
 	}
 	player.x += player.velX;
 	player.y += player.velY;
-
-
+	game().updatePlayer(player, currentPlayer)
 	ctx.fill();//Draw charater stuff
 	ctx.fillStyle = player.color;
 	
