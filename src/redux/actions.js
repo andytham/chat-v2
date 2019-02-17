@@ -33,6 +33,7 @@ function login(username, password) {
 			.then(
 				res => {
 					if (res.success){
+						localStorage.setItem("username", res.username)
 						dispatch(success(res.username));	
 						history.push('/chat')
 					} else {
