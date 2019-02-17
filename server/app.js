@@ -75,6 +75,11 @@ chat(server);
 // const game = require('./game-socket')
 // game(server)
 let players = {};
+const level = require('./game/level-require')
+const gravity = .8,
+			friction = .5
+			
+const io = require('socket.io')(server);
 io.on('connection', function(socket){
 	let username = localStorage.getItem('username')
 	socket.on('game create user', function(){
@@ -110,9 +115,62 @@ io.on('connection', function(socket){
 				player.velX += player.moveSpeed;
 			}
 		}
+		player.velX *= friction;
+		player.velY += gravity;
+
+		player.grounded = false; // if walking off level, it will force gravity
+		for (var i = 0; i < level.length; i++) { //correct player position if colliding
+			var dir = collisionCheck(player, level[i]); //check collision and 'push' player away
+			if (dir === "left" || dir === "right") {
+					player.velX = 0;
+					player.jumping = false;
+			} else if (dir === "bottom") {
+					player.grounded = true;
+					player.jumping = false;
+			} else if (dir === "top") {
+					player.velY *= -1;
+			}
+		}
+		if(player.grounded){
+			player.velY = 0;
+		}
+	
+		player.x += player.velX;
+		player.y += player.velY;
 	})
+
+	function collisionCheck(a,b){
+		let vX = (a.x + (a.width / 2)) - (b.x + (b.width / 2)),
+				vY = (a.y + (a.height / 2)) - (b.y + (b.height / 2)),
+				hWidths = (a.width / 2) + (b.width / 2),
+				hHeights = (a.height / 2) + (b.height / 2),
+				collision = null;
+		
+		if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights){
+			let oX = hWidths - Math.abs(vX),
+					oY = hHeights - Math.abs(vY)
+			if (oX >= oY){
+				if (vY > 0){
+					collision = "top";
+					a.y += oY;
+				} else {
+					collision = "bottom";
+					a.y -= oY;
+				}
+			} else {
+				if (vX > 0){
+					collision = "left";
+					a.x += oX;
+				} else {
+					collision = "right";
+					a.x -= oX;
+				}
+			}
+		}
+		return collision;
+	}
 })
-const io = require('socket.io')(server);
+
 
 setInterval(function(){
 	io.emit('game update', players)

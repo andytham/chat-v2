@@ -47,7 +47,9 @@ document.addEventListener('keyup', function(event) {
 const canvas = document.getElementById('canvas'),
 			ctx = canvas.getContext('2d'),
 			width = 300,
-			height = 300
+			height = 300,
+			gravity = .8,
+			friction = .5
 canvas.width = width;
 canvas.height = height;
 
@@ -57,10 +59,17 @@ setInterval(function(){
 }, 1000 / 30)
 
 socket.on('game update', function(players){
+	ctx.clearRect(0, 0, width, height)
 	for (var i = 0; i < level.length; i++) {//print level
 		ctx.fillStyle = level[i].color;
 		ctx.rect(level[i].x, level[i].y, level[i].width, level[i].height);
 	}
-	ctx.clearRect(0, 0, width, height)
-	ctx.fillStyle
+	for(let i = 0;i < list.length; i++){
+		let cPlayer = players[list[i][0]]
+		if (cPlayer.online){
+			ctx.fillStyle = cPlayer.color;
+			ctx.fillRect(cPlayer.x, cPlayer.y, cPlayer.width, cPlayer.height);
+			ctx.fillText(list[i][0], cPlayer.x, cPlayer.y)
+		}
+	}
 })
