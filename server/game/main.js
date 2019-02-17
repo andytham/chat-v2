@@ -2,8 +2,9 @@ import collisionCheck from './collision.js';
 import level from './level.js';
 import constants from './constants.js';
 const { width, height, keys, gravity, friction } = constants;
-
+const io = require('socket.io-client')
 import game from '../game-helper';
+// const game = require('../helpers.js')
 // let Game = game();
 (function () {
 	window.requestAnimationFrame =	window.requestAnimationFrame ||
@@ -14,29 +15,44 @@ import game from '../game-helper';
 
 const canvas = document.getElementById('canvas'),
 			ctx = canvas.getContext("2d") //ie only supports 2d
-
+			
 let currentPlayer = localStorage.getItem("username");
-let checkList = game().getPlayers()
-if (!checkList[currentPlayer]){
-	game().addPlayer(currentPlayer)
-} else {
-	game().connect(currentPlayer)
+let players = {
+	[currentPlayer]: {
+    x: 300 / 2,
+    y: 300 / 2,
+    width: 20,
+    height: 20,
+    jumpHeight: 5,
+    moveSpeed: 5,
+    velX: 0,
+    velY: 1,
+    jumping: false,
+    grounded: false,
+    color: 'red',
+    online: true
+  }
 }
-console.log(game().getPlayers());
-// const switchPlayers = document.getElementById('switch');
-// switchPlayers.addEventListener('click',()=>{
-// 	console.log(currentPlayer);
-// 	if (currentPlayer == "name"){
-// 		currentPlayer = "test"
-// 	} else {
-// 		currentPlayer = "name"
-// 	}
-// })
+console.log(players);
+io().on('game-update', function(updatedPlayers){
+	console.log("received game update");
+	players = updatedPlayers
+})
+// let checkList = game().getPlayers()
+if (!players[currentPlayer]){
+	console.log("add player game");
+	// io().emit('game-add-player',currentPlayer)
+} else {
+	console.log("connect game");
+	// io().emit('game-connect', currentPlayer)
+}
+var prevX, prevY;
 canvas.width = width;
 canvas.height = height;
 function update(){
+	
 	// check keys
-	let players = game().getPlayers()
+	// let players = game().getPlayers()
 	let player = players[currentPlayer]
 	if (keys[38] || keys[32] || keys[87]) {// up arrow or space
 		if (!player.jumping && player.grounded) {
@@ -82,9 +98,16 @@ function update(){
 	if(player.grounded){
 		player.velY = 0;
 	}
+
 	player.x += player.velX;
 	player.y += player.velY;
-	game().updatePlayer(player, currentPlayer)
+
+	// if(player.velX != 0 && player.velY != 0){
+		io().emit('game-update', player, currentPlayer)
+	// }
+	prevX = player.x;
+	prevY = player.y
+	// game().updatePlayer(player, currentPlayer)
 	ctx.fill();//Draw charater stuff
 	ctx.fillStyle = player.color;
 	
