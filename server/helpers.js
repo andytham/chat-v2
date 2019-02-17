@@ -150,5 +150,6 @@ height= 300
 module.exports = {
 	timeGet: timeGet,
   cr: chatroom,
-  game: game
+  game: game,
+  getRandomColor: getRandomColor
 }
