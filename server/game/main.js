@@ -19,8 +19,10 @@ let currentPlayer = localStorage.getItem("username");
 let checkList = game().getPlayers()
 if (!checkList[currentPlayer]){
 	game().addPlayer(currentPlayer)
+} else {
+	game().connect(currentPlayer)
 }
-
+console.log(game().getPlayers());
 // const switchPlayers = document.getElementById('switch');
 // switchPlayers.addEventListener('click',()=>{
 // 	console.log(currentPlayer);
@@ -89,10 +91,11 @@ function update(){
 	let list = Object.entries(players);
 	for(let i = 0;i < list.length; i++){
 		let cPlayer = players[list[i][0]]
-		ctx.fillStyle = cPlayer.color;
-		ctx.fillRect(cPlayer.x, cPlayer.y, cPlayer.width, cPlayer.height);
-		ctx.fillText(list[i][0], cPlayer.x, cPlayer.y)
-		
+		if (cPlayer.online){
+			ctx.fillStyle = cPlayer.color;
+			ctx.fillRect(cPlayer.x, cPlayer.y, cPlayer.width, cPlayer.height);
+			ctx.fillText(list[i][0], cPlayer.x, cPlayer.y)
+		}
 	}
 	window.requestAnimationFrame(update);
 }
@@ -108,6 +111,10 @@ document.body.addEventListener("keyup", function (e) {
 	
 	keys[e.keyCode] = false;
 });
+window.onbeforeunload = function(){
+	game().disconnect(currentPlayer);
+	return false;
+}
 // window.addEventListener("load", function () {
 // 	console.log("loaded");
 // 	update();

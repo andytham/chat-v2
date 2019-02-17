@@ -43,6 +43,13 @@ function startEmitters(server){
 			// io.emit('message', msg)
 			socket.broadcast.emit('message',msg)
 		});
+		// socket.on('game-add-player')
+		// socket.on('game-update', function(){
+		// 	io.emit('game-update')
+		// })
 	})
+
+
+
 }
 module.exports = startEmitters;
