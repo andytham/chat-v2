@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import '../css/App.css';
 //components
 import {Home} from './Home';
 import {Chatroom} from './Chatroom';
@@ -8,6 +7,9 @@ import {Login} from './Login';
 import Register from './Register';
 
 import { Logout } from './Logout';
+
+import '../css/App.scss'
+
 class App extends React.Component {
 	constructor(){
 		super();
