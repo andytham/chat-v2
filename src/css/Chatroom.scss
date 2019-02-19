@@ -8,10 +8,13 @@
 	color: $red;
 }
 .msg-user-other{
-	color: $blue
+	color: $blue;
 }
 .msg-time{
-	font-size: $small
+	font-size: $small;
+}
+.msg-msg-server{
+	color: $grey;
 }
 
 .chatroom{
@@ -21,7 +24,7 @@
 	.chat-window{
 		display: block;
 		padding: 9px;
-		border: 3px #FE6B8B solid;
+		border: 3px $grey solid;
 		border-radius: 3px;
 		height: 95vh;
 		width: $chat-width;
@@ -38,7 +41,7 @@
 				width: calc(#{$chat-width} - 95px);
 			}
 			.chat-button{
-				background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+				background: $pink-gradient;
 				border-radius: 3px;
 				border: 0;
 				color: white;
