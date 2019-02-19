@@ -12,7 +12,7 @@ class Register extends React.Component{
 			username: '',
 			email: '',
 			password: '',
-			passwordRepeat: ''
+			passwordConfirm: ''
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -25,9 +25,9 @@ class Register extends React.Component{
 	onSubmit(e){
 		e.preventDefault();
 		console.log(this.props);
-		const { username, email, password, passwordRepeat } = this.state;
+		const { username, email, password, passwordConfirm } = this.state;
 		const { dispatch } = this.props;
-		if (username && email && password && passwordRepeat == password) {
+		if (username && email && password && passwordConfirm == password) {
 			let user = {
 				username: username,
 				email: email,
@@ -54,7 +54,7 @@ class Register extends React.Component{
 					<FormControl className="form">
 						<InputLabel htmlFor="email">Email</InputLabel>
 						<Input
-							id="form-password"
+							id="form-email"
 							type='text'
 							value={this.state.email}
 							onChange={(event) => this.handleChange('email', event)}
@@ -74,12 +74,12 @@ class Register extends React.Component{
 						
 					</FormControl>
 					<FormControl className="form">
-						<InputLabel htmlFor="password-repeat">Confirm Password</InputLabel>
+						<InputLabel htmlFor="password-confirm">Confirm Password</InputLabel>
 						<Input
-								id="form-password-repeat"
+								id="form-password-confirm"
 								type='password'
 								value={this.state.passwordRepeat}
-								onChange={(event) => this.handleChange('passwordRepeat', event)}
+								onChange={(event) => this.handleChange('passwordConfirm', event)}
 								onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
 							/>
 					</FormControl>
