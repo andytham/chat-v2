@@ -3,18 +3,19 @@ import React from 'react';
 let name = localStorage.getItem("username")
 const ChatLog = React.memo(function ChatLog (props) {
 	let count = 0;
+	let className;
 	let log = props.log.map(entry => {
-		if(entry.usr == "server") {
-			return(
-				<div key={count++}> <span className="server">{entry.usr}</span> {entry.tme ? <span className="message-time">({entry.tme})</span> : "" }: {entry.msg}</div>
-			)
-		} else if (entry.usr != name){
-			<div key={count++}> <span className="user-other">{entry.usr}</span> <span className="message-time">({entry.tme})</span>: {entry.msg}</div>
-		}else {
-			return(
-				<div key={count++}> <span className="user">{entry.usr}</span> <span className="message-time">({entry.tme})</span>: {entry.msg}</div>
-			)
+		if (entry.usr == "server"){
+			className = "msg-user-server";
+		} else if (entry.usr == name) {
+			className = "msg-user-you";
+		} else {
+			className = "msg-user-other";
 		}
+		return(
+			<div key={count++}> <span className={className}>{entry.usr}</span> {entry.tme ? <span className="msg-time">({entry.tme})</span> : "" }: {entry.msg}</div>
+		)
+
 
 	})
 	return log

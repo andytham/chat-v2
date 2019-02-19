@@ -1,16 +1,16 @@
 @import 'global';
 
 // message colors
-.server{
+.msg-user-server{
 	color: $green;
 }
-.user{
+.msg-user-you{
 	color: $red;
 }
-.user-other{
+.msg-user-other{
 	color: $blue
 }
 
-.message-time{
+.msg-time{
 	font-size: $small
 }
