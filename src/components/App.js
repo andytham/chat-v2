@@ -9,6 +9,7 @@ import Register from './Register';
 import { Logout } from './Logout';
 
 import '../css/App.scss'
+import '../css/Chatroom.scss'
 
 class App extends React.Component {
 	constructor(){
