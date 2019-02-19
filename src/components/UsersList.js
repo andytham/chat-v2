@@ -49,8 +49,19 @@ class UsersList extends React.Component {
 				sessionsLoaded: true
 			})
 		}
+		//if sessions update
 		if (JSON.stringify(prevProps.sessions) != JSON.stringify((this.props.sessions))){
 			dispatch(sessionsActions.getSessions())
+		}
+
+		//if user changes his status
+		if (prevState.myStatus != this.state.myStatus){
+			let user = {
+				username: this.props.username,
+				lastOnline:  timeGet("full"),
+				currentStatus: this.state.myStatus
+			}
+			dispatch(sessionsActions.updateSession(user))
 		}
 	}
 	getTest(){
@@ -128,7 +139,7 @@ class UsersList extends React.Component {
 					<Select
 						className="select-my-status"
 						value={this.state.viewList}
-						onChange={this.handleMystatus}
+						onChange={this.handleMyStatus}
 						options={myStatusOptions}
 						placeholder="set status"
 					/>
