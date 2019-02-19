@@ -19,13 +19,24 @@ export const updateTest = (socket, usr, msg, tme) => {
 }
 
 import { userConstants } from './constants';
-import { userService } from './services';
+import { userService, registerService } from './services';
 
 export const userActions = {
 	login,
-	logout
+	logout,
+	register
 }
-
+function register(user){
+	console.log("testing");
+	return (dispatch) => {
+		console.log('register action');
+		dispatch({type: userConstants.REGISTER_REQUEST, user})
+		registerService.register(user)
+			.then(data => {
+				console.log(data);
+			})
+	}
+}
 function login(username, password) {
 	return dispatch => {
 		dispatch(request({ username }))
@@ -90,7 +101,5 @@ function getSessions(){
 		} catch (err) {
 			console.log(err);
 		}
-
 	}
-
 }

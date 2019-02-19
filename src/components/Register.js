@@ -5,6 +5,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
 import { registerService } from '../redux/services';
+import { userActions } from '../redux/actions';
+import { connect } from 'react-redux';
 class Register extends React.Component{
 	constructor(props){
 		super(props)
@@ -28,12 +30,14 @@ class Register extends React.Component{
 		const { username, email, password, passwordConfirm } = this.state;
 		const { dispatch } = this.props;
 		if (username && email && password && passwordConfirm == password) {
+			console.log("check");
 			let user = {
 				username: username,
 				email: email,
 				password: password
 			}
-			registerService.register(user)
+			dispatch(userActions.register(user))
+			console.log("after check");
 		}
 		//auth
 	}
@@ -78,7 +82,7 @@ class Register extends React.Component{
 						<Input
 								id="form-password-confirm"
 								type='password'
-								value={this.state.passwordRepeat}
+								value={this.state.passwordConfirm}
 								onChange={(event) => this.handleChange('passwordConfirm', event)}
 								onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
 							/>
@@ -96,5 +100,14 @@ class Register extends React.Component{
 		)
 	}
 }
+function mapStateToProps(state){
+	const { isLoggedIn, error } = state.auth;
+	return {
+		isLoggedIn,
+		error
+	}
+}
 
-export default Register;
+
+const ConnectedRegister = connect(mapStateToProps)(Register)
+export { ConnectedRegister as Register };

@@ -126,7 +126,7 @@ export const sessionsService = {
 
 export const registerService = {
 	register: function(user){
-		axios.post(
+		return axios.post(
 			`${config.apiUrl}/users/create`,
 			{...user})
 		.then(res => {
@@ -134,6 +134,7 @@ export const registerService = {
 			if (res.data.success){
 				history.push('/login')
 			}
+			return "success"
 		})
 		.catch(err => console.log(err))
 	}
