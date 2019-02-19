@@ -133,8 +133,10 @@ export const registerService = {
 			console.log(res);
 			if (res.data.success){
 				history.push('/login')
+				return res.data;
+			} else {
+				return res.data;
 			}
-			return "success"
 		})
 		.catch(err => console.log(err))
 	}
