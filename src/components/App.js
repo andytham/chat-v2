@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import {Home} from './Home';
 import {Chatroom} from './Chatroom';
 import {Login} from './Login';
-import Register from './Register';
+import {Register} from './Register';
 
 import { Logout } from './Logout';
 

@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import { connect } from 'react-redux';
 import { userActions, sessionsActions } from '../redux/actions';
+import { ErrorMsg } from './ErrorMsg';
 class Login extends React.Component{
 	constructor(props){
 		super(props)
@@ -96,14 +97,15 @@ class Login extends React.Component{
 						</Button>
 					</div>
 				</div>
+				{this.props.error ? <ErrorMsg />: ""}
 			</div>
 		)
 	}
 }
 function mapStateToProps(state) {
-	const { loggingIn } = state.auth;
+	const { loggingIn, error } = state.auth;
 	return {
-			loggingIn
+			loggingIn, error
 	};
 }
 

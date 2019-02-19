@@ -55,7 +55,9 @@ export function auth(state = initialState, action){
 				username: action.username
 			}
 		case userConstants.LOGIN_FAILURE:
-			return {};
+			return {
+				error: "Login failed. Incorrect username or password."
+			};
 		case userConstants.LOGOUT:
 			return {
 				isLoggedIn: false,
