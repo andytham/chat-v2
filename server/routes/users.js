@@ -97,6 +97,9 @@ const usersController = {
 		})
 		.catch(err => {
 			console.log(err);
+			res.json({
+				success: false
+			})
 		})
 	},
 	current: (req, res) => {

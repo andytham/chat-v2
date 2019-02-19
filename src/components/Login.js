@@ -43,14 +43,18 @@ class Login extends React.Component{
 		const { dispatch } = this.props;
 		if (username && password) {
 			dispatch(userActions.login(username, password));
-			dispatch(sessionsActions.getSessions())
+			// dispatch(sessionsActions.getSessions())
 		}
 		//auth
 	}
 	render(){
 		return(
 			<div className="form-wrapper">
+				<div className="login-header">
+					Please login to access the chatroom.
+				</div>
 				<div className="login">
+
 					<FormControl className="form">
 						<InputLabel htmlFor="username">Username</InputLabel>
 						<Input

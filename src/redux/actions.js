@@ -37,10 +37,11 @@ function login(username, password) {
 						dispatch(success(res.username));	
 						history.push('/chat')
 					} else {
-						//login fail
+					dispatch(failure("Login failed."));
 					}
 				},
 				error => {
+					console.log("error happened");
 					dispatch(failure(error.toString()));
 				}
 			)

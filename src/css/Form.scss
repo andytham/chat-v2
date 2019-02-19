@@ -16,12 +16,16 @@
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	height: 70vh;
 }
 .login{
 	@include form;
-}
 
+}
+.login-header{
+	margin-bottom: 10px;
+}
 .register{
 	@include form;
 }
