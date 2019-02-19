@@ -4,16 +4,30 @@ import { sessionsActions } from '../redux/actions';
 import { sessionsService } from '../redux/services';
 import axios from 'axios'
 import { timeGet } from '../../server/helpers';
+import Select from 'react-select';
+
+const listOptions = [
+	{value: 'showOnlineOnly', label: 'online'},
+	{value: 'showAway', label: 'away'},
+	{value: 'showAll', label: 'offline'}
+]
+const myStatusOptions = [
+	{value: 'online', label: 'online'},
+	{value: 'away', label: 'away'}
+]
 
 class UsersList extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			sessionsLoaded: false,
-			selectStatus: "showAll"
+			viewList: "showOnlineOnly",
+			myStatus: "online"
 		}
 		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
+		this.handleList = this.handleList.bind(this)
+		this.handleMyStatus = this.handleMyStatus.bind(this)
 	}
 	componentDidMount(){
 	}
@@ -88,7 +102,7 @@ class UsersList extends React.Component {
 		let offlineEl = offlineList.map(session => {
 			return mapOut(session)
 		})
-		switch (this.state.selectStatus){
+		switch (this.state.viewList){
 			case "showOnlineOnly":
 				return onlineEl;
 			case "showAway":
@@ -99,10 +113,36 @@ class UsersList extends React.Component {
 				return onlineEl;
 		}
 	}
+	handleList(selectedOption){
+		this.setState({ viewList: selectedOption.value })
+    // console.log(`Option selected:`, selectedOption);
+	}
+	handleMyStatus(selectedOption){
+		this.setState({ myStatus: selectedOption.value })
+    // console.log(`Option selected:`, selectedOption);
+	}
 	render(){
 		return(
-			<div className="users-list">
-				{this.props.sessions ? this.mapUsers() : ""}
+			<div className="users-list-wrapper">
+				<div className="select-wrapper">
+					<Select
+						className="select-my-status"
+						value={this.state.viewList}
+						onChange={this.handleMystatus}
+						options={myStatusOptions}
+						placeholder="set status"
+					/>
+					<Select
+						className="select-list-status"
+						value={this.state.viewList}
+						onChange={this.handleList}
+						options={listOptions}
+						placeholder="view users"
+					/>
+				</div>
+				<div className="users-list">
+					{this.props.sessions ? this.mapUsers() : ""}
+				</div>
 			</div>
 		)
 	}

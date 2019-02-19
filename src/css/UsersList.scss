@@ -1,6 +1,16 @@
 @import 'global';
-
+.select-wrapper{
+	display: flex;
+	width: 100%;
+	.select-my-status{
+		width: 100%;
+	}
+	.select-list-status{
+		width: 100%;
+	}
+}
 .users-list{
+
 	.individual-user{
 		display: flex;
 		justify-content: space-between;
