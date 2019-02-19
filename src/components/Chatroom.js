@@ -84,10 +84,14 @@ class Chatroom extends Component {
 	render(){
 		return(
 			<div className="chatroom">
+				<div className="game-wrapper">
+					<Game />
+					<UsersList />
+				</div>
 				<div className="chat-window">
 					<div className="chat-title">
 					</div>
-					<ul className="chat-history">
+					<ul className="chat-log">
 						<ChatLog log={this.state.log} />
 					</ul>
 					<div className="input-wrapper">
@@ -101,13 +105,11 @@ class Chatroom extends Component {
 							value={this.state.input}
 							onKeyPress={e => (e.key === 'Enter' ? this.onSendMessage() : null)}
 						/>
-						<Button onClick={this.onSendMessage}>
+						<Button className="chat-button" onClick={this.onSendMessage}>
 							Enter
 						</Button>
 					</div>
 				</div>
-				<UsersList />
-				<Game />
 			</div>
 		)
 	}

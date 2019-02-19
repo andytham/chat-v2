@@ -8,6 +8,7 @@ import Register from './Register';
 
 import { Logout } from './Logout';
 
+import '../css/reset.scss'
 import '../css/App.scss'
 import '../css/Chatroom.scss'
 
