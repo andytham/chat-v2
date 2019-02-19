@@ -10,7 +10,7 @@ class UsersList extends React.Component {
 		super(props)
 		this.state = {
 			sessionsLoaded: false,
-			selectStatus: "showOnlineOnly"
+			selectStatus: "showAll"
 		}
 		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
@@ -48,31 +48,61 @@ class UsersList extends React.Component {
 
 	mapUsers(){
 		let count = 0
+		let sessions = this.props.sessions.slice()
+		let onlineList = [], awayList = [], offlineList = []
+		//seperate into 3 lists to reorder
+		for(let i = 0; i < sessions.length; i++){
+			switch (sessions[i].currentStatus){
+				case "online":
+					onlineList.push(sessions[i]);
+					break;
+				case "away":
+					awayList.push(sessions[i]);
+					break;
+				case "offline":
+					offlineList.push(sessions[i]);
+					break;
+				default:
+					break;
+			}
+		}
+		//map out
+		function mapOut(session){
+				return(
+					<div key={count++} className="individual-user">
+						<div className="users-username">
+							{session.username}
+						</div>
+						<div className={`users-status ${session.currentStatus}`}>
+							{session.currentStatus}
+						</div>
+					</div>
+				)
+		}
+		let onlineEl = onlineList.map(session => {
+			return mapOut(session)
+		})
+		let awayEl = awayList.map(session => {
+			return mapOut(session)
+		})
+		let offlineEl = offlineList.map(session => {
+			return mapOut(session)
+		})
 		switch (this.state.selectStatus){
 			case "showOnlineOnly":
-				return this.props.sessions.map(
-					session => {
-						if (session.currentStatus == "online"){
-							return(
-								<div key={count++}>
-									{session.username} {session.lastOnline}
-								</div>
-							)
-						}
-					})
+				return onlineEl;
 			case "showAway":
-				return
+				return onlineEl.concat(awayEl);
 			case "showAll":
-				return
+				return onlineEl.concat(awayEl).concat(offlineEl);
 			default:
-				return
+				return onlineEl;
 		}
 	}
 	render(){
 		return(
 			<div className="users-list">
 				{this.props.sessions ? this.mapUsers() : ""}
-				<button onClick={this.getTest}>GET SESSIONS</button>
 			</div>
 		)
 	}

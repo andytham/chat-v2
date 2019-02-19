@@ -11,7 +11,7 @@ import { Logout } from './Logout';
 import '../css/reset.scss'
 import '../css/App.scss'
 import '../css/Chatroom.scss'
-
+import '../css/UsersList.scss'
 class App extends React.Component {
 	constructor(){
 		super();

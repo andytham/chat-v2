@@ -6,7 +6,7 @@ $small: 12px;
 $chat-width: 500px;
 $pink-gradient: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
 $pink: #FE6B8B;
-@mixin generic-border($size: 4px, $color: $red, $line-type: solid, $radius: 3px){
+@mixin generic-border($size: 3px, $color: $red, $line-type: solid, $radius: 6px){
 	border: $size $color $line-type;
 	border-radius: $radius;
 	padding: 9px;
