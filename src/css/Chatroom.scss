@@ -22,14 +22,17 @@
 	align-content: center;
 	justify-content: center;
 	.chat-window{
-		display: block;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around; 
+		justify-content: space-between; //reminder that ios can't use space-between
 		padding: 9px;
 		border: 3px $grey solid;
 		border-radius: 3px;
 		height: 95vh;
 		width: $chat-width;
 		.chat-log{
-			height: calc(95vh - 40px);
+			height: calc(95vh - 45px);
 			overflow: auto;
 		}
 		.input-wrapper{
@@ -43,7 +46,7 @@
 			}
 			.chat-button{
 				background: $pink-gradient;
-				border-radius: 3px;
+				border-radius: 5px;
 				border: 0;
 				color: white;
 				height: 36px;
