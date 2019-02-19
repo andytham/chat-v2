@@ -42,6 +42,12 @@ class Register extends React.Component{
 		} else if (password != passwordConfirm){
 			let register = {message: "Passwords do not match."}
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
+		} else {
+			this.setState({
+				error: true
+			})
+			let register = {message: "Registration field missing."}
+			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		}
 		//auth
 	}
@@ -52,6 +58,7 @@ class Register extends React.Component{
 					<FormControl className="form">
 						<InputLabel htmlFor="username">Username</InputLabel>
 						<Input
+						  error={this.state.error && this.state.username == ""}
 							id="form-username"
 							autoFocus={true}
 							value={this.state.username}
@@ -62,6 +69,7 @@ class Register extends React.Component{
 					<FormControl className="form">
 						<InputLabel htmlFor="email">Email</InputLabel>
 						<Input
+						  error={this.state.error && this.state.email == ""}
 							id="form-email"
 							type='text'
 							value={this.state.email}
@@ -73,6 +81,7 @@ class Register extends React.Component{
 					<FormControl className="form">
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input
+						  error={this.state.error && this.state.password == ""}
 							id="form-password"
 							type='password'
 							value={this.state.password}
@@ -84,12 +93,13 @@ class Register extends React.Component{
 					<FormControl className="form">
 						<InputLabel htmlFor="password-confirm">Confirm Password</InputLabel>
 						<Input
-								id="form-password-confirm"
-								type='password'
-								value={this.state.passwordConfirm}
-								onChange={(event) => this.handleChange('passwordConfirm', event)}
-								onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
-							/>
+						  error={this.state.error && this.state.passwordConfirm == ""}
+							id="form-password-confirm"
+							type='password'
+							value={this.state.passwordConfirm}
+							onChange={(event) => this.handleChange('passwordConfirm', event)}
+							onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
+						/>
 					</FormControl>
 					<div className="buttons-wrapper">				
 						<Button className="button button-1" onClick={this.onSubmit}>
