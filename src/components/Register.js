@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
 import { userActions } from '../redux/actions';
+import { userConstants } from '../redux/constants';
 import { connect } from 'react-redux';
 import { SystemMsg } from './SystemMsg';
 class Register extends React.Component{
@@ -38,6 +39,9 @@ class Register extends React.Component{
 			}
 			dispatch(userActions.register(user))
 			console.log("after check");
+		} else if (password != passwordConfirm){
+			let register = {message: "Passwords do not match."}
+			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		}
 		//auth
 	}

@@ -47,19 +47,19 @@ const usersController = {
 					email: req.body.email
 				}).then(user => {
 					res.json({
-						message: "User created",
+						message: "User created.",
 						success: true
 					})
 				})
 				.catch(err => {
 					if(err.code == "23505"){
 						res.json({
-							message: "Username already exists",
+							message: "Username already exists.",
 							success: false
 						})
 					} else {
 						res.json({
-							message: "Error occurred when registering",
+							message: "Error occurred when registering.",
 							success: false
 						})
 					}
