@@ -63,6 +63,18 @@ export function auth(state = initialState, action){
 				isLoggedIn: false,
 				username: ""
 			};
+		case userConstants.REGISTER_REQUEST:
+			return {
+				registering: true
+			}
+		case userConstants.REGISTER_SUCCESS:
+			return {
+				registered: true
+			}
+		case userConstants.REGISTER_FAILURE:
+			return {
+				error: action.register.message
+			}
 		default: 
 			return state;
 	}

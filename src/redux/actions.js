@@ -33,10 +33,11 @@ function register(user){
 		dispatch({type: userConstants.REGISTER_REQUEST, user})
 		registerService.register(user)
 			.then(data => {
+				let register = data;
 				if (data.success){
-					dispatch({type: userConstants.REGISTER_SUCCESS, data})
+					dispatch({type: userConstants.REGISTER_SUCCESS, register})
 				} else {
-					dispatch({type: userConstants.REGISTER_FAILURE, data})
+					dispatch({type: userConstants.REGISTER_FAILURE, register})
 				}
 			})
 	}
