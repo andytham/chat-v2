@@ -41,3 +41,8 @@ at this moment, the game is rendered, and updates on players are sent through th
 Game is unbearably laggy. Most likely because conflicting player data is being sent back and forth.
 
 In an attempt to fix, I thought it might be best to redo the entire thing, and send keystrokes through the socket instead, and updating the game state that way.
+
+
+##
+
+seems like video game standard is 16 char limit for usernames
