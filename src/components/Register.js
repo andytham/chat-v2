@@ -4,9 +4,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
-import { registerService } from '../redux/services';
 import { userActions } from '../redux/actions';
 import { connect } from 'react-redux';
+import { ErrorMsg } from './ErrorMsg';
 class Register extends React.Component{
 	constructor(props){
 		super(props)
@@ -96,6 +96,7 @@ class Register extends React.Component{
 						</Button>
 					</div>
 				</div>
+				{this.props.error ? <ErrorMsg /> : ""}
 			</div>
 		)
 	}
