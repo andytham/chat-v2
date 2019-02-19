@@ -47,7 +47,8 @@ export function auth(state = initialState, action){
 		case userConstants.LOGIN_REQUEST:
 			return {
 				loggingIn: true,
-				username: action.username.username //???????? why does this need to be nested? addressed in devlog
+				username: action.username.username, //???????? why does this need to be nested? addressed in devlog
+				systemMsg: "",
 			}
 		case userConstants.LOGIN_SUCCESS:
 			return {
@@ -56,7 +57,7 @@ export function auth(state = initialState, action){
 			}
 		case userConstants.LOGIN_FAILURE:
 			return {
-				error: "Login failed. Incorrect username or password."
+				systemMsg: "Login failed. Incorrect username or password."
 			};
 		case userConstants.LOGOUT:
 			return {
@@ -65,6 +66,7 @@ export function auth(state = initialState, action){
 			};
 		case userConstants.REGISTER_REQUEST:
 			return {
+				systemMsg: "",
 				registering: true
 			}
 		case userConstants.REGISTER_SUCCESS:
@@ -73,7 +75,7 @@ export function auth(state = initialState, action){
 			}
 		case userConstants.REGISTER_FAILURE:
 			return {
-				error: action.register.message
+				systemMsg: action.register.message
 			}
 		default: 
 			return state;

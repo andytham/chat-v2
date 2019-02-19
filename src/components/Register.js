@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 
 import { userActions } from '../redux/actions';
 import { connect } from 'react-redux';
-import { ErrorMsg } from './ErrorMsg';
+import { SystemMsg } from './SystemMsg';
 class Register extends React.Component{
 	constructor(props){
 		super(props)
@@ -96,16 +96,16 @@ class Register extends React.Component{
 						</Button>
 					</div>
 				</div>
-				{this.props.error ? <ErrorMsg /> : ""}
+				{this.props.systemMsg ? <SystemMsg /> : ""}
 			</div>
 		)
 	}
 }
 function mapStateToProps(state){
-	const { isLoggedIn, error } = state.auth;
+	const { isLoggedIn, systemMsg } = state.auth;
 	return {
 		isLoggedIn,
-		error
+		systemMsg
 	}
 }
 
