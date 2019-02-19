@@ -66,19 +66,25 @@ class Chatroom extends Component {
 	}
 
 	onSendMessage(){
-		let msg = {
-			usr: this.props.username || localStorage.getItem('username'),
-			// usr: this.props.username,
-      msg: this.state.input, 
-      tme: timeGet()
+		if (/\S/.test(this.state.input)) {
+			let msg = {
+				usr: this.props.username || localStorage.getItem('username'),
+				// usr: this.props.username,
+				msg: this.state.input, 
+				tme: timeGet()
+			}
+			this.state.chatSocket.message(msg, (err) => {
+				return console.log(err);
+			})
+			this.updateChatLog(msg)
+			this.setState({
+				input: ""
+			})
+		} else {
+			this.setState({
+				input: ""
+			})
 		}
-		this.state.chatSocket.message(msg, (err) => {
-			return console.log(err);
-		})
-		this.updateChatLog(msg)
-		this.setState({
-			input: ""
-		})
 	}
 
 	render(){
