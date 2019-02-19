@@ -73,13 +73,16 @@ function createSession(user){
 	// 		console.log("HELLO?");
 	// 	})
 	// 	.catch(err => console.log(err))
-	axios.post(`${config.apiUrl}/sessions`, {
-		...user
-	})
-		.then(data => {
-		console.log("post success?", data);
-	})
-		.catch(err => console.log(err))
+	if (user.username){
+		axios.post(`${config.apiUrl}/sessions`, {
+			...user
+		})
+			.then(data => {
+			console.log("post success?", data);
+		})
+			.catch(err => console.log(err))
+	
+	}
 
 }
 async function getSessions(){

@@ -22,13 +22,12 @@
 	align-content: center;
 	justify-content: center;
 	.chat-window{
+		margin: 0 10px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around; 
 		justify-content: space-between; //reminder that ios can't use space-between
-		padding: 9px;
-		border: 3px $grey solid;
-		border-radius: 3px;
+		@include generic-border;
 		height: 95vh;
 		width: $chat-width;
 		.chat-log{
@@ -55,9 +54,12 @@
 			}
 		}
 	}
+	.game-wrapper{
+		display: flex;
+		flex-direction: column;
+		.users-list{
+			@include generic-border;
+		}
+	}
 }
 
-.game-wrapper{
-	display: flex;
-	flex-direction: column;
-}
