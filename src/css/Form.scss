@@ -1,0 +1,37 @@
+@import 'global';
+
+@mixin form(){
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	justify-content: center;
+	
+	@include generic-border;
+	padding: 30px;
+	// // position: absolute;
+	// top: 30%;
+	// left: 50%;
+}
+.form-wrapper{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	height: 70vh;
+}
+.login{
+	@include form;
+}
+
+.register{
+	@include form;
+}
+
+.buttons-wrapper{
+	display: flex;
+	justify-content: space-between;
+	.button{
+		width: 49%;
+		margin-top: 25px;
+		background: $pink-gradient;
+	}
+}

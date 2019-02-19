@@ -39,55 +39,59 @@ class Register extends React.Component{
 	}
 	render(){
 		return(
-			<div>
-				<FormControl className="form">
-					<InputLabel htmlFor="username">Username</InputLabel>
-					<Input
-						id="form-username"
-						autoFocus={true}
-						value={this.state.username}
-						onChange={e => this.handleChange('username', e)}
-						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
-					/>
-				</FormControl>
-				<FormControl className="form">
-          <InputLabel htmlFor="email">Email</InputLabel>
-          <Input
-            id="form-password"
-            type='text'
-            value={this.state.email}
-						onChange={(event) => this.handleChange('email', event)}
-						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
-          />
-					
-        </FormControl>
-        <FormControl className="form">
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input
-            id="form-password"
-            type='password'
-            value={this.state.password}
-						onChange={(event) => this.handleChange('password', event)}
-						onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
-          />
-					
-        </FormControl>
-				<FormControl className="form">
-					<InputLabel htmlFor="password-repeat">Confirm Password</InputLabel>
-					<Input
-							id="form-password-repeat"
-							type='password'
-							value={this.state.passwordRepeat}
-							onChange={(event) => this.handleChange('passwordRepeat', event)}
+			<div className="form-wrapper">
+				<div className="register">
+					<FormControl className="form">
+						<InputLabel htmlFor="username">Username</InputLabel>
+						<Input
+							id="form-username"
+							autoFocus={true}
+							value={this.state.username}
+							onChange={e => this.handleChange('username', e)}
 							onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
 						/>
-				</FormControl>
-				<Button onClick={this.onSubmit}>
-					Register
-				</Button>
-				<Button href='/login'>
-					Back
-				</Button>
+					</FormControl>
+					<FormControl className="form">
+						<InputLabel htmlFor="email">Email</InputLabel>
+						<Input
+							id="form-password"
+							type='text'
+							value={this.state.email}
+							onChange={(event) => this.handleChange('email', event)}
+							onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
+						/>
+						
+					</FormControl>
+					<FormControl className="form">
+						<InputLabel htmlFor="password">Password</InputLabel>
+						<Input
+							id="form-password"
+							type='password'
+							value={this.state.password}
+							onChange={(event) => this.handleChange('password', event)}
+							onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
+						/>
+						
+					</FormControl>
+					<FormControl className="form">
+						<InputLabel htmlFor="password-repeat">Confirm Password</InputLabel>
+						<Input
+								id="form-password-repeat"
+								type='password'
+								value={this.state.passwordRepeat}
+								onChange={(event) => this.handleChange('passwordRepeat', event)}
+								onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
+							/>
+					</FormControl>
+					<div className="buttons-wrapper">				
+						<Button className="button button-1" onClick={this.onSubmit}>
+							Register
+						</Button>
+						<Button className="button button-2" href='/login'>
+							Back
+						</Button>
+					</div>
+				</div>
 			</div>
 		)
 	}
