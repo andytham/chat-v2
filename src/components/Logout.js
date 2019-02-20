@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { userActions, sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
+import Button from '@material-ui/core/Button';
+import { history } from '../redux/helpers'
 
 class Logout extends React.Component {
 	constructor(){
@@ -20,12 +22,18 @@ class Logout extends React.Component {
 			dispatch(sessionsActions.updateSession(user))
 			dispatch(userActions.logout());
 		}
+		history.push('/login');
 	}
 
 	render(){
 		return(
 			<div>
-				{this.props.username ? <button onClick={this.handleClick}>Logout</button> : "" }
+				{this.props.username ?
+					<Button className="button logout" onClick={this.handleClick}>
+						Logout
+					</Button>
+					: "" 
+				}
 			</div>
 		)
 	}
