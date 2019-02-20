@@ -40,11 +40,18 @@ class Register extends React.Component{
 			dispatch(userActions.register(user))
 			console.log("after check");
 		} else if (password != passwordConfirm){
+			this.setState({
+				error: true,
+				password: "",
+				passwordConfirm: ""
+			})
 			let register = {message: "Passwords do not match."}
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		} else {
 			this.setState({
-				error: true
+				error: true,
+				password: "",
+				passwordConfirm: ""
 			})
 			let register = {message: "Registration field missing."}
 			dispatch({type: userConstants.REGISTER_FAILURE, register})

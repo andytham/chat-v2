@@ -42,10 +42,14 @@ class Login extends React.Component{
 		console.log(this.props);
 		const { username, password } = this.state;
 		const { dispatch } = this.props;
+		this.setState({
+			password: ""
+		})
 		if (username && password) {
 			dispatch(userActions.login(username, password));
 			// dispatch(sessionsActions.getSessions())
 		}
+
 		//auth
 	}
 	render(){
