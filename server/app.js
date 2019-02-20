@@ -72,8 +72,8 @@ app.use(function(err, req, res, next) {
 
 const server = require('http').createServer(app);
 //socket.io
-const chat = require('./chat-socket');
-chat(server);
+// const chat = require('./chat-socket');
+// chat(server);
 // const game = require('./game-socket')
 // game(server)
 let players = {};

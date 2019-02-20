@@ -33,14 +33,12 @@ function login(username, password){
 
 function logout(){
 	localStorage.removeItem('username');
-	//PUT/POST to sessions table? who's online and what not? or last online
+	//Session logout aken care of in Chatroom.js
 }
 
 
 function handleResponse(response) {
 	return response.text().then(text => {
-		// const data = text && JSON.parse(text);
-		// console.log(data);
 		const data = text
 		if (!response.ok) {
 			if (response.status === 401) {
@@ -63,8 +61,8 @@ function createSession(user){
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ ...user })
 	}
+	
 	//working fetch version
-
 	// fetch(`${config.apiUrl}/sessions`, requestOptions)
 	// 	.then(data => {
 	// 		console.log("post success?", data);
@@ -73,6 +71,7 @@ function createSession(user){
 	// 		console.log("HELLO?");
 	// 	})
 	// 	.catch(err => console.log(err))
+
 	if (user.username){
 		axios.post(`${config.apiUrl}/sessions`, {
 			...user
@@ -102,22 +101,8 @@ async function getSessions(){
 function patchSession(user){
 	axios.patch(`${config.apiUrl}/sessions`,{...user})
 		.catch(err => console.log(err))
-	// const requestOptions = {
-	// 	method: 'PATCH',
-	// 	headers: { 'Content-Type': 'application/json' },
-	// 	body: {...user}
-	// };
-
-	// fetch(`${config.apiUrl}/sessions`, requestOptions)
-	// 	.then(handleResponse)
-	// 	.then(data => {
-	// 		let parsed = JSON.parse(data);
-	// 		return parsed;
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	})
 }
+
 export const sessionsService = {
 	createSession,
 	getSessions,

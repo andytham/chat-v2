@@ -1,6 +1,6 @@
-import chatSocket from '../helpers/chat-socket';
 import React from 'react';
 let name = localStorage.getItem("username")
+
 const ChatLog = React.memo(function ChatLog (props) {
 	let count = 0, usrClass, msgClass = "";
 	let log = props.log.map(entry => {

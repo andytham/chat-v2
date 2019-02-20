@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { sessionsActions } from '../redux/actions';
-import { sessionsService } from '../redux/services';
-import axios from 'axios'
 import { timeGet } from '../../server/helpers';
 import Select from 'react-select';
 
@@ -158,7 +156,6 @@ class UsersList extends React.Component {
 		)
 	}
 }
-
 
 function mapStatetoProps(state) {
 	const { sessions, allUsers } = state.sessions;

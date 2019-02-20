@@ -2,16 +2,14 @@ import React from 'react';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 import { connect } from 'react-redux';
-import { userActions, sessionsActions } from '../redux/actions';
+import { userActions } from '../redux/actions';
 import { userConstants } from '../redux/constants';
 import { SystemMsg } from './SystemMsg';
 class Login extends React.Component{
@@ -27,10 +25,6 @@ class Login extends React.Component{
 		this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
-	componentDidMount(){
-		
-
-	}
 	
 	handleChange(prop, event){
 		this.setState({ [prop]: event.target.value });
@@ -39,6 +33,7 @@ class Login extends React.Component{
   handleClickShowPassword(){
     this.setState(state => ({ showPassword: !state.showPassword }));
 	};
+
 	onSubmit(e){
 		e.preventDefault();
 		console.log(this.props);
@@ -49,7 +44,6 @@ class Login extends React.Component{
 		})
 		if (username && password) {
 			dispatch(userActions.login(username, password));
-			// dispatch(sessionsActions.getSessions())
 		} else if (!username){
 			let register = {message: "Please enter a username."}
 			this.setState({
@@ -63,9 +57,8 @@ class Login extends React.Component{
 			})
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		}
-
-		//auth
 	}
+
 	render(){
 		return(
 			<div className="form-wrapper">
@@ -73,7 +66,6 @@ class Login extends React.Component{
 					Please login to access the chatroom.
 				</div>
 				<div className="login">
-
 					<FormControl className="form">
 						<InputLabel htmlFor="username">Username</InputLabel>
 						<Input
@@ -86,8 +78,6 @@ class Login extends React.Component{
 						/>
 					</FormControl>
 					<FormControl className="form">
-
-
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input
 							id="form-password"
@@ -122,6 +112,7 @@ class Login extends React.Component{
 		)
 	}
 }
+
 function mapStateToProps(state) {
 	const { loggingIn, systemMsg } = state.auth;
 	return {
