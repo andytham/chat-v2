@@ -15,7 +15,8 @@ class Register extends React.Component{
 			username: '',
 			email: '',
 			password: '',
-			passwordConfirm: ''
+			passwordConfirm: '',
+			error: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -30,15 +31,12 @@ class Register extends React.Component{
 		console.log(this.props);
 		const { username, email, password, passwordConfirm } = this.state;
 		const { dispatch } = this.props;
-		if (username && email && password && passwordConfirm == password) {
-			console.log("check");
-			let user = {
-				username: username,
-				email: email,
-				password: password
-			}
-			dispatch(userActions.register(user))
-			console.log("after check");
+		if (this.state.username.length > 16){
+			this.setState({
+				error: true
+			})
+			let register = {message: "Username must be 16 characters long or shorter."}
+			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		} else if (password != passwordConfirm){
 			this.setState({
 				error: true,
@@ -47,6 +45,13 @@ class Register extends React.Component{
 			})
 			let register = {message: "Passwords do not match."}
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
+		} else if (username && email && password && passwordConfirm == password) {
+			let user = {
+				username: username,
+				email: email,
+				password: password
+			}
+			dispatch(userActions.register(user))
 		} else {
 			this.setState({
 				error: true,
@@ -65,7 +70,7 @@ class Register extends React.Component{
 					<FormControl className="form">
 						<InputLabel htmlFor="username">Username</InputLabel>
 						<Input
-						  error={this.state.error && this.state.username == ""}
+						  error={this.state.error && (this.state.username == "" || this.state.username.length > 16)}
 							id="form-username"
 							autoFocus={true}
 							value={this.state.username}
