@@ -46,3 +46,8 @@ In an attempt to fix, I thought it might be best to redo the entire thing, and s
 ##
 
 seems like video game standard is 16 char limit for usernames
+
+
+##
+
+add a logo? 

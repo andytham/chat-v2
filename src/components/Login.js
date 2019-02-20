@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import { connect } from 'react-redux';
 import { userActions, sessionsActions } from '../redux/actions';
+import { userConstants } from '../redux/constants';
 import { SystemMsg } from './SystemMsg';
 class Login extends React.Component{
 	constructor(props){
@@ -20,6 +21,7 @@ class Login extends React.Component{
 			username: '',
 			password: '',
 			showPassword: false,
+			error: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
@@ -48,6 +50,18 @@ class Login extends React.Component{
 		if (username && password) {
 			dispatch(userActions.login(username, password));
 			// dispatch(sessionsActions.getSessions())
+		} else if (!username){
+			let register = {message: "Please enter a username."}
+			this.setState({
+				error: true
+			})
+			dispatch({type: userConstants.REGISTER_FAILURE, register})
+		}else if (!password){
+			let register = {message: "Please enter a password."}
+			this.setState({
+				error: true
+			})
+			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		}
 
 		//auth
@@ -64,6 +78,7 @@ class Login extends React.Component{
 						<InputLabel htmlFor="username">Username</InputLabel>
 						<Input
 							id="form-username"
+							error={this.state.error && this.state.username == ""}
 							autoFocus={true}
 							value={this.state.username}
 							onChange={e => this.handleChange('username', e)}
@@ -76,6 +91,7 @@ class Login extends React.Component{
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input
 							id="form-password"
+							error={this.state.error && this.state.password == ""}
 							type={this.state.showPassword ? 'text' : 'password'}
 							value={this.state.password}
 							onChange={(event) => this.handleChange('password', event)}
