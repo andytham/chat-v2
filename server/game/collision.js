@@ -28,4 +28,4 @@ function collisionCheck(a,b){
 	}
 	return collision;
 }
-export default collisionCheck;
+module.exports = collisionCheck;

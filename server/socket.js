@@ -1,8 +1,9 @@
 const { cr, timeGet , getRandomColor} = require('./helpers');
 let players = {};
-const level = require('./game/level-require')
+const level = require('./game/level-new-require')
 const gravity = .5,
 			friction = .5
+const collisionCheck = require('./game/collision.js')
 
 let Chatroom = cr();
 let usersList = {};
@@ -65,8 +66,8 @@ function startSocket(server){
 				y: 300 / 2,
 				width: 20,
 				height: 20,
-				jumpHeight: 5,
-				moveSpeed: 3.5,
+				jumpHeight: 8,
+				moveSpeed: 4,
 				velX: 0,
 				velY: 0,
 				jumping: false,
@@ -81,7 +82,7 @@ function startSocket(server){
 				if (!player.jumping && player.grounded) {
 					player.jumping = true;
 					player.grounded = false;
-					player.velY = -player.jumpHeight * 1.5;//how high to jump
+					player.velY = -player.jumpHeight * 1;//how high to jump
 				}
 			}
 			if (movement.left){
@@ -118,36 +119,7 @@ function startSocket(server){
 			player.y += player.velY;
 		})
 	
-		function collisionCheck(a,b){
-			let vX = (a.x + (a.width / 2)) - (b.x + (b.width / 2)),
-					vY = (a.y + (a.height / 2)) - (b.y + (b.height / 2)),
-					hWidths = (a.width / 2) + (b.width / 2),
-					hHeights = (a.height / 2) + (b.height / 2),
-					collision = null;
-			
-			if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights){
-				let oX = hWidths - Math.abs(vX),
-						oY = hHeights - Math.abs(vY)
-				if (oX >= oY){
-					if (vY > 0){
-						collision = "top";
-						a.y += oY;
-					} else {
-						collision = "bottom";
-						a.y -= oY;
-					}
-				} else {
-					if (vX > 0){
-						collision = "left";
-						a.x += oX;
-					} else {
-						collision = "right";
-						a.x -= oX;
-					}
-				}
-			}
-			return collision;
-		}
+
 	})
 	setInterval(function(){
 		io.emit('game update', players)
