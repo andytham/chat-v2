@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
 import Select from 'react-select';
+import chatSocket from '../helpers/chat-socket';
 
 const listOptions = [
 	{value: 'showOnlineOnly', label: 'online'},
@@ -20,15 +21,15 @@ class UsersList extends React.Component {
 		this.state = {
 			sessionsLoaded: false,
 			viewList: "showOnlineOnly",
-			myStatus: "online"
+			myStatus: "online",
+			chatSocket: chatSocket()
 		}
 		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
 		this.handleList = this.handleList.bind(this)
 		this.handleMyStatus = this.handleMyStatus.bind(this)
 	}
-	componentDidMount(){
-	}
+
 	componentDidUpdate(prevProps, prevState){
 		const { dispatch } = this.props;
 		if(this.props.sessions && !this.state.sessionsLoaded){
@@ -40,20 +41,14 @@ class UsersList extends React.Component {
 			}
 			if(this.props.allUsers[this.props.username]){
 				dispatch(sessionsActions.updateSession(user))
+				this.state.chatSocket.updateStatus()
 			} else {
 				dispatch(sessionsActions.createSession(user))
+				this.state.chatSocket.updateStatus()
 			}
 			this.setState({
 				sessionsLoaded: true
 			})
-		}
-		//if sessions update
-		console.log(JSON.stringify(prevProps.sessions))
-		console.log(' ');
-		console.log(JSON.stringify((this.props.sessions)))
-		if (JSON.stringify(prevProps.sessions) != JSON.stringify((this.props.sessions))){
-;
-			dispatch(sessionsActions.getSessions())
 		}
 
 		//if user changes his status
@@ -64,6 +59,7 @@ class UsersList extends React.Component {
 				currentStatus: this.state.myStatus
 			}
 			dispatch(sessionsActions.updateSession(user))
+			this.state.chatSocket.updateStatus()
 		}
 	}
 

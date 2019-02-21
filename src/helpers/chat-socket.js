@@ -27,10 +27,22 @@ export default function() {
     })
   }
 
+  function onStatusUpdate(dispatchGet){
+    socket.on('update-status', function(){
+      dispatchGet()
+    })
+  }
+
+  function updateStatus(){
+    socket.emit('update-status')
+  }
+
   return {
     receive,
     message,
     join,
-    history
+    history,
+    onStatusUpdate,
+    updateStatus
   }
 }

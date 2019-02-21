@@ -23,6 +23,7 @@ class Chatroom extends Component {
 		this.onInput = this.onInput.bind(this);
 		this.updateChatLog = this.updateChatLog.bind(this);
 		this.onSendMessage = this.onSendMessage.bind(this);
+		this.afterUpdate = this.afterUpdate.bind(this);
 	} 
 	componentDidMount(){
 		const { dispatch } = this.props
@@ -45,6 +46,7 @@ class Chatroom extends Component {
 		}
 
 		this.state.chatSocket.receive(this.updateChatLog)
+		this.state.chatSocket.onStatusUpdate(this.afterUpdate)
 		this.state.chatSocket.join(this.props.username || localStorage.getItem('username'))
 	}
 
@@ -60,8 +62,19 @@ class Chatroom extends Component {
 		this.setState({
 			log: log
 		})
+		const { dispatch } = this.props
 		if (msg.usr == "server"){
-			const { dispatch } = this.props
+			console.log("I should be updating session");
+			setTimeout(poop, 5000)
+		}
+		function poop (){
+			dispatch(sessionsActions.getSessions())
+		}
+	}
+	afterUpdate(){
+		const { dispatch } = this.props
+		setTimeout(poop, 10)
+		function poop (){
 			dispatch(sessionsActions.getSessions())
 		}
 	}
