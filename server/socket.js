@@ -1,5 +1,6 @@
 const { cr, timeGet , getRandomColor} = require('./helpers');
 let players = {};
+let player;
 const level = require('./game/level-require')
 const gravity = .5,
 			friction = .5
@@ -22,9 +23,13 @@ function startSocket(server){
 				io.emit('message',joinMsg)
 				usersList[socket.id] = user
 			}
+			// game
+			if (players[player]){
+				players[player].online = true
+			}
 		})
 		socket.on('disconnect', function(){
-			// console.log("disconnect socket running");
+			// chat
 			if(usersList[socket.id]){
 				console.log(usersList[socket.id], 'user disconnected');
 				let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`, tme: timeGet()}
@@ -38,6 +43,12 @@ function startSocket(server){
 					currentStatus: "offline"
 				}).catch(err => console.log(err))
 			}
+
+			// game
+			if (players[player]){
+				players[player].online = false
+			}
+
 		});
 		socket.on('message', function(msg){
 			console.log('server socket.on message fired');
@@ -47,6 +58,7 @@ function startSocket(server){
 			socket.broadcast.emit('message',msg)
 		});
 		socket.on('game create user', function(username){
+			player = username;
 			players[username] = {
 				x: 300 / 2,
 				y: 300 / 2,
