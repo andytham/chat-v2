@@ -1,8 +1,8 @@
 const { cr, timeGet , getRandomColor} = require('./helpers');
 let players = {};
-const level = require('./game/level-new-require')
-const gravity = .5,
-			friction = .5
+const data = require('./game/level.json')
+const level = data.level;
+const { gravity, friction, jumpHeight, moveSpeed } = data.constants
 const collisionCheck = require('./game/collision.js')
 
 let Chatroom = cr();
@@ -66,8 +66,8 @@ function startSocket(server){
 				y: 300 / 2,
 				width: 20,
 				height: 20,
-				jumpHeight: 8,
-				moveSpeed: 4,
+				jumpHeight: jumpHeight,
+				moveSpeed: moveSpeed,
 				velX: 0,
 				velY: 0,
 				jumping: false,
@@ -99,6 +99,20 @@ function startSocket(server){
 			player.velY += gravity;
 	
 			player.grounded = false; // if walking off level, it will force gravity
+
+
+					// var dir = collisionCheck(player, level); //check collision and 'push' player away
+					// if (dir === "left" || dir === "right") {
+					// 		player.velX = 0;
+					// 		player.jumping = false;
+					// } else if (dir === "bottom") {
+					// 		player.grounded = true;
+					// 		player.jumping = false;
+					// } else if (dir === "top") {
+					// 		player.velY *= -1;
+					// }
+				
+			
 			for (var i = 0; i < level.length; i++) { //correct player position if colliding
 				var dir = collisionCheck(player, level[i]); //check collision and 'push' player away
 				if (dir === "left" || dir === "right") {
