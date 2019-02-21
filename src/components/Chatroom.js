@@ -38,6 +38,7 @@ class Chatroom extends Component {
 
 		}
 		window.onbeforeunload = function(){
+			user.currentStatus = "offline"
 			dispatch(sessionsActions.updateSession(user))
 			this.state.chatSocket.message(disconnectMsg)
 			return false;

@@ -48,7 +48,11 @@ class UsersList extends React.Component {
 			})
 		}
 		//if sessions update
+		console.log(JSON.stringify(prevProps.sessions))
+		console.log(' ');
+		console.log(JSON.stringify((this.props.sessions)))
 		if (JSON.stringify(prevProps.sessions) != JSON.stringify((this.props.sessions))){
+;
 			dispatch(sessionsActions.getSessions())
 		}
 
@@ -62,6 +66,7 @@ class UsersList extends React.Component {
 			dispatch(sessionsActions.updateSession(user))
 		}
 	}
+
 	getTest(){
 		const { dispatch } = this.props;
 		dispatch(sessionsActions.getSessions())
@@ -152,6 +157,7 @@ class UsersList extends React.Component {
 				<div className="users-list">
 					{this.props.sessions ? this.mapUsers() : ""}
 				</div>
+				<button onClick={this.getTest}>get test</button>
 			</div>
 		)
 	}
