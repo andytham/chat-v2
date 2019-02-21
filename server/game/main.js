@@ -51,24 +51,37 @@ const canvas = document.getElementById('canvas'),
 			height = 300,
 			gravity = .8,
 			friction = .5,
+			map = {width: 50, height: 80},
 			username = localStorage.getItem('username')
-canvas.width = width;
-canvas.height = height;
+
+canvas.width = 500;
+canvas.height = 800;
 
 socket.emit('game create user', username)
 setInterval(function(){
 	socket.emit('game update', movement, username)
 }, 1000 / 60)
 
-import level from './level.js';
+
+// import level from './level-new.js';
+import * as data from './level.json';
+let level = data.data
 socket.on('game update', function(players){
 	ctx.clearRect(0, 0, width, height)
 	ctx.beginPath();
-	
-	for (var i = 0; i < level.length; i++) {//print level
-		ctx.fillStyle = level[i].color;
-		ctx.fillRect(level[i].x, level[i].y, level[i].width, level[i].height);
+	for (let y = 0; y < map.height; y++){
+		for (let x = 0; x < map.width; x++){
+			let height = y * 50;
+			if (level[height + x] == 1){
+				ctx.fillStyle = "orange"
+				ctx.fillRect(x*10,y*10,10,10);
+			}
+		}
 	}
+	// for (var i = 0; i < level.length; i++) {//print level
+	// 	ctx.fillStyle = level[i].color;
+	// 	ctx.fillRect(level[i].x, level[i].y, level[i].width, level[i].height);
+	// }
 	let list = Object.entries(players);
 	for(let i = 0;i < list.length; i++){
 		let cPlayer = players[list[i][0]]
