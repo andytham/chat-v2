@@ -88,7 +88,6 @@ class Register extends React.Component{
 							onChange={(event) => this.handleChange('email', event)}
 							onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
 						/>
-						
 					</FormControl>
 					<FormControl className="form">
 						<InputLabel htmlFor="password">Password</InputLabel>
@@ -100,7 +99,6 @@ class Register extends React.Component{
 							onChange={(event) => this.handleChange('password', event)}
 							onKeyPress={e => (e.key === 'Enter' ? this.onSubmit(e) : null)}
 						/>
-						
 					</FormControl>
 					<FormControl className="form">
 						<InputLabel htmlFor="password-confirm">Confirm Password</InputLabel>

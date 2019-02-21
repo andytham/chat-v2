@@ -78,7 +78,7 @@ const server = require('http').createServer(app);
 // game(server)
 let players = {};
 const level = require('./game/level-require')
-const gravity = .1,
+const gravity = .5,
 			friction = .5
 
 let Chatroom = cr();
@@ -129,7 +129,7 @@ io.on('connection', function(socket){
 			width: 20,
 			height: 20,
 			jumpHeight: 5,
-			moveSpeed: 3,
+			moveSpeed: 3.5,
 			velX: 0,
 			velY: 0,
 			jumping: false,
@@ -144,7 +144,7 @@ io.on('connection', function(socket){
 			if (!player.jumping && player.grounded) {
 				player.jumping = true;
 				player.grounded = false;
-				player.velY = -player.jumpHeight * 1;//how high to jump
+				player.velY = -player.jumpHeight * 1.5;//how high to jump
 			}
 		}
 		if (movement.left){

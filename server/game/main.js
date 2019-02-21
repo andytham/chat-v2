@@ -75,7 +75,10 @@ socket.on('game update', function(players){
 		if (cPlayer.online){
 			ctx.fillStyle = cPlayer.color;
 			ctx.fillRect(cPlayer.x, cPlayer.y, cPlayer.width, cPlayer.height);
-			ctx.fillText(list[i][0], cPlayer.x, cPlayer.y)
+			ctx.font = "12px Segoe UI"
+			let txt = list[i][0];
+
+			ctx.fillText(txt, (cPlayer.x + 10) - (ctx.measureText(txt).width / 2), cPlayer.y - 2)
 		}
 	}
 })
