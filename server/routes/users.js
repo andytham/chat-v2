@@ -3,6 +3,7 @@ const db = require('../db/config');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const { check, validationResult } = require('express-validator/check');
 
 const Users = {
 	findAll: function(){
@@ -39,27 +40,36 @@ const usersController = {
 
 	},
 	create: (req, res) => {
+		let password = req.body.password,
+				email = req.body.email,
+				username = req.body.username
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			console.log(errors.array());
+			return res.status(422).json({ errors: errors.array() });
+		}
 		bcrypt.genSalt(saltRounds, function(err, salt) {
-			bcrypt.hash(req.body.password, salt, function(err, hash) {
+			bcrypt.hash(password, salt, function(err, hash) {
 				Users.create({
-					username: req.body.username,
+					username: username,
 					password: hash,
-					email: req.body.email
+					email: email
 				}).then(user => {
 					res.json({
-						message: "User created.",
+						msg: "User created.",
 						success: true
 					})
 				})
 				.catch(err => {
 					if(err.code == "23505"){
 						res.json({
-							message: "Username already exists.",
+							msg: "Username already exists.",
 							success: false
 						})
 					} else {
+						console.log(err);
 						res.json({
-							message: "Error occurred when registering.",
+							msg: "Error occurred when registering.",
 							success: false
 						})
 					}
@@ -84,7 +94,7 @@ const usersController = {
 					res.json({
 						username: req.body.username,
 						token: token,
-						message: "User found",
+						msg: "User found",
 						success: true
 					})
 				} else {
@@ -108,7 +118,7 @@ const usersController = {
 		if(req.session.username){
 			res.json(response)
 		} else {
-			res.json({message: "no one logged in"})
+			res.json({msg: "no one logged in"})
 		}
 	},
 	temp: (req, res) => {
@@ -135,6 +145,12 @@ const usersRouter = express.Router();
 
 usersRouter.get('/all', usersController.index)
 usersRouter.post('/authenticate', usersController.login)
-usersRouter.post('/create', usersController.create)
+usersRouter.post('/create', [
+	check('username')
+		.isLength({ max: 16, min: 3}).withMessage('Username must be 3-16 characters long.')
+		.matches(/[^a-zA-Z0-9\-\/]/).withMessage('Username cannot have special characters.'),
+  check('email').isEmail().withMessage('Email must be valid'),
+  check('password').isLength({ min: 3 }).withMessage('Password length must be at least 3 characters long.')
+], usersController.create)
 usersRouter.get('/current', usersController.current)
 module.exports = usersRouter;

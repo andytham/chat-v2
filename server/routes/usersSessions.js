@@ -45,7 +45,7 @@ const usersSessionsController = {
 		})
 		.then(user => {
 			res.json({
-				message: "User session created",
+				msg: "User session created",
 				data: user
 			})
 		})
@@ -75,7 +75,7 @@ const usersSessionsController = {
 		})
 		.then(user => {
 			res.json({
-				message: "User session updated",
+				msg: "User session updated",
 				data: user
 			})
 		})

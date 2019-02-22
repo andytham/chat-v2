@@ -42,7 +42,7 @@ historyController.create = (req, res) => {
 	})
 	.then(history => {
 		res.json({
-			message: "History entry created",
+			msg: "History entry created",
 			data: history
 		})
 	})
