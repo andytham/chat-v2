@@ -31,14 +31,8 @@ class Register extends React.Component{
 		console.log(this.props);
 		const { username, email, password, passwordConfirm } = this.state;
 		const { dispatch } = this.props;
-		if (this.state.username.length > 16){
-			this.setState({
-				error: true
-			})
-			// let register = {msg: "Username must be 16 characters long or shorter."}
-			let register = ["Username must be 16 characters long or shorter."]
-			dispatch({type: userConstants.REGISTER_FAILURE, register})
-		} else if (password != passwordConfirm){
+		
+		if (password != passwordConfirm){
 			this.setState({
 				error: true,
 				password: "",
@@ -52,7 +46,7 @@ class Register extends React.Component{
 				username: username,
 				email: email,
 				password: password
-			}
+			}	
 			dispatch(userActions.register(user))
 		} else {
 			this.setState({

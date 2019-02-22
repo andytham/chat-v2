@@ -148,9 +148,9 @@ usersRouter.post('/authenticate', usersController.login)
 usersRouter.post('/create', [
 	check('username')
 		.isLength({ max: 16, min: 3}).withMessage('Username must be 3-16 characters long.')
-		.matches(/^[a-zA-Z0-9_-]*$/).withMessage('Username cannot have special characters.'),
-  check('email').isEmail().withMessage('Email must be valid'),
-  check('password').isLength({ min: 3 }).withMessage('Password length must be at least 3 characters long.')
+		.matches(/^[a-zA-Z0-9_-]*$/).withMessage('Username can only have A-Z, 0-9, -, and _ as characters.').escape(),
+  check('email').isEmail().withMessage('Email must be valid').escape(),
+  check('password').isLength({ min: 3 }).withMessage('Password length must be at least 3 characters long.').escape()
 ], usersController.create)
 usersRouter.get('/current', usersController.current)
 module.exports = usersRouter;
