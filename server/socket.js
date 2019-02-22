@@ -62,8 +62,8 @@ function startSocket(server){
 		})
 		socket.on('game create user', function(username){
 			players[username] = {
-				x: 300 / 2,
-				y: 300 / 2,
+				x: 15,
+				y: 320,
 				width: 20,
 				height: 20,
 				jumpHeight: jumpHeight,
@@ -100,19 +100,6 @@ function startSocket(server){
 	
 			player.grounded = false; // if walking off level, it will force gravity
 
-
-					// var dir = collisionCheck(player, level); //check collision and 'push' player away
-					// if (dir === "left" || dir === "right") {
-					// 		player.velX = 0;
-					// 		player.jumping = false;
-					// } else if (dir === "bottom") {
-					// 		player.grounded = true;
-					// 		player.jumping = false;
-					// } else if (dir === "top") {
-					// 		player.velY *= -1;
-					// }
-				
-			
 			for (var i = 0; i < level.length; i++) { //correct player position if colliding
 				var dir = collisionCheck(player, level[i]); //check collision and 'push' player away
 				if (dir === "left" || dir === "right") {

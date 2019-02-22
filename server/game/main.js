@@ -68,21 +68,11 @@ setInterval(function(){
 socket.on('game update', function(players){
 	ctx.clearRect(0, 0, width, height)
 	ctx.beginPath();
-// 	for (let y = 0; y < map.height; y++){
-// 		for (let x = 0; x < map.width; x++){
-// 			let height = y * 50;
-// 			if (level[height + x] == 1){
-// 				ctx.fillStyle = "orange"
-// 				ctx.fillRect(x*10,y*10,10,10);
-// 			}
-// 		}
-// 	}
+
 	for (var i = 0; i < level.length; i++) {//print level
-		// console.log(level[i].color);
 		ctx.fillStyle = level[i].color;
 		ctx.fillRect(level[i].x, level[i].y, level[i].width, level[i].height);
 	}
-	//no noob zone
 	ctx.font = "15px Segoe UI"
 	// ctx.fillStyle = "#c02942"
 	ctx.fillStyle = "black"
