@@ -82,6 +82,13 @@ socket.on('game update', function(players){
 		ctx.fillStyle = level[i].color;
 		ctx.fillRect(level[i].x, level[i].y, level[i].width, level[i].height);
 	}
+	//no noob zone
+	ctx.font = "15px Segoe UI"
+	// ctx.fillStyle = "#c02942"
+	ctx.fillStyle = "black"
+	ctx.fillText("pro island", 312, 135)
+	ctx.fillText("intermediate rock", 120, 235)
+	ctx.fillText("noob continent", 190, 485)
 	let list = Object.entries(players);
 	for(let i = 0;i < list.length; i++){
 		let cPlayer = players[list[i][0]]
