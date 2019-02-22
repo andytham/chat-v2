@@ -57,7 +57,7 @@ export function auth(state = initialState, action){
 			}
 		case userConstants.LOGIN_FAILURE:
 			return {
-				systemMsg: "Login failed. Incorrect username or password."
+				systemMsg: ["Login failed. Incorrect username or password."]
 			};
 		case userConstants.LOGOUT:
 			return {
@@ -75,7 +75,7 @@ export function auth(state = initialState, action){
 			}
 		case userConstants.REGISTER_FAILURE:
 			return {
-				systemMsg: action.register.message
+				systemMsg: action.register
 			}
 		default: 
 			return state;

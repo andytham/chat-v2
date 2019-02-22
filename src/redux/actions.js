@@ -33,7 +33,11 @@ function register(user){
 		dispatch({type: userConstants.REGISTER_REQUEST, user})
 		registerService.register(user)
 			.then(data => {
-				let register = data;
+				console.log(data);
+				let register = [];
+				for (let i = 0; i < data.length; i++){
+					register.push(data[i].msg)
+				}
 				if (data.success){
 					dispatch({type: userConstants.REGISTER_SUCCESS, register})
 				} else {

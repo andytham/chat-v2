@@ -35,7 +35,8 @@ class Register extends React.Component{
 			this.setState({
 				error: true
 			})
-			let register = {message: "Username must be 16 characters long or shorter."}
+			// let register = {msg: "Username must be 16 characters long or shorter."}
+			let register = ["Username must be 16 characters long or shorter."]
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		} else if (password != passwordConfirm){
 			this.setState({
@@ -43,7 +44,8 @@ class Register extends React.Component{
 				password: "",
 				passwordConfirm: ""
 			})
-			let register = {message: "Passwords do not match."}
+			// let register = {msg: "Passwords do not match."}
+			let register = ["Passwords do not match."]
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		} else if (username && email && password && passwordConfirm == password) {
 			let user = {
@@ -58,7 +60,8 @@ class Register extends React.Component{
 				password: "",
 				passwordConfirm: ""
 			})
-			let register = {message: "Registration field missing."}
+			// let register = {msg: "Registration field missing."}
+			let register = ["Registration field missing."]
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		}
 		//auth

@@ -45,7 +45,7 @@ const usersController = {
 				username = req.body.username
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
-			console.log(errors.array());
+			res.json(errors.array())
 			return res.status(422).json({ errors: errors.array() });
 		}
 		bcrypt.genSalt(saltRounds, function(err, salt) {
