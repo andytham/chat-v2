@@ -73,7 +73,7 @@ socket.on('game update', function(players){
 		ctx.fillStyle = level[i].color;
 		ctx.fillRect(level[i].x, level[i].y, level[i].width, level[i].height);
 	}
-	ctx.font = "15px Segoe UI"
+	ctx.font = "italic 15px Segoe UI"
 	// ctx.fillStyle = "#c02942"
 	ctx.fillStyle = "black"
 	ctx.fillText("pro island", 312, 135)
