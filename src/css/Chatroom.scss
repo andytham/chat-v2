@@ -75,7 +75,7 @@
 	.game-wrapper{
 		display: flex;
 		flex-direction: column;
-		height: 95vh;
+		height: calc(95vh + #{$border-padding} * 2);
 		.users-list{
 			@include generic-border;
 		}

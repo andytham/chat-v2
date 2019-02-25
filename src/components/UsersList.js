@@ -153,7 +153,6 @@ class UsersList extends React.Component {
 				<div className="users-list">
 					{this.props.sessions ? this.mapUsers() : ""}
 				</div>
-				<button onClick={this.getTest}>get test</button>
 			</div>
 		)
 	}
