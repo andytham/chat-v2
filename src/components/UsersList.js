@@ -92,16 +92,29 @@ class UsersList extends React.Component {
 		}
 		//map out
 		function mapOut(session){
-				return(
-					<div key={count++} className="individual-user">
-						<div className="users-username">
-							{session.username}
-						</div>
-						<div className={`users-status ${session.currentStatus}`}>
-							{session.currentStatus}
-						</div>
+			//psql outputs UTC, this is the workaround for it
+			let adjustForUTC = session.lastOnline.split(' ');
+			let day = adjustForUTC[0];
+			let hours = adjustForUTC[1];
+			let splitTime = hours.split(":")
+			let offset = -(new Date().getTimezoneOffset() / 60)
+			if (splitTime[0] < -offset){
+				splitTime[0] += 24;
+			}
+			splitTime[0] = Number(splitTime[0]) + Number(offset);
+			let newTime = splitTime.join(":")
+			
+			return(
+				<div key={count++} className="individual-user">
+					<div className="users-username">
+						{session.username}
 					</div>
-				)
+					{day} {newTime}
+					<div className={`users-status ${session.currentStatus}`}>
+						{session.currentStatus}
+					</div>
+				</div>
+			)
 		}
 		let onlineEl = onlineList.map(session => {
 			return mapOut(session)
