@@ -14,7 +14,9 @@
 		}
 	}
 	.users-list{
-		height: calc(95vh - 554px);
+		@include square-border;
+		border-color: $level-noob;
+		max-height: calc(95vh - 554px);
 		overflow: auto;
 		.individual-user{
 			display: flex;

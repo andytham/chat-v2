@@ -9,9 +9,7 @@ class Game extends React.Component {
 	}
 	render(){
 		return(
-			<div className="game">
   		  <canvas id="canvas" tabIndex='1'></canvas>
-			</div>
 		)
 	}
 }

@@ -8,8 +8,20 @@ $chat-width: 500px;
 $pink-gradient: linear-gradient(45deg, #FE6B8b 30%, #FF8E53 90%);
 $blue-gradient: linear-gradient(45deg, #3376db 50%, #4646e4 90%);
 $pink: #FE6B8B;
-@mixin generic-border($size: 3px, $color: $red, $line-type: solid, $radius: 6px){
+
+$border-size: 3px;
+@mixin generic-border($size: $border-size, $color: $red, $line-type: solid, $radius: 6px){
 	border: $size $color $line-type;
 	border-radius: $radius;
 	padding: $border-padding;
 }
+@mixin square-border($size: $border-size, $color: $red, $line-type: solid){
+		border: $size $color $line-type;
+		padding: $border-padding;
+}
+
+
+$level-border: #542437;
+$level-noob:#53777A;
+$level-intermediate:#d95b43;
+$level-pro: #c02942;

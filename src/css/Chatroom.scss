@@ -39,12 +39,12 @@
 		justify-content: space-around; 
 		justify-content: space-between; //reminder that ios can't use space-between
 		@include generic-border;
-		border-image: 
-			linear-gradient(
-				to top, 
-				rgb(255, 0, 0),
-				rgba(145, 152, 229, .05)
-			) 1 round;
+		// border-image: 
+		// 	linear-gradient(
+		// 		to top, 
+		// 		rgb(255, 0, 0),
+		// 		rgba(145, 152, 229, .05)
+		// 	) 1 round;
 		height: 95vh;
 		width: $chat-width;
 		.chat-log{
@@ -75,9 +75,11 @@
 	.game-wrapper{
 		display: flex;
 		flex-direction: column;
-		height: calc(95vh + #{$border-padding} * 2);
-		.users-list{
+		height: calc(95vh + #{$border-padding} * 2 + #{$border-size} * 2);
+		#canvas{
+			// margin-bottom: -3px; //extra 3 pixels on game div?
 			@include generic-border;
+			padding: 0;
 		}
 	}
 }
