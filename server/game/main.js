@@ -78,7 +78,7 @@ socket.on('game update', function(players){
 	ctx.fillStyle = "black"
 	ctx.fillText("pro island", 312, 135)
 	ctx.fillText("intermediate rock", 120, 235)
-	ctx.fillText("noob continent", 190, 485)
+	ctx.fillText("noob continent", 190, 492)
 	let list = Object.entries(players);
 	for(let i = 0;i < list.length; i++){
 		let cPlayer = players[list[i][0]]
