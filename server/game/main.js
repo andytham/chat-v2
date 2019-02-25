@@ -19,10 +19,12 @@ canvas.width = width;
 canvas.height = height;
 document.addEventListener('click', function(event){
 	let active = document.activeElement;
-	console.log(event.target);
 	if(active == canvas || event.target == overlay){
 		if(overlay.style.display != "none"){
 			overlay.style.display = "none"
+		}
+		if (active != canvas){
+			canvas.focus()
 		}
 	} else if (active != canvas){
 		if(overlay.style.display != "flex"){
@@ -50,7 +52,11 @@ document.addEventListener('keydown', function(event) {
 				break;
 		}
 	} else if (active != canvas){
-		overlay.style.display = "flex";
+		if (overlay.style.display == "none"){
+			canvas.focus()
+		} else {
+			overlay.style.display = "flex";
+		}
 	}
 });
 
