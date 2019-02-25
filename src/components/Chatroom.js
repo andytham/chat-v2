@@ -20,6 +20,7 @@ class Chatroom extends Component {
 			log: [],
 			username: ""
 		}
+    this.chat = React.createRef();
 		this.onInput = this.onInput.bind(this);
 		this.updateChatLog = this.updateChatLog.bind(this);
 		this.onSendMessage = this.onSendMessage.bind(this);
@@ -48,6 +49,12 @@ class Chatroom extends Component {
 		this.state.chatSocket.receive(this.updateChatLog)
 		this.state.chatSocket.onStatusUpdate(this.afterUpdate)
 		this.state.chatSocket.join(this.props.username || localStorage.getItem('username'))
+	}
+	componentDidUpdate(){
+    //auto scroll chat to the newest line
+		if(this.state.log){
+      this.chat.current.scrollTo(0, this.chat.current.scrollHeight)
+    }
 	}
 
 	onInput(e){
@@ -114,7 +121,7 @@ class Chatroom extends Component {
 				<div className="chat-window">
 					<div className="chat-title">
 					</div>
-					<ul className="chat-log">
+					<ul className="chat-log" ref={this.chat}>
 						<ChatLog log={this.state.log} />
 					</ul>
 					<div className="input-wrapper">
