@@ -6,9 +6,34 @@ let movement = {
 	left: false,
 	right: false
 }
+import * as data from './level.json';
+let level = data.level
+let size = data.constants
+const { width, height } = size;
+const canvas = document.getElementById('canvas'),
+			overlay = document.getElementById('overlay-text'),
+			ctx = canvas.getContext('2d'),
+			username = localStorage.getItem('username')
 
+canvas.width = width;
+canvas.height = height;
+document.addEventListener('click', function(event){
+	let active = document.activeElement;
+	console.log(event.target);
+	if(active == canvas || event.target == overlay){
+		if(overlay.style.display != "none"){
+			overlay.style.display = "none"
+		}
+	} else if (active != canvas){
+		if(overlay.style.display != "flex"){
+			overlay.style.display = "flex"
+		}
+	}
+})
 document.addEventListener('keydown', function(event) {
-	if(event.target == canvas){
+	let active = document.activeElement;
+	if(active == canvas || active == overlay){
+		overlay.style.display = "none";
 		switch (event.keyCode) {
 			case 65: // a
 			case 37: // arrow 
@@ -24,6 +49,8 @@ document.addEventListener('keydown', function(event) {
 				movement.right = true;
 				break;
 		}
+	} else if (active != canvas){
+		overlay.style.display = "flex";
 	}
 });
 
@@ -45,18 +72,7 @@ document.addEventListener('keyup', function(event) {
   }
 });
 
-import * as data from './level.json';
-let level = data.level
-let size = data.constants
-const { width, height, gravity, friction } = size;
-const canvas = document.getElementById('canvas'),
-			ctx = canvas.getContext('2d'),
 
-			map = {width: 50, height: 80},
-			username = localStorage.getItem('username')
-
-canvas.width = width;
-canvas.height = height;
 
 socket.emit('game create user', username)
 setInterval(function(){
