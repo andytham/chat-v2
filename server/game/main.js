@@ -19,12 +19,9 @@ canvas.width = width;
 canvas.height = height;
 document.addEventListener('click', function(event){
 	let active = document.activeElement;
-	if(active == canvas || event.target == overlay){
+	if(event.target == canvas || event.target == overlay){
 		if(overlay.style.display != "none"){
 			overlay.style.display = "none"
-		}
-		if (active != canvas){
-			canvas.focus()
 		}
 	} else if (active != canvas){
 		if(overlay.style.display != "flex"){
@@ -35,7 +32,9 @@ document.addEventListener('click', function(event){
 document.addEventListener('keydown', function(event) {
 	let active = document.activeElement;
 	if(active == canvas || active == overlay){
-		overlay.style.display = "none";
+		if(overlay.style.display != "none"){
+			overlay.style.display = "none"
+		}
 		switch (event.keyCode) {
 			case 65: // a
 			case 37: // arrow 
@@ -52,10 +51,8 @@ document.addEventListener('keydown', function(event) {
 				break;
 		}
 	} else if (active != canvas){
-		if (overlay.style.display == "none"){
-			canvas.focus()
-		} else {
-			overlay.style.display = "flex";
+		if(overlay.style.display != "flex"){
+			overlay.style.display = "flex"
 		}
 	}
 });
