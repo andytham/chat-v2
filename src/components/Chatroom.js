@@ -106,6 +106,9 @@ class Chatroom extends Component {
 			<div className="chatroom">
 				<div className="game-wrapper">
 					<Game />
+					<div className="game-overlay">
+						<div id="overlay-text">	Click in the game window in order to move!</div>
+					</div>
 					<UsersList />
 				</div>
 				<div className="chat-window">

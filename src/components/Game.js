@@ -4,8 +4,7 @@ class Game extends React.Component {
 		super()
 	}
 	componentDidMount(){
-		return(
-			<script src={require('../../server/game/main')}></script>)
+		return(<script src={require('../../server/game/main')}></script>)
 	}
 	render(){
 		return(

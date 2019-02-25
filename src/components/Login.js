@@ -45,13 +45,13 @@ class Login extends React.Component{
 		if (username && password) {
 			dispatch(userActions.login(username, password));
 		} else if (!username){
-			let register = {message: "Please enter a username."}
+			let register = {msg: "Please enter a username."}
 			this.setState({
 				error: true
 			})
 			dispatch({type: userConstants.REGISTER_FAILURE, register})
 		}else if (!password){
-			let register = {message: "Please enter a password."}
+			let register = {msg: "Please enter a password."}
 			this.setState({
 				error: true
 			})
