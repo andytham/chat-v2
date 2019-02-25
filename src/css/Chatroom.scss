@@ -28,12 +28,14 @@
 
 .chatroom{
 	display: flex;
-	align-content: center;
+	align-items: center;
 	justify-content: center;
+	height: 100vh;
 	.chat-window{
 		margin: 0 10px;
 		display: flex;
 		flex-direction: column;
+		align-content: center;
 		justify-content: space-around; 
 		justify-content: space-between; //reminder that ios can't use space-between
 		@include generic-border;
@@ -66,6 +68,7 @@
 	.game-wrapper{
 		display: flex;
 		flex-direction: column;
+		height: 95vh;
 		.users-list{
 			@include generic-border;
 		}
