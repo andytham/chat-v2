@@ -19,7 +19,7 @@ export const updateTest = (socket, usr, msg, tme) => {
 }
 
 import { userConstants } from './constants';
-import { userService, registerService } from './services';
+import { userService } from './services';
 
 export const userActions = {
 	login,
@@ -31,7 +31,7 @@ function register(user){
 	return (dispatch) => {
 		console.log('register action');
 		dispatch({type: userConstants.REGISTER_REQUEST, user})
-		registerService.register(user)
+		userService.register(user)
 			.then(data => {
 				console.log(data);
 				let register = [];
