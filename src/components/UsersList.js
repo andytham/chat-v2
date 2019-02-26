@@ -33,7 +33,6 @@ class UsersList extends React.Component {
 	componentDidUpdate(prevProps, prevState){
 		const { dispatch } = this.props;
 		if(this.props.sessions && !this.state.sessionsLoaded){
-			let sessions = this.props.sessions;
 			let user = {
 				username: this.props.username,
 				lastOnline:  timeGet("full"),
@@ -72,7 +71,6 @@ class UsersList extends React.Component {
 
 	mapUsers(){
 		let count = 0
-		let color = "white"
 		let sessions = this.props.sessions.slice()
 		let onlineList = [], awayList = [], offlineList = []
 		//seperate into 3 lists to reorder
@@ -91,9 +89,9 @@ class UsersList extends React.Component {
 					break;
 			}
 		}
-		//map out
+		//output the session as an element
 		function mapOut(session){
-			//psql outputs UTC, this is the workaround for it
+			//postgres outputs UTC, this is the workaround for it
 			let adjustForUTC = session.lastOnline.split(' ');
 			let day = adjustForUTC[0];
 			let hours = adjustForUTC[1];
@@ -104,11 +102,7 @@ class UsersList extends React.Component {
 			}
 			splitTime[0] = Number(splitTime[0]) + Number(offset);
 			let newTime = splitTime.join(":")
-			if (count % 2){
-				color = "grey"
-			} else {
-				color = "white"
-			}
+
 			return(
 				<li key={count++}  className="individual-user">
 					<div className="users-username">
