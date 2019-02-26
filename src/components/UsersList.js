@@ -72,6 +72,7 @@ class UsersList extends React.Component {
 
 	mapUsers(){
 		let count = 0
+		let color = "white"
 		let sessions = this.props.sessions.slice()
 		let onlineList = [], awayList = [], offlineList = []
 		//seperate into 3 lists to reorder
@@ -103,9 +104,13 @@ class UsersList extends React.Component {
 			}
 			splitTime[0] = Number(splitTime[0]) + Number(offset);
 			let newTime = splitTime.join(":")
-			
+			if (count % 2){
+				color = "grey"
+			} else {
+				color = "white"
+			}
 			return(
-				<div key={count++} className="individual-user">
+				<li key={count++}  className="individual-user">
 					<div className="users-username">
 						{session.username}
 					</div>
@@ -113,7 +118,7 @@ class UsersList extends React.Component {
 					<div className={`users-status ${session.currentStatus}`}>
 						{session.currentStatus}
 					</div>
-				</div>
+				</li>
 			)
 		}
 		let onlineEl = onlineList.map(session => {
@@ -163,9 +168,9 @@ class UsersList extends React.Component {
 						placeholder="view users"
 					/>
 				</div>
-				<div className="users-list">
+				<ul className="users-list">
 					{this.props.sessions ? this.mapUsers() : ""}
-				</div>
+				</ul>
 			</div>
 		)
 	}

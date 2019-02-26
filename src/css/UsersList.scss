@@ -15,12 +15,17 @@
 	}
 	.users-list{
 		@include square-border;
+		padding: 0;
 		border-color: $level-noob;
 		max-height: calc(95vh - 554px);
 		overflow: auto;
 		.individual-user{
 			display: flex;
 			justify-content: space-between;
+			padding: 5px 10px;
+		}
+		.individual-user:nth-child(even) { 
+			background: rgb(223, 223, 223); 
 		}
 	}
 }
