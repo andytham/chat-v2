@@ -58,7 +58,7 @@ function startSocket(server){
 			socket.broadcast.emit('message',msg)
 		});
 		socket.on('update-status', function(data){
-			if (players[usersList[socket.id]] && data.online){
+			if (players[usersList[socket.id]] && data){
 				players[usersList[socket.id]].online = data.online
 			}
 			io.emit('update-status')

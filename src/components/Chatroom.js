@@ -34,22 +34,20 @@ class Chatroom extends Component {
 		this.state.chatSocket.join(this.props.username || localStorage.getItem('username'))
 	}
 	componentWillUnmount(){
-		// const { dispatch } = this.props
-		// let user = {
-		// 	username: this.props.username,
-		// 	lastOnline:  timeGet("full"),
-		// 	currentStatus: "online"
-		// }
-		// let disconnectMsg = {
-		// 	usr: "server",
-		// 	msg: this.props.username + " has disconnected.",
-		// 	tme: timeGet()
-
-		// }
-		// user.currentStatus = "offline"
-		// console.log("leaving the page...");
-		// dispatch(sessionsActions.updateSession(user))
-		// this.state.chatSocket.message(disconnectMsg)
+		const { dispatch } = this.props
+		let user = {
+			username: this.props.username,
+			lastOnline:  timeGet("full"),
+			currentStatus: "offline"
+		}
+		let disconnectMsg = {
+			usr: "server",
+			msg: this.props.username + " has disconnected.",
+			tme: timeGet()
+		}
+		dispatch(sessionsActions.updateSession(user))
+		this.state.chatSocket.message(disconnectMsg)
+		this.state.chatSocket.updateStatus({online: false});
 	}
 	componentDidUpdate(){
     //auto scroll chat to the newest line

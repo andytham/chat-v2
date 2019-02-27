@@ -14,10 +14,12 @@ function verifyToken(token){
 	}
 }
 
-router.get('/',(req, res,next) => {
+router.get('/',(req, res, next) => {
 	let token;
+	console.log("JWT Check...");
 	token = req.session.cookie;
 	if (verifyToken(req.session.token)){
+		console.log("JWT Verified");
 		res.sendFile(path.join(__dirname + '../../../index.html'))
 		return;
 	} else {

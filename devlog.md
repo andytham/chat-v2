@@ -57,3 +57,8 @@ add a logo?
 Inputting a TIMESTAMP into psql db seems to convert it into UTC time regardless if I'm using TIMESTAMP WITH TIME ZONE or TIMESTAMP WITHOUT TIME ZONE (the latter supposed to just input whatever time you give it without converting).
 
 This is probably for the best, but I wrote a hotfix in the frontend to display the correct times in the user's timezone.
+
+
+##
+
+most likely need to figure out how to store sessions correctly so users stay logged in more correctly

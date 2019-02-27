@@ -23,10 +23,9 @@ class Logout extends React.Component {
 				lastOnline:  timeGet("full"),
 				currentStatus: "offline"
 			}
-			dispatch(sessionsActions.updateSession(user))
+			// dispatch(sessionsActions.updateSession(user))
 			dispatch(userActions.logout());
 		}
-		this.state.chatSocket.updateStatus({online: false});
 	}
 
 	render(){
