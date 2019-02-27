@@ -3,7 +3,11 @@ html[data-theme='dark'] {
 	body {
 		background: rgb(34, 34, 34);
 		font-family: "Roboto", serif;
-		color: white;
+		color: white ;
 		font-size: 15px;
+	}	
+	.chat-input > *{
+		color: white !important;
 	}
 }
+
