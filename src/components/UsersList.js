@@ -104,8 +104,7 @@ class UsersList extends React.Component {
 			let newTime = splitTime.join(":")
 
 			return(
-				<li key={count++}  className="individual-user">
-
+				<li key={count++} className="individual-user" data-status={session.currentStatus}>
 					<div className="users-username">
 						<div className="users-last-online">
 							<div className="tooltip-wrapper">

@@ -42,7 +42,7 @@ $tooltip-color: rgba(100,100,100, .9) ;
 	}
 	.tooltip-wrapper{
 		position: absolute;
-		top: -50px;
+		top: -45px;
 	}
 	.tooltip{
 		visibility: hidden;
@@ -52,17 +52,22 @@ $tooltip-color: rgba(100,100,100, .9) ;
 		max-width: 300px;
 		max-height: 300px;
 		z-index: 100;
-		padding: 3px 10px;
+		padding: 5px 10px;
 		&::after {
 			content: "";
 			position: absolute;
 			top: 100%;
-			left: 5%;
+			left: 10%;
 			margin-left: -5px;
 			border-width: 5px;
 			border-style: solid;
 			border-color: $tooltip-color transparent transparent transparent;
 		}
+		.last-online-header{
+			font-size: 13px;
+		}
 	}
-
+}
+.individual-user[data-status="offline"]{
+	font-style: italic;
 }
