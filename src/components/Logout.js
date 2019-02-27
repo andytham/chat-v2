@@ -4,10 +4,14 @@ import { userActions, sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
 import Button from '@material-ui/core/Button';
 import { history } from '../redux/helpers'
+import chatSocket from '../helpers/chat-socket';
 
 class Logout extends React.Component {
 	constructor(){
 		super();
+		this.state = {
+			chatSocket: chatSocket()
+		}
 		this.handleClick = this.handleClick.bind(this)
 	}
 
@@ -22,6 +26,7 @@ class Logout extends React.Component {
 			dispatch(sessionsActions.updateSession(user))
 			dispatch(userActions.logout());
 		}
+		this.chatSocket.updateStatus();
 		history.push('/login');
 	}
 
