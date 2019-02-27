@@ -62,3 +62,8 @@ This is probably for the best, but I wrote a hotfix in the frontend to display t
 ##
 
 most likely need to figure out how to store sessions correctly so users stay logged in more correctly
+
+##
+
+https://medium.com/@mwichary/dark-theme-in-a-day-3518dde2955a
+dark theme hints

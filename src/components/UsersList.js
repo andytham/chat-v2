@@ -5,7 +5,7 @@ import { timeGet } from '../../server/helpers';
 import Select from 'react-select';
 import chatSocket from '../helpers/chat-socket';
 import { Logout } from './Logout';
-
+import Night from './Night';
 const listOptions = [
 	{value: 'showOnlineOnly', label: 'online'},
 	{value: 'showAway', label: 'away'},
@@ -158,6 +158,7 @@ class UsersList extends React.Component {
 			<div className="users-list-wrapper">
 				<div className="action-panel">
 					<Logout />
+					<Night />
 				</div>
 				<div className="users-list-panel">
 					<div className="select-wrapper">
