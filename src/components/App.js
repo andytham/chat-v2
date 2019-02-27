@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 //components
 import { Home } from './Home';
 import { Chatroom } from './Chatroom';
@@ -20,18 +21,36 @@ class App extends React.Component {
 			username: ""
 		}
 	}
-
+	componentDidMount(){
+		console.log(this.props);
+	}
 	render(){
 		return(
 			<div id="auth" className="App">
 				<Route exact path="/" render={(props) => <Home />} />
-				<Route exact path="/login" render={(props) => <Login /> } />
+				<Route exact path="/login" render={(props) => (
+					this.props.isLoggedIn ? 
+					(<Login />) :
+					(<Redirect to="/chat" />)
+				)} />
+				<Route exact path="/register" render={(props) => (
+					this.props.isLoggedIn ? 
+					(<Register />) :
+					(<Redirect to="/chat" />)
+				)} />
 				<Route exact path="/chat" render={(props) => <Chatroom /> } />
-				<Route exact path="/register" render={(props) => <Register />} />
 				<Logout />
 			</div>
 		)
 	}
 }
 
-export default App;
+function mapStateToProps(state) {
+	const { isLoggedIn } = state.auth;
+	return {
+		isLoggedIn
+	};
+}
+
+const ConnectedApp = withRouter(connect(mapStateToProps)(App))
+export { ConnectedApp as App };
