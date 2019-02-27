@@ -33,8 +33,8 @@ export default function() {
     })
   }
 
-  function updateStatus(){
-    socket.emit('update-status')
+  function updateStatus(data){
+    socket.emit('update-status', data)
   }
 
   return {

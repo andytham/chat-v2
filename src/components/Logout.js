@@ -16,17 +16,17 @@ class Logout extends React.Component {
 	}
 
 	handleClick(){
-		const { dispatch } = this.props;
-		if(localStorage.getItem('user')){
-			let user = {
-				username: this.props.username,
-				lastOnline:  timeGet("full"),
-				currentStatus: "offline"
-			}
-			dispatch(sessionsActions.updateSession(user))
-			dispatch(userActions.logout());
-		}
-		this.chatSocket.updateStatus();
+		// const { dispatch } = this.props;
+		// if(localStorage.getItem('user')){
+		// 	let user = {
+		// 		username: this.props.username,
+		// 		lastOnline:  timeGet("full"),
+		// 		currentStatus: "offline"
+		// 	}
+		// 	dispatch(sessionsActions.updateSession(user))
+		// 	dispatch(userActions.logout());
+		// }
+		// this.state.chatSocket.updateStatus({online: false});
 		history.push('/login');
 	}
 

@@ -25,7 +25,7 @@ class Login extends React.Component{
 		this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
-	
+
 	handleChange(prop, event){
 		this.setState({ [prop]: event.target.value });
 	}
@@ -114,9 +114,9 @@ class Login extends React.Component{
 }
 
 function mapStateToProps(state) {
-	const { loggingIn, systemMsg } = state.auth;
+	const { loggingIn, systemMsg, isLoggedIn } = state.auth;
 	return {
-			loggingIn, systemMsg
+			loggingIn, systemMsg, isLoggedIn
 	};
 }
 

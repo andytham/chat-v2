@@ -57,7 +57,10 @@ function startSocket(server){
 			// io.emit('message', msg)
 			socket.broadcast.emit('message',msg)
 		});
-		socket.on('update-status', function(){
+		socket.on('update-status', function(data){
+			if (players[usersList[socket.id]] && data.online){
+				players[usersList[socket.id]].online = data.online
+			}
 			io.emit('update-status')
 		})
 		socket.on('game create user', function(username){

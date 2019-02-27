@@ -25,30 +25,31 @@ class Chatroom extends Component {
 		this.updateChatLog = this.updateChatLog.bind(this);
 		this.onSendMessage = this.onSendMessage.bind(this);
 		this.afterUpdate = this.afterUpdate.bind(this);
+		this.handleUnload = this.handleUnload.bind(this);
 	} 
 	componentDidMount(){
-		const { dispatch } = this.props
-		let user = {
-			username: this.props.username,
-			lastOnline:  timeGet("full"),
-			currentStatus: "online"
-		}
-		let disconnectMsg = {
-			usr: "server",
-			msg: this.props.username + " has disconnected.",
-			tme: timeGet()
-
-		}
-		window.onbeforeunload = function(){
-			user.currentStatus = "offline"
-			dispatch(sessionsActions.updateSession(user))
-			this.state.chatSocket.message(disconnectMsg)
-			return false;
-		}
 
 		this.state.chatSocket.receive(this.updateChatLog)
 		this.state.chatSocket.onStatusUpdate(this.afterUpdate)
 		this.state.chatSocket.join(this.props.username || localStorage.getItem('username'))
+	}
+	componentWillUnmount(){
+		// const { dispatch } = this.props
+		// let user = {
+		// 	username: this.props.username,
+		// 	lastOnline:  timeGet("full"),
+		// 	currentStatus: "online"
+		// }
+		// let disconnectMsg = {
+		// 	usr: "server",
+		// 	msg: this.props.username + " has disconnected.",
+		// 	tme: timeGet()
+
+		// }
+		// user.currentStatus = "offline"
+		// console.log("leaving the page...");
+		// dispatch(sessionsActions.updateSession(user))
+		// this.state.chatSocket.message(disconnectMsg)
 	}
 	componentDidUpdate(){
     //auto scroll chat to the newest line
@@ -56,7 +57,9 @@ class Chatroom extends Component {
       this.chat.current.scrollTo(0, this.chat.current.scrollHeight)
     }
 	}
+	handleUnload(e){
 
+	}
 	onInput(e){
 		this.setState({
 			input: e.target.value
