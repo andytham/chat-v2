@@ -16,7 +16,8 @@ class Logout extends React.Component {
 
 	handleClick(){
 		const { dispatch } = this.props;
-		if(localStorage.getItem('user')){
+		// if(localStorage.getItem('user')){
+		if(this.props.username){
 			let user = {
 				username: this.props.username,
 				lastOnline:  timeGet("full"),
