@@ -164,6 +164,7 @@ class UsersList extends React.Component {
 					<div className="select-wrapper">
 						<Select
 							className="select-my-status"
+							classNamePrefix="my-status"
 							value={this.state.viewList}
 							onChange={this.handleMyStatus}
 							options={myStatusOptions}

@@ -1,13 +1,25 @@
 @import "global";
 html[data-theme='dark'] {
 	body {
-		background: rgb(34, 34, 34);
+		background: rgb(34, 34, 34)  !important;
 		font-family: "Roboto", serif;
 		color: white ;
 		font-size: 15px;
 	}	
 	.chat-input > *{
 		color: white !important;
+	}
+	.individual-user:nth-child(even) { 
+		background: rgb(70, 70, 70) !important; 
+	}
+	.select-my-status > *{		
+		background: rgb(34, 34, 34) !important; 
+	}
+	.my-status__option--is-focused{
+		background: red !important;
+	}
+	.select-list-status > *{
+		background: rgb(34, 34, 34) !important;
 	}
 }
 
