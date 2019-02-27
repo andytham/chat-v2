@@ -105,8 +105,8 @@ class UsersList extends React.Component {
 
 			return(
 				<li key={count++} className="individual-user" data-status={session.currentStatus}>
-					<div className="users-username">
-						<div className="users-last-online">
+					<div className="user-details">
+						<div className="user-last-online">
 							<div className="tooltip-wrapper">
 								<span className="tooltip">
 									<span className="last-online-header">Last Online:<br/></span>
@@ -114,9 +114,11 @@ class UsersList extends React.Component {
 								</span> 
 							</div>
 						</div>
-						{session.username}
+						<span className="user-username">
+							{session.username}
+						</span>
 					</div>
-					<div className={`users-status ${session.currentStatus}`}>
+					<div className={`user-status ${session.currentStatus}`}>
 						{session.currentStatus}
 					</div>
 				</li>

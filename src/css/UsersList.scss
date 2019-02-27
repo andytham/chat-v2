@@ -31,9 +31,9 @@
 	}
 }
 
-$tooltip-color: rgba(100,100,100, .9) ;
+$tooltip-color: rgba(150,150,150, .85) ;
 
-.users-username{
+.user-details{
 	width: 0;
 	height: 0;
 	position: relative;
@@ -68,6 +68,16 @@ $tooltip-color: rgba(100,100,100, .9) ;
 		}
 	}
 }
+.individual-user[data-status="away"]{
+	font-style: italic;
+}
+$color-offline: rgb(150,150,150);
 .individual-user[data-status="offline"]{
 	font-style: italic;
+	.user-username{
+		color: $color-offline;
+	}
+	.user-status{
+		color: $color-offline;
+	}
 }
