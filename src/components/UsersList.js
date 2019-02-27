@@ -94,13 +94,13 @@ class UsersList extends React.Component {
 			//postgres outputs UTC, this is the workaround for it
 			let adjustForUTC = session.lastOnline.split(' ');
 			let day = adjustForUTC[0];
-			let hours = adjustForUTC[1];
-			let splitTime = hours.split(":")
+			let clock = adjustForUTC[1];
+			let splitTime = clock.split(":")
 			let offset = -(new Date().getTimezoneOffset() / 60)
-			if (splitTime[0] < -offset){
-				splitTime[0] += 24;
+			if (parseInt(splitTime[0]) < -offset){
+				splitTime[0] = parseInt(splitTime[0]) + 24;
 			}
-			splitTime[0] = Number(splitTime[0]) + Number(offset);
+			splitTime[0] = parseInt(splitTime[0]) + parseInt(offset);
 			let newTime = splitTime.join(":")
 
 			return(
