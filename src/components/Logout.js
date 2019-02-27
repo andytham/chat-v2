@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { userActions, sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
 import Button from '@material-ui/core/Button';
-import { history } from '../redux/helpers'
 import chatSocket from '../helpers/chat-socket';
 
 class Logout extends React.Component {
@@ -16,18 +15,17 @@ class Logout extends React.Component {
 	}
 
 	handleClick(){
-		// const { dispatch } = this.props;
-		// if(localStorage.getItem('user')){
-		// 	let user = {
-		// 		username: this.props.username,
-		// 		lastOnline:  timeGet("full"),
-		// 		currentStatus: "offline"
-		// 	}
-		// 	dispatch(sessionsActions.updateSession(user))
-		// 	dispatch(userActions.logout());
-		// }
-		// this.state.chatSocket.updateStatus({online: false});
-		history.push('/login');
+		const { dispatch } = this.props;
+		if(localStorage.getItem('user')){
+			let user = {
+				username: this.props.username,
+				lastOnline:  timeGet("full"),
+				currentStatus: "offline"
+			}
+			dispatch(sessionsActions.updateSession(user))
+			dispatch(userActions.logout());
+		}
+		this.state.chatSocket.updateStatus({online: false});
 	}
 
 	render(){

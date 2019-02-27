@@ -26,7 +26,7 @@ let user = localStorage.getItem('user')
 // getUser()
 // console.log(currentUser, "this is current user...");
 
-const initialState = user ? { isLoggedIn: true, user } : {};
+const initialState = user ? { isLoggedIn: false, user } : {};
 // const initialState = {};
 
 

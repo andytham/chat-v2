@@ -74,8 +74,11 @@ function login(username, password) {
 }
 
 function logout() {
-	userService.logout();
-	return { type: userConstants.LOGOUT };
+	return dispatch => {
+		userService.logout(); // only removes localstorage atm
+		dispatch({ type: userConstants.LOGOUT })
+		history.push('/login')
+	}
 }
 
 import { sessionsConstants } from './constants';
