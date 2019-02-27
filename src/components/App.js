@@ -22,7 +22,7 @@ class App extends React.Component {
 				<Route exact path="/login" render={(props) => <Login />} />
 				<Route exact path="/register" render={(props) => <Register />} />
 				<Route exact path="/chat" render={(props) => <Chatroom /> } />
-				<Logout />
+				{/* <Logout /> */}
 			</div>
 		)
 	}

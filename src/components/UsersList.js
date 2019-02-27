@@ -4,6 +4,7 @@ import { sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
 import Select from 'react-select';
 import chatSocket from '../helpers/chat-socket';
+import { Logout } from './Logout';
 
 const listOptions = [
 	{value: 'showOnlineOnly', label: 'online'},
@@ -155,25 +156,30 @@ class UsersList extends React.Component {
 	render(){
 		return(
 			<div className="users-list-wrapper">
-				<div className="select-wrapper">
-					<Select
-						className="select-my-status"
-						value={this.state.viewList}
-						onChange={this.handleMyStatus}
-						options={myStatusOptions}
-						placeholder="set status"
-					/>
-					<Select
-						className="select-list-status"
-						value={this.state.viewList}
-						onChange={this.handleList}
-						options={listOptions}
-						placeholder="view users"
-					/>
+				<div className="action-panel">
+					<Logout />
 				</div>
-				<ul className="users-list">
-					{this.props.sessions ? this.mapUsers() : ""}
-				</ul>
+				<div className="users-list-panel">
+					<div className="select-wrapper">
+						<Select
+							className="select-my-status"
+							value={this.state.viewList}
+							onChange={this.handleMyStatus}
+							options={myStatusOptions}
+							placeholder="set status"
+						/>
+						<Select
+							className="select-list-status"
+							value={this.state.viewList}
+							onChange={this.handleList}
+							options={listOptions}
+							placeholder="view users"
+						/>
+					</div>
+					<ul className="users-list">
+						{this.props.sessions ? this.mapUsers() : ""}
+					</ul>
+				</div>
 			</div>
 		)
 	}
