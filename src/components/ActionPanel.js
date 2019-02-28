@@ -1,4 +1,5 @@
 import React from 'react';
+import { Logout } from './Logout';
 
 import Button from '@material-ui/core/Button';
 function handleClick(){
@@ -10,12 +11,19 @@ function handleClick(){
 		document.documentElement.setAttribute('data-theme', 'dark')
 	}
 }
-function Night(){
+function ActionPanel(){
 	return(
-		<Button className="button night" onClick={handleClick}>
-			NIGHT
-		</Button>
+		<div className="action-panel">
+			<Logout />
+			<Button className="button night" onClick={handleClick}>
+				NIGHT
+			</Button>
+			<Button className="button github" href="https://github.com/andytham">
+				GITHUB
+			</Button>
+		</div>
+
 	)
 }
 
-export default Night;
+export default ActionPanel;

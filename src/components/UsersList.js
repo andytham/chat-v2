@@ -4,9 +4,8 @@ import { sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
 import Select from 'react-select';
 import chatSocket from '../helpers/chat-socket';
-import { Logout } from './Logout';
-import Night from './Night';
-import GitHub from './GitHub';
+import ActionPanel from './ActionPanel';
+
 const listOptions = [
 	{value: 'showOnlineOnly', label: 'online'},
 	{value: 'showAway', label: 'away'},
@@ -157,11 +156,7 @@ class UsersList extends React.Component {
 	render(){
 		return(
 			<div className="users-list-wrapper">
-				<div className="action-panel">
-					<Logout />
-					<Night />
-					<GitHub />
-				</div>
+				<ActionPanel/>
 				<div className="users-list-panel">
 					<div className="select-wrapper">
 						<Select
