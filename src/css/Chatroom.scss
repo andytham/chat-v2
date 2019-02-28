@@ -79,6 +79,7 @@
 		#canvas{
 			// margin-bottom: -3px; //extra 3 pixels on game div?
 			@include generic-border;
+			border-color: $level-border;
 			padding: 0;
 		}
 		.game-overlay{

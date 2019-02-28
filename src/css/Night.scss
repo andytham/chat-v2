@@ -21,11 +21,11 @@ html[data-theme='dark'] {
 	.select-list-status > *{
 		background: rgb(34, 34, 34) !important;
 	}
+	#canvas{
+		background: rgb(75,75,75);
+	}
+	#overlay-text{
+		background: rgba(80, 18, 80, .5) !important;
+	}
 }
 
-.night.button{
-	width: 49%;
-	background: $blue-gradient;
-	color: black;
-	width: 80px;
-}	
