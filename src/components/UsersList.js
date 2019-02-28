@@ -172,6 +172,7 @@ class UsersList extends React.Component {
 						/>
 						<Select
 							className="select-list-status"
+							classNamePrefix="list-status"
 							value={this.state.viewList}
 							onChange={this.handleList}
 							options={listOptions}

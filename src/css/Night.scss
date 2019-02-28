@@ -1,4 +1,5 @@
 @import "global";
+$night-select-focus: rgb(184, 58, 58) !important;
 html[data-theme='dark'] {
 	body {
 		background: rgb(34, 34, 34)  !important;
@@ -16,16 +17,20 @@ html[data-theme='dark'] {
 		background: rgb(34, 34, 34) !important; 
 	}
 	.my-status__option--is-focused{
-		background: red !important;
+		background: $night-select-focus;
 	}
 	.select-list-status > *{
 		background: rgb(34, 34, 34) !important;
+	}
+	.list-status__option--is-focused{
+		background: $night-select-focus;
 	}
 	#canvas{
 		background: rgb(75,75,75);
 	}
 	#overlay-text{
 		background: rgba(80, 18, 80, .5) !important;
+		font-weight: normal !important;
 	}
 }
 
