@@ -6,8 +6,6 @@ import store from './redux/store';
 import { history } from './redux/helpers';
 // import { BrowserRouter as Router } from 'react-router-dom'
 import { Router } from 'react-router-dom';
-import xhr from './helpers/header';
-// xhr();
 
 render(
 	<Provider store={store}>
