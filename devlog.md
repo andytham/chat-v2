@@ -67,3 +67,8 @@ most likely need to figure out how to store sessions correctly so users stay log
 
 https://medium.com/@mwichary/dark-theme-in-a-day-3518dde2955a
 dark theme hints
+
+##
+
+add password reset?
+emails?

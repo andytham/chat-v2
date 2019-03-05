@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+
+import Button from '@material-ui/core/Button';
 
 class Home extends Component {
 	constructor(props){
@@ -9,10 +10,23 @@ class Home extends Component {
 
 	render(){
 		return(
-			<div>Hello World
-				<Link to="/login">Login</Link>
-				<Link to="/register">Register</Link>
-				<button onClick={()=>{console.log(this.state,this.props)}}>state and props</button>
+			<div className="home">
+				This is the Lounge.
+				Created using:
+				React
+				Redux
+				JWT
+				socket.io
+				Sass
+				Express
+				<div className="buttons-wrapper">
+					<Button className="button button-1" href='/login'>
+						Login
+					</Button>
+					<Button className="button button-2" href='/register'>
+						Register
+					</Button>
+				</div>
 			</div>
 		)
 	}
