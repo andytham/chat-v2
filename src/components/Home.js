@@ -12,13 +12,18 @@ class Home extends Component {
 		return(
 			<div className="home">
 				This is the Lounge.
-				Created using:
+				Frontend handled by
 				React
 				Redux
+
+				Backend handled by
 				JWT
 				socket.io
-				Sass
 				Express
+
+				Styled with:
+				Sass
+				material-ui
 				<div className="buttons-wrapper">
 					<Button className="button button-1" href='/login'>
 						Login
