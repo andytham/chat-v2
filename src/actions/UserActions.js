@@ -1,31 +1,7 @@
-import { history } from './helpers';
-//constants
-export const UPDATE_CHAT_HISTORY = "UPDATE_CHAT_HISTORY";
+import { userConstants } from '../constants';
+import { userService } from '../services';
+import { history } from '../redux/helpers';
 
-//actions
-export const updateChatHistory = chatHistory => ({
-	type: UPDATE_CHAT_HISTORY, payload: chatHistory
-});
-
-export const updateTest = (socket, usr, msg, tme) => {
-	return (dispatch) => {
-		let testMsg = {
-			usr: usr,
-			msg: msg,
-			tme: tme
-		}
-		socket.message('message', testMsg)
-	}
-}
-
-import { userConstants } from './constants';
-import { userService } from './services';
-
-export const userActions = {
-	login,
-	logout,
-	register
-}
 function register(user){
 	console.log("testing");
 	return (dispatch) => {
@@ -81,37 +57,8 @@ function logout() {
 	}
 }
 
-import { sessionsConstants } from './constants';
-import { sessionsService } from './services';
-
-export const sessionsActions = {
-	createSession,
-	updateSession,
-	getSessions
-}
-
-function createSession(user){
-	return dispatch => {
-		sessionsService.createSession(user)
-		dispatch({ type: sessionsConstants.CREATE, user})
-	}
-}
-function updateSession(user){
-	return dispatch => {
-		//PATCH to db
-		sessionsService.patchSession(user) 
-		//updates redux state
-		dispatch({ type: sessionsConstants.UPDATE, user})
-	}
-}
-
-function getSessions(){
-	return async (dispatch) => {
-		try {
-			let sessions = await sessionsService.getSessions()
-			dispatch({ type: sessionsConstants.REQUEST, sessions })
-		} catch (err) {
-			console.log(err);
-		}
-	}
+export const userActions = {
+	login,
+	logout,
+	register
 }
