@@ -9,11 +9,4 @@ export const userConstants = {
 	LOGIN_FAILURE: 'USERS_LOGIN_FAILURE',
 
 	LOGOUT: 'USERS_LOGOUT',
-
-}
-
-export const sessionsConstants = {
-	REQUEST: 'SESSIONS_REQUEST',
-	CREATE: 'SESSIONS_CREATE',
-	UPDATE: 'SESSIONS_UPDATE',
 }

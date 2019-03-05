@@ -1,0 +1,5 @@
+export const sessionsConstants = {
+	REQUEST: 'SESSIONS_REQUEST',
+	CREATE: 'SESSIONS_CREATE',
+	UPDATE: 'SESSIONS_UPDATE',
+}
