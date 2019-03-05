@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import ChatLog from './ChatLog';
 import { UsersList } from './UsersList';
 import Game from './Game';
-import chatSocket from '../helpers/chat-socket';
+import socket from '../helpers/socket';
 import { timeGet }  from '../../server/helpers';
 import { connect } from 'react-redux';
 import { sessionsActions } from '../redux/actions';
@@ -16,7 +16,7 @@ class Chatroom extends Component {
 		super();
 		this.state = {
 			input: "",
-			chatSocket: chatSocket(),
+			socket: socket(),
 			log: [],
 			username: ""
 		}
@@ -29,9 +29,9 @@ class Chatroom extends Component {
 	} 
 	componentDidMount(){
 
-		this.state.chatSocket.receive(this.updateChatLog)
-		this.state.chatSocket.onStatusUpdate(this.afterUpdate)
-		this.state.chatSocket.join(this.props.username || localStorage.getItem('username'))
+		this.state.socket.receive(this.updateChatLog)
+		this.state.socket.onStatusUpdate(this.afterUpdate)
+		this.state.socket.join(this.props.username || localStorage.getItem('username'))
 	}
 	componentWillUnmount(){
 		const { dispatch } = this.props
@@ -46,8 +46,8 @@ class Chatroom extends Component {
 			tme: timeGet()
 		}
 		dispatch(sessionsActions.updateSession(user))
-		this.state.chatSocket.message(disconnectMsg)
-		this.state.chatSocket.updateStatus({online: false});
+		this.state.socket.message(disconnectMsg)
+		this.state.socket.updateStatus({online: false});
 	}
 	componentDidUpdate(){
     //auto scroll chat to the newest line
@@ -95,7 +95,7 @@ class Chatroom extends Component {
 				msg: this.state.input, 
 				tme: timeGet()
 			}
-			this.state.chatSocket.message(msg, (err) => {
+			this.state.socket.message(msg, (err) => {
 				return console.log(err);
 			})
 			this.updateChatLog(msg)

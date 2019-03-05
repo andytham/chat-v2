@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { userActions, sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
 import Button from '@material-ui/core/Button';
-import chatSocket from '../helpers/chat-socket';
+import socket from '../helpers/socket';
 
 class Logout extends React.Component {
 	constructor(){
 		super();
 		this.state = {
-			chatSocket: chatSocket()
+			socket: socket()
 		}
 		this.handleClick = this.handleClick.bind(this)
 	}
