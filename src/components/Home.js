@@ -11,7 +11,7 @@ class Home extends Component {
 	render(){
 		return(
 			<div className="home">
-				This is the Lounge.
+				This is the Lounge, created by Andy Tham.
 				Frontend handled by
 				React
 				Redux
@@ -24,7 +24,10 @@ class Home extends Component {
 				Styled with:
 				Sass
 				material-ui
-				<div className="buttons-wrapper">
+
+				Compiled with:
+				Webpack
+				<div className="buttons-wrapper home">
 					<Button className="button button-1" href='/login'>
 						Login
 					</Button>
