@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { userActions, sessionsActions } from '../redux/actions';
+import { userActions } from '../actions';
 import { timeGet } from '../../server/helpers';
 import Button from '@material-ui/core/Button';
 import socket from '../helpers/socket';

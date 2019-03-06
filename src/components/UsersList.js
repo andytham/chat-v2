@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { sessionsActions } from '../redux/actions';
+import { sessionsActions } from '../actions';
 import { timeGet } from '../../server/helpers';
 import Select from 'react-select';
 import socket from '../helpers/socket';

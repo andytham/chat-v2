@@ -1,4 +1,4 @@
-import { userConstants } from './constants';
+import { userConstants } from '../constants';
 export function auth(state = initialState, action){
 	switch (action.type){
 		case userConstants.LOGIN_REQUEST:

@@ -8,7 +8,7 @@ import Game from './Game';
 import socket from '../helpers/socket';
 import { timeGet }  from '../../server/helpers';
 import { connect } from 'react-redux';
-import { sessionsActions } from '../redux/actions';
+import { sessionsActions } from '../actions';
 
 
 class Chatroom extends Component {

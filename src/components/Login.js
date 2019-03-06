@@ -9,8 +9,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 import { connect } from 'react-redux';
-import { userActions } from '../redux/actions';
-import { userConstants } from '../redux/constants';
+import { userActions } from '../actions';
+import { userConstants } from '../constants';
 import { SystemMsg } from './SystemMsg';
 
 class Login extends React.Component{

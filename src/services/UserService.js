@@ -1,5 +1,5 @@
 import config from 'config'; //webpack externals
-import { history } from './helpers';
+import { history } from '../redux/helpers';
 
 export const userService = {
 	register: function(user){

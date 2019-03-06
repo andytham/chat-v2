@@ -4,8 +4,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
-import { userActions } from '../redux/actions';
-import { userConstants } from '../redux/constants';
+import { userActions } from '../actions';
+import { userConstants } from '../constants';
 import { connect } from 'react-redux';
 import { SystemMsg } from './SystemMsg';
 class Register extends React.Component{

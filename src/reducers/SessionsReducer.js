@@ -1,6 +1,6 @@
 const initialSessionsState = {}; // possibly can't do a GET request as it's async
 
-import { sessionsConstants } from './constants';
+import { sessionsConstants } from '../constants';
 export function sessions(state = initialSessionsState, action){
 	switch (action.type){
 		case sessionsConstants.CREATE: //might be unnecessary since we're using objects
