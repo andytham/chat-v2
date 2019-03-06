@@ -12,18 +12,18 @@ function startSocket(server){
 	const io = require('socket.io')(server);
 	io.on('connection', function(socket){
 		socket.on('join', function(user){
-			console.log('server join fired');
+			// chat
 			io.emit('history', Chatroom.getChatHistory())
 			trackUser = user;
 			if(user){
 				console.log(user, "has joined");
 				let joinMsg = {usr: "server", msg: `${user} has joined the server`, tme: timeGet()}
 				Chatroom.addEntry(joinMsg)
-				// io.emit('message', Chatroom.getChatHistory())
 				io.emit('message',joinMsg)
 				usersList[socket.id] = user
 			}
 			// game
+			// if player is found on the player list, use old settings
 			if (players[usersList[socket.id]]){
 				players[usersList[socket.id]].online = true
 			}
@@ -35,7 +35,6 @@ function startSocket(server){
 				console.log(usersList[socket.id], 'user disconnected');
 				let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`, tme: timeGet()}
 				Chatroom.addEntry(disconnectMsg)
-				// io.emit('message', Chatroom.getChatHistory())
 				io.emit('message',disconnectMsg)
 				axios.patch(`http://localhost:8080/sessions`,
 				{
@@ -51,19 +50,21 @@ function startSocket(server){
 
 		});
 		socket.on('message', function(msg){
-			console.log('server socket.on message fired');
+			// chat
+			console.log('message received');
 			Chatroom.addEntry(msg)
-			// io.emit('message', Chatroom.getChatHistory());
-			// io.emit('message', msg)
 			socket.broadcast.emit('message',msg)
 		});
 		socket.on('update-status', function(data){
+			// game
+			// change player status so game knows to start/stop drawing player
 			if (players[usersList[socket.id]] && data){
 				players[usersList[socket.id]].online = data.online
 			}
 			io.emit('update-status')
 		})
 		socket.on('game create user', function(username){
+			// game create user when player joins
 			players[username] = {
 				x: 15,
 				y: 320,
@@ -80,12 +81,13 @@ function startSocket(server){
 			}
 		})
 		socket.on('game update', function(movement, username) {
+			// game update movement, this occurs on the interval set below
 			let player = players[username] || {};
 			if (movement.up){
 				if (!player.jumping && player.grounded) {
 					player.jumping = true;
 					player.grounded = false;
-					player.velY = -player.jumpHeight * 1;//how high to jump
+					player.velY = -player.jumpHeight * 1; //how high to jump
 				}
 			}
 			if (movement.left){
@@ -101,10 +103,11 @@ function startSocket(server){
 			player.velX *= friction;
 			player.velY += gravity;
 	
-			player.grounded = false; // if walking off level, it will force gravity
+			player.grounded = false; // if walking off an edge, it will force gravity check
 
-			for (var i = 0; i < level.length; i++) { //correct player position if colliding
-				var dir = collisionCheck(player, level[i]); //check collision and 'push' player away
+			for (var i = 0; i < level.length; i++) { // correct player position if colliding
+				// check collision and 'push' player away
+				var dir = collisionCheck(player, level[i]);
 				if (dir === "left" || dir === "right") {
 						player.velX = 0;
 						player.jumping = false;
@@ -122,13 +125,11 @@ function startSocket(server){
 			player.x += player.velX;
 			player.y += player.velY;
 		})
-	
-
 	})
+	// on socket start, also run game update at 60fps.
 	setInterval(function(){
 		io.emit('game update', players)
 	}, 1000/60)
 }
-
 
 module.exports = startSocket;
