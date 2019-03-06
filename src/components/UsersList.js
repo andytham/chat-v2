@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { sessionsActions } from '../redux/actions';
 import { timeGet } from '../../server/helpers';
 import Select from 'react-select';
-import chatSocket from '../helpers/chat-socket';
+import socket from '../helpers/socket';
 import ActionPanel from './ActionPanel';
 
 const listOptions = [
@@ -23,7 +23,7 @@ class UsersList extends React.Component {
 			sessionsLoaded: false,
 			viewList: "showOnlineOnly",
 			myStatus: "online",
-			chatSocket: chatSocket()
+			socket: socket()
 		}
 		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
@@ -41,10 +41,10 @@ class UsersList extends React.Component {
 			}
 			if(this.props.allUsers[this.props.username]){
 				dispatch(sessionsActions.updateSession(user))
-				this.state.chatSocket.updateStatus()
+				this.state.socket.updateStatus()
 			} else {
 				dispatch(sessionsActions.createSession(user))
-				this.state.chatSocket.updateStatus()
+				this.state.socket.updateStatus()
 			}
 			this.setState({
 				sessionsLoaded: true
@@ -59,7 +59,7 @@ class UsersList extends React.Component {
 				currentStatus: this.state.myStatus
 			}
 			dispatch(sessionsActions.updateSession(user))
-			this.state.chatSocket.updateStatus()
+			this.state.socket.updateStatus()
 		}
 	}
 
