@@ -10,10 +10,7 @@ const chatInitialState = {
 	]
 }
 
-
-
 // let user = JSON.parse(localStorage.getItem('user'));
-let user = localStorage.getItem('user')
 // let currentUser;
 // let getUser = async () => {
 // 	await fetch('/users/current')
@@ -26,12 +23,6 @@ let user = localStorage.getItem('user')
 // }
 // getUser()
 // console.log(currentUser, "this is current user...");
-
-const initialState = user ? { isLoggedIn: false, user } : {};
-// const initialState = {};
-
-
-
 
 export function chat(state = chatInitialState, action){
 	switch (action.type) {

@@ -1,3 +1,8 @@
+let user;
+user = localStorage.getItem('user');
+const initialState = user ? { isLoggedIn: false, user } : {};
+// const initialState = {};
+
 import { userConstants } from '../constants';
 export function auth(state = initialState, action){
 	switch (action.type){

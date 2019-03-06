@@ -80,8 +80,3 @@ export function sessions(state = initialSessionsState, action){
 			return state;
 	}
 }
-export const rootReducer = combineReducers({
-	auth,
-	chat,
-	sessions
-})
