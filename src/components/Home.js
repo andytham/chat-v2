@@ -12,21 +12,39 @@ class Home extends Component {
 		return(
 			<div className="home">
 				This is the Lounge, created by Andy Tham.
-				Frontend handled by
-				React
-				Redux
+				<div className="tech-wrapper">
+					<div className="tech-list">
+						<div className="tech-header">Front-end handled by:</div>
+						<ul className="tech">
+							<li>React</li>
+							<li>Redux</li>
+						</ul>
+					</div>
+					<div className="tech-list">
+						<div className="tech-header">Back-end handled by:</div>
+						<ul className="tech">
+							<li>socket.io</li>
+							<li>Express</li>
+							<li>JSON Web Tokens</li>
+						</ul>
+					</div>
+					<div className="tech-list">
+						<div className="tech-header">Styled with:</div>
+						<ul className="tech">
+							<li>Sass</li>
+							<li>Material-UI</li>
+						</ul>
+					</div>
+					<div className="tech-list">
+						<div className="tech-header">Compiled with:</div>
+						<ul className="tech">
+							<li>webpack</li>
+						</ul>
+					</div>
+				</div>
 
-				Backend handled by
-				JWT
-				socket.io
-				Express
-
-				Styled with:
-				Sass
-				material-ui
-
-				Compiled with:
-				Webpack
+				<div className="demo-caption">Demo of "The Lounge" in action</div>
+				<div>Login or register to start.</div>
 				<div className="buttons-wrapper home">
 					<Button className="button button-1" href='/login'>
 						Login
