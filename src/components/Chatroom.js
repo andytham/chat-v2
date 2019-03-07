@@ -90,9 +90,29 @@ class Chatroom extends Component {
 	onSendMessage(){
 		let whisper = ["/whisper", "/message", "/m", "/w"]
 		if(/^\//.test(this.state.input)){ // start of string is slash
-				if(whisper.includes(this.state.input)){
-					console.log('whisper');
+			let string = this.state.input;
+			let split = string.split(' ');
+			let index = string.indexOf(' ', 3);
+			let msg = string.slice(index, string.length);
+			let cmd = split[0];
+			let target = split[1];
+			if(whisper.includes(cmd)){
+				console.log('attempting whisper');
+				if (this.props.allUsers[target]){
+					console.log("Whispering", target);
+					let msg = {
+						usr: this.props.username || localStorage.getItem('username'),
+						// usr: this.props.username,
+						msg: this.state.input, 
+						tme: timeGet(),
+						target: target
+					}
+				} else {
+					console.log("Cannot find user");
 				}
+			} else {
+				console.log("Command not recognized");
+			}
 		}
 		if (/\S/.test(this.state.input)) { // check !whitespace
 			let msg = {
@@ -153,9 +173,11 @@ class Chatroom extends Component {
 }
 function mapStateToProps(state) {
 	const { isLoggedIn, username } = state.auth;
+	const { allUsers } = state.sessions;
 	return {
 		isLoggedIn,
-		username
+		username,
+		allUsers
 	};
 }
 
