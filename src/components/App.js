@@ -10,6 +10,7 @@ import { Register } from './Register';
 //css
 import '../css/reset.scss'
 import '../css/App.scss'
+import '../css/Home.scss'
 import '../css/Form.scss'
 import '../css/Chatroom.scss'
 import '../css/UsersList.scss'

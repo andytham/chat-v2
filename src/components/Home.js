@@ -36,7 +36,7 @@ class Home extends Component {
 						</ul>
 					</div>
 					<div className="tech-list">
-						<div className="tech-header">Compiled with:</div>
+						<div className="tech-header">Bundled with:</div>
 						<ul className="tech">
 							<li>webpack</li>
 						</ul>
