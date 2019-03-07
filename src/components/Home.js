@@ -11,6 +11,7 @@ class Home extends Component {
 	render(){
 		return(
 			<div className="home">
+			<img src={require("../images/lounge.png")} alt="lounge"/>
 				This is the Lounge, created by Andy Tham.
 				<div className="tech-wrapper">
 					<div className="tech-list">
