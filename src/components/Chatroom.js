@@ -88,7 +88,13 @@ class Chatroom extends Component {
 	}
 
 	onSendMessage(){
-		if (/\S/.test(this.state.input)) {
+		let whisper = ["/whisper", "/message", "/m", "/w"]
+		if(/^\//.test(this.state.input)){ // start of string is slash
+				if(whisper.includes(this.state.input)){
+					console.log('whisper');
+				}
+		}
+		if (/\S/.test(this.state.input)) { // check !whitespace
 			let msg = {
 				usr: this.props.username || localStorage.getItem('username'),
 				// usr: this.props.username,
