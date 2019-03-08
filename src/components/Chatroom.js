@@ -98,7 +98,29 @@ class Chatroom extends Component {
 			let target = split[1];
 			if(whisper.includes(cmd)){
 				console.log('attempting whisper');
-				if (this.props.allUsers[target] == "online" || this.props.allUsers[target] == "away"){
+				if (split.length > 2){
+					let msg = {
+						usr: this.props.username,
+						tme: timeGet(),
+						msg: "Please include a message.",
+						err: true
+					}
+					this.updateChatLog(msg)
+					this.setState({
+						input: ""
+					})
+				} else	if (target == this.props.username) {
+					let msg = {
+						usr: this.props.username,
+						tme: timeGet(),
+						msg: "You can't send yourself a private message, silly.",
+						err: true
+					}
+					this.updateChatLog(msg)
+					this.setState({
+						input: ""
+					})
+				} else if (this.props.allUsers[target] == "online" || this.props.allUsers[target] == "away"){
 					console.log("Whispering", target);
 					let msg = {
 						usr: this.props.username || localStorage.getItem('username'),
@@ -120,13 +142,25 @@ class Chatroom extends Component {
 						input: ""
 					})
 				} else {
-					console.log("Cannot find user");
+					let msg = {
+						usr: this.props.username,
+						tme: timeGet(),
+						msg: "User not found.",
+						err: true
+					}
+					this.updateChatLog(msg)
 					this.setState({
 						input: ""
 					})
 				}
 			} else {
-				console.log("Command not recognized");
+				let msg = {
+					usr: this.props.username,
+					tme: timeGet(),
+					msg: "Command not recognized.",
+					err: true
+				}
+				this.updateChatLog(msg)
 				this.setState({
 					input: ""
 				})
