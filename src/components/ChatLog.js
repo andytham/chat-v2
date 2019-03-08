@@ -6,15 +6,7 @@ const ChatLog = React.memo(function ChatLog (props) {
 	let log = props.log.map((entry, i) => {
 
 		let w1, w2;
-		if (entry.whisper){
-			usrClass = "msg-user-whisper";
-			msgClass = "msg-msg-whisper";
-			if (entry.outgoing){
-				w2 = " whispers";
-			} else {
-				w1 = "to ";
-			}
-		}	else if (entry.usr == "server"){
+		if (entry.usr == "server"){
 			usrClass = "msg-user-server";
 			msgClass = "msg-msg-server";
 		} else if (entry.usr == name) {
@@ -23,6 +15,15 @@ const ChatLog = React.memo(function ChatLog (props) {
 		} else {
 			usrClass = "msg-user-other";
 			msgClass = "msg-msg-other"
+		}
+		if (entry.whisper){
+			usrClass += " whisper";
+			msgClass += " whisper";
+			if (entry.outgoing){
+				w2 = " whispers";	
+			} else {
+				w1 = "to ";
+			}
 		}
 		if (entry.err){
 			return(
