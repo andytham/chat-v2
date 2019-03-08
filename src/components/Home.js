@@ -11,22 +11,23 @@ class Home extends Component {
 	render(){
 		return(
 			<div className="home">
-			<img src={require("../images/lounge.png")} alt="lounge"/>
-				This is the Lounge, created by Andy Tham.
+				<div><img src={require("../images/lounge.png")} alt="lounge"/></div>
+				<div>This is the Lounge, created by Andy Tham.</div>
 				<div className="tech-wrapper">
 					<div className="tech-list">
-						<div className="tech-header">Front-end handled by:</div>
+						<div className="tech-header">Front-end:</div>
 						<ul className="tech">
 							<li>React</li>
 							<li>Redux</li>
 						</ul>
 					</div>
 					<div className="tech-list">
-						<div className="tech-header">Back-end handled by:</div>
+						<div className="tech-header">Back-end:</div>
 						<ul className="tech">
 							<li>socket.io</li>
 							<li>Express</li>
-							<li>JSON Web Tokens</li>
+							<li>JWT</li>
+							<li>PostgreSQL</li>
 						</ul>
 					</div>
 					<div className="tech-list">

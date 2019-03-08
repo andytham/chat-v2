@@ -1,3 +1,7 @@
+## live
+
+coming soon to lounge.andytham.com
+
 ## tech
 react
 redux
@@ -7,3 +11,4 @@ bcrypt
 socket.io
 material-ui
 postgres
+

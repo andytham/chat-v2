@@ -7,10 +7,9 @@ class SystemMsg extends React.Component {
 		this.mapMsg = this.mapMsg.bind(this);
 	}
 	mapMsg(){
-		let count = 0;
 		return this.props.systemMsg.map(
-			msg => {
-				return (<div key={count++}>{msg}</div>)
+			(msg, i) => {
+				return (<div key={i}>{msg}</div>)
 			}
 		)
 	}

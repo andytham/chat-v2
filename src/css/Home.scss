@@ -1,10 +1,22 @@
 @import "global";
-
+.home{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
 .tech-wrapper{
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
-	width: 90vw;
-	margin: 0 auto;
+	max-width: 400px;
+	margin: 20px auto;
+	.tech-list{
+		margin: 0 10px;
+		.tech-header{
+			font-weight: 500;
+		}
+	}
 }
 
 .buttons-wrapper.home{
