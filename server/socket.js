@@ -55,6 +55,12 @@ function startSocket(server){
 			Chatroom.addEntry(msg)
 			socket.broadcast.emit('message',msg)
 		});
+		socket.on('whisper', function(msg){
+			let targetId = Object.keys(usersList).find(id => {
+				return usersList[id] == msg.target
+			})
+			socket.broadcast.to(targetId).emit('message', msg)
+		})
 		socket.on('update-status', function(data){
 			// game
 			// change player status so game knows to start/stop drawing player

@@ -107,6 +107,7 @@ class Chatroom extends Component {
 						tme: timeGet(),
 						target: target
 					}
+					this.state.socket.whisper(msg)
 				} else {
 					console.log("Cannot find user");
 				}

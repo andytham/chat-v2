@@ -15,6 +15,10 @@ export default function() {
     socket.emit("message", msg)
   }
 
+  function whisper(msg){
+    socket.emit('whisper', msg)
+  }
+
   function join(user){
     //when user joins the server
     console.log(user, 'from socketjs');
@@ -40,6 +44,7 @@ export default function() {
   return {
     receive,
     message,
+    whisper,
     join,
     history,
     onStatusUpdate,
