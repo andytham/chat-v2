@@ -39,9 +39,16 @@ const ChatLog = React.memo(function ChatLog (props) {
 		}
 		return(
 			<div className="entry" key={i}>
+			{ entry.whisper ?
 				<div className="entry-usr">
-					{entry.tme ? <span className="msg-time">({entry.tme})</span> : "" } <span className={usrClass}>{w1}{entry.usr}{w2}</span>:&nbsp;
+					{entry.tme ? <span className="msg-time">({entry.tme}) </span> : "" } <span className="whisper">{w1}</span><span className={usrClass}>{entry.usr}</span><span className="whisper">{w2}:&nbsp;</span>
 				</div>
+				:		
+				<div className="entry-usr">
+					{entry.tme ? <span className="msg-time">({entry.tme}) </span> : "" }<span className={usrClass}>{entry.usr}</span>:&nbsp;
+				</div>
+			}
+
 				<div className="entry-msg">
 					<span className={msgClass}>{entry.msg}</span>
 				</div>

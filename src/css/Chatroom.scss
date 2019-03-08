@@ -7,18 +7,26 @@
 		white-space: nowrap;
 	}
 }
+.whisper{
+	font-style: italic;
+	color: $dark-grey;
+}
 // message colors
 .msg-user-server{
 	color: $green;
 }
 .msg-user-you{
 	color: $red;
+	&.whisper{
+		color: $purple;
+	}
 }
 .msg-user-other{
 	color: $blue;
 }
 .msg-time{
 	font-size: $small;
+	font-style: normal;
 }
 .msg-msg-server{
 	color: $grey;

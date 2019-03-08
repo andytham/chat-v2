@@ -8,6 +8,8 @@ $chat-width: 500px;
 $pink-gradient: linear-gradient(45deg, #FE6B8b 30%, #FF8E53 90%);
 $blue-gradient: linear-gradient(45deg, #3376db 50%, #4646e4 90%);
 $pink: #FE6B8B;
+$dark-grey: #757575;
+$purple: #85248c;
 
 $border-size: 3px;
 @mixin generic-border($size: $border-size, $color: $red, $line-type: solid, $radius: 6px){
