@@ -89,6 +89,7 @@ class Chatroom extends Component {
 
 	onSendMessage(){
 		let whisper = ["/whisper", "/message", "/m", "/w"]
+		let help = ["/?", "/help"]
 		if(/^\//.test(this.state.input)){ // start of string is slash
 			let string = this.state.input;
 			let split = string.split(' ');
@@ -96,7 +97,18 @@ class Chatroom extends Component {
 			let text = string.slice(index, string.length);
 			let cmd = split[0];
 			let target = split[1];
-			if(whisper.includes(cmd)){
+			if(help.includes(cmd)){
+				let msg = {
+					usr: this.props.username,
+					tme: timeGet(),
+					msg: "Currently available commands: /help /? /whisper /message /m /w",
+					err: true
+				}
+				this.updateChatLog(msg)
+				this.setState({
+					input: ""
+				})
+			} else if(whisper.includes(cmd)){
 				console.log('attempting whisper');
 				if (split.length <= 2){
 					let msg = {
