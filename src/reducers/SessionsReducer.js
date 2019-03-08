@@ -42,9 +42,8 @@ export function sessions(state = initialSessionsState, action){
 				// 	lastOnline: newTimestamp,
 				// 	currentStatus: action.sessions[i].current_status
 				// }
-				if(action.sessions[i].current_status == "online") {
-					sessionsObject[action.sessions[i].username] = 1
-				}
+				sessionsObject[action.sessions[i].username] = action.sessions[i].current_status
+				
 				sessionsArr.push({
 					username: action.sessions[i].username,
 					lastOnline: newTimestamp,

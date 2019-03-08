@@ -98,7 +98,7 @@ class Chatroom extends Component {
 			let target = split[1];
 			if(whisper.includes(cmd)){
 				console.log('attempting whisper');
-				if (this.props.allUsers[target]){
+				if (this.props.allUsers[target] == "online" || this.props.allUsers[target] == "away"){
 					console.log("Whispering", target);
 					let msg = {
 						usr: this.props.username || localStorage.getItem('username'),
