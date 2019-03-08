@@ -8,7 +8,11 @@ const ChatLog = React.memo(function ChatLog (props) {
 		if (entry.whisper){
 			usrClass = "msg-user-whisper";
 			msgClass = "msg-msg-whisper";
-			w2 = " whispers";
+			if (entry.outgoing){
+				w2 = " whispers";
+			} else {
+				w1 = "to ";
+			}
 		}	else if (entry.usr == "server"){
 			usrClass = "msg-user-server";
 			msgClass = "msg-msg-server";
@@ -22,7 +26,7 @@ const ChatLog = React.memo(function ChatLog (props) {
 		return(
 			<div className="entry" key={count++}>
 				<div className="entry-usr">
-					{entry.tme ? <span className="msg-time">({entry.tme})</span> : "" } <span className={usrClass}>{entry.usr}{w2}</span>:&nbsp;
+					{entry.tme ? <span className="msg-time">({entry.tme})</span> : "" } <span className={usrClass}>{w1}{entry.usr}{w2}</span>:&nbsp;
 				</div>
 				<div className="entry-msg">
 					<span className={msgClass}>{entry.msg}</span>

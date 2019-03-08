@@ -63,6 +63,7 @@ function startSocket(server){
 			console.log(targetId, 'target id');
 			console.log(usersList[targetId]);
 			msg.whisper = true;
+			msg.outgoing = true;
 			io.to(`${targetId}`).emit('message', msg)
 		})
 		socket.on('update-status', function(data){

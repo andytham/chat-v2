@@ -93,7 +93,7 @@ class Chatroom extends Component {
 			let string = this.state.input;
 			let split = string.split(' ');
 			let index = string.indexOf(' ', 3);
-			let msg = string.slice(index, string.length);
+			let text = string.slice(index, string.length);
 			let cmd = split[0];
 			let target = split[1];
 			if(whisper.includes(cmd)){
@@ -103,19 +103,35 @@ class Chatroom extends Component {
 					let msg = {
 						usr: this.props.username || localStorage.getItem('username'),
 						// usr: this.props.username,
-						msg: this.state.input, 
+						msg: text, 
 						tme: timeGet(),
 						target: target
 					}
 					this.state.socket.whisper(msg)
+					let note = {
+						usr: target,
+						// usr: this.props.username,
+						msg: text, 
+						tme: timeGet(),
+						whisper: true
+					}
+					this.updateChatLog(note)
+					this.setState({
+						input: ""
+					})
 				} else {
 					console.log("Cannot find user");
+					this.setState({
+						input: ""
+					})
 				}
 			} else {
 				console.log("Command not recognized");
+				this.setState({
+					input: ""
+				})
 			}
-		}
-		if (/\S/.test(this.state.input)) { // check !whitespace
+		} else if (/\S/.test(this.state.input)) { // check !whitespace
 			let msg = {
 				usr: this.props.username || localStorage.getItem('username'),
 				// usr: this.props.username,
