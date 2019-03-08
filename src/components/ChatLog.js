@@ -29,7 +29,7 @@ const ChatLog = React.memo(function ChatLog (props) {
 			return(
 				<div className="entry" key={i}>
 					<div className="entry-usr">
-						{entry.tme ? <span className="msg-time">({entry.tme})</span> : "" }:&nbsp;
+						{entry.tme ? <span className="msg-time">({entry.tme})</span> : "" }&nbsp;
 					</div>
 					<div className="entry-msg err">
 						<span className={msgClass}>{entry.msg}</span>
