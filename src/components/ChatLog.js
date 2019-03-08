@@ -2,8 +2,9 @@ import React from 'react';
 let name = localStorage.getItem("username")
 
 const ChatLog = React.memo(function ChatLog (props) {
-	let count = 0, usrClass, msgClass = "";
-	let log = props.log.map(entry => {
+	let usrClass, msgClass = "";
+	let log = props.log.map((entry, i) => {
+
 		let w1, w2;
 		if (entry.whisper){
 			usrClass = "msg-user-whisper";
@@ -23,8 +24,20 @@ const ChatLog = React.memo(function ChatLog (props) {
 			usrClass = "msg-user-other";
 			msgClass = "msg-msg-other"
 		}
+		if (entry.err){
+			return(
+				<div className="entry" key={i}>
+					<div className="entry-usr">
+						{entry.tme ? <span className="msg-time">({entry.tme})</span> : "" }:&nbsp;
+					</div>
+					<div className="entry-msg err">
+						<span className={msgClass}>{entry.msg}</span>
+					</div>
+				</div>
+			)
+		}
 		return(
-			<div className="entry" key={count++}>
+			<div className="entry" key={i}>
 				<div className="entry-usr">
 					{entry.tme ? <span className="msg-time">({entry.tme})</span> : "" } <span className={usrClass}>{w1}{entry.usr}{w2}</span>:&nbsp;
 				</div>

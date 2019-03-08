@@ -98,12 +98,16 @@ class Chatroom extends Component {
 			let target = split[1];
 			if(whisper.includes(cmd)){
 				console.log('attempting whisper');
-				if (split.length > 2){
+				if (split.length <= 2){
 					let msg = {
 						usr: this.props.username,
 						tme: timeGet(),
-						msg: "Please include a message.",
 						err: true
+					}
+					if (split.length == 2){
+						msg.msg = "Please include a message.";
+					} else {
+						msg.msg = "Please include a user to message.";
 					}
 					this.updateChatLog(msg)
 					this.setState({
