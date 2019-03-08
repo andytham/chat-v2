@@ -16,6 +16,7 @@ export default function() {
   }
 
   function whisper(msg){
+    console.log('whisper frontend');
     socket.emit('whisper', msg)
   }
 

@@ -56,10 +56,13 @@ function startSocket(server){
 			socket.broadcast.emit('message',msg)
 		});
 		socket.on('whisper', function(msg){
+			console.log('backend whisper fired');
 			let targetId = Object.keys(usersList).find(id => {
 				return usersList[id] == msg.target
 			})
-			socket.broadcast.to(targetId).emit('message', msg)
+			console.log(targetId, 'target id');
+			console.log(usersList[targetId]);
+			io.to(`${targetId}`).emit('message', msg)
 		})
 		socket.on('update-status', function(data){
 			// game
