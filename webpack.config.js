@@ -60,7 +60,8 @@ const config = {
 		new HtmlWebpackPlugin(
 			{
 				hash: false,
-				template: "./index.html"
+        template: "./index.html",
+        favicon: "./src/images/favicon.ico"
 			}
 		)
   ],
