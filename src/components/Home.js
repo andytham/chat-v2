@@ -11,8 +11,10 @@ class Home extends Component {
 	render(){
 		return(
 			<div className="home">
-				<div><img src={require("../images/lounge.png")} alt="lounge"/></div>
-				<div>This is the Lounge, created by Andy Tham.</div>
+				<div className="logo-wrapper"><img src={require("../images/lounge.png")} alt="lounge"/></div>
+				<div>The Lounge, created by Andy Tham.</div>
+				<div className="tagline">A place to chat and platform leisurely.</div>
+				<div className="description">Features include real time chatroom and private messaging, user status system, and a mini-game platformer where everyone can climb together. Possible future features and such can be found on the GitHub.</div>
 				<div className="tech-wrapper">
 					<div className="tech-list">
 						<div className="tech-header">Front-end:</div>
@@ -34,6 +36,7 @@ class Home extends Component {
 							<li>socket.io</li>
 							<li>Express</li>
 							<li>JWT</li>
+							<li>bcrypt</li>
 							<li>PostgreSQL</li>
 						</ul>
 					</div>
