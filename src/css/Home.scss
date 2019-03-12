@@ -9,12 +9,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	max-width: 400px;
+	max-width: 450px;
 	margin: 20px auto;
 	.tech-list{
 		margin: 0 10px;
+	
+		border: 1px solid black;
+		border-radius: 4px;
+		padding: 4px;
 		.tech-header{
 			font-weight: 500;
+			margin-bottom: 10px;
 		}
 	}
 }
