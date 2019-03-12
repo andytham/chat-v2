@@ -22,19 +22,19 @@ class Home extends Component {
 						</ul>
 					</div>
 					<div className="tech-list">
+						<div className="tech-header">Styled with:</div>
+						<ul className="tech">
+							<li>Sass</li>
+							<li>Material-UI</li>
+						</ul>
+					</div>
+					<div className="tech-list">
 						<div className="tech-header">Back-end:</div>
 						<ul className="tech">
 							<li>socket.io</li>
 							<li>Express</li>
 							<li>JWT</li>
 							<li>PostgreSQL</li>
-						</ul>
-					</div>
-					<div className="tech-list">
-						<div className="tech-header">Styled with:</div>
-						<ul className="tech">
-							<li>Sass</li>
-							<li>Material-UI</li>
 						</ul>
 					</div>
 					<div className="tech-list">
