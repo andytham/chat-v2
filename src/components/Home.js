@@ -49,7 +49,7 @@ class Home extends Component {
 				</div>
 
 				<div className="demo-caption">Demo of "The Lounge" in action</div>
-				<div>Login or register to start.</div>
+				<div className="description">Login or register to start. <br />(A real email address is currently not necessary)</div>
 				<div className="buttons-wrapper home">
 					<Button className="button button-1" href='/login'>
 						Login

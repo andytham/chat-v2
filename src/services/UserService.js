@@ -1,6 +1,6 @@
 import config from 'config'; //webpack externals
 import { history } from '../helpers/history';
-
+import axios from 'axios';
 export const userService = {
 	register: function(user){
 		return axios.post(
