@@ -93,9 +93,10 @@ class Chatroom extends Component {
 		if(/^\//.test(this.state.input)){ // start of string is slash
 			let string = this.state.input;
 			let split = string.split(' ');
-			let index = string.indexOf(' ', 3);
-			let text = string.slice(index, string.length);
-			let cmd = split[0];
+			let text = ""
+			if(split.length >= 2){
+				text = string.slice(split[0].length + split[1].length + 2, string.length);
+			}			let cmd = split[0];
 			let target = split[1];
 			if(help.includes(cmd)){
 				let msg = {
