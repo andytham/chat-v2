@@ -49,7 +49,7 @@ class Home extends Component {
 				</div>
 
 				<div className="demo-caption">Demo of "The Lounge" in action</div>
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/LbIgoyH9lJU" frameBorder="0"  allowFullScreen></iframe>
+				<iframe className="demo" src="https://www.youtube.com/embed/7Jxw31Mw9FY" frameBorder="0"  allowFullScreen></iframe>
 				<br />
 				<br />
 				<div className="description">Login or register to start. <br />(A real email address is currently not necessary)</div>
