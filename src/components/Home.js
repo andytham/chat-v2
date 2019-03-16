@@ -49,6 +49,9 @@ class Home extends Component {
 				</div>
 
 				<div className="demo-caption">Demo of "The Lounge" in action</div>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/LbIgoyH9lJU" frameBorder="0"  allowFullScreen></iframe>
+				<br />
+				<br />
 				<div className="description">Login or register to start. <br />(A real email address is currently not necessary)</div>
 				<div className="buttons-wrapper home">
 					<Button className="button button-1" href='/login'>
