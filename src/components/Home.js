@@ -14,7 +14,6 @@ class Home extends Component {
 				<div className="logo-wrapper"><img src={require("../images/lounge.png")} alt="lounge"/></div>
 				<div>The Lounge, created by Andy Tham.</div>
 				<div className="tagline">A place to chat and platform leisurely.</div>
-				<br />
 				<div className="description">Features include real time chatroom and private messaging, user status system, and a mini-game platformer where everyone can climb together. Possible future features and such can be found on the GitHub.</div>
 				<div className="tech-wrapper">
 					<div className="tech-list">
@@ -48,12 +47,9 @@ class Home extends Component {
 						</ul>
 					</div>
 				</div>
-
 				<iframe className="demo" src="https://www.youtube.com/embed/7Jxw31Mw9FY?vq=hd720" frameBorder="0"  allowFullScreen></iframe>
 				<div className="caption">Demo of "The Lounge" in action (1 minute for chat features)</div>
-				<br />
-				<br />
-				<div className="description">Login or register to start. <br /></div>
+				<div className="description">Login or register to start.</div>
 				<div className="buttons-wrapper home">
 					<Button className="button button-1" href='/login'>
 						Login
