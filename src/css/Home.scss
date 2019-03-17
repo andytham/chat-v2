@@ -4,6 +4,8 @@
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
+	height: 100%;
+	margin: auto;
 }
 .logo-wrapper{
 	margin: 10px 0 5px 0;
@@ -41,10 +43,10 @@
 }
 .caption{
 	margin-top: 5px;
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 	font-size: 12px;
 }
-.buttons-wrapper.home{
+.buttons-wrapper.home-buttons{
 	width: 200px;
 	flex-direction: row;
 	.button{

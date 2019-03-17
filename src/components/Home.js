@@ -49,8 +49,8 @@ class Home extends Component {
 				</div>
 				<iframe className="demo" src="https://www.youtube.com/embed/7Jxw31Mw9FY?vq=hd720" frameBorder="0"  allowFullScreen></iframe>
 				<div className="caption">Demo of "The Lounge" in action (1 minute for chat features)</div>
-				<div className="description">Login or register to start.</div>
-				<div className="buttons-wrapper home">
+				<div className="">Login or register to start.</div>
+				<div className="buttons-wrapper home-buttons">
 					<Button className="button button-1" href='/login'>
 						Login
 					</Button>
