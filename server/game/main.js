@@ -44,6 +44,7 @@ document.addEventListener('keydown', function(event) {
 			case 38: // arrow
 			case 32: // space
 				movement.up = true;
+				event.preventDefault();
 				break;
 			case 68: // d
 			case 39: // arrow
