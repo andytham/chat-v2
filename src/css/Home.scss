@@ -39,9 +39,18 @@
 	width: 464px;
 	height: 261px;
 }
+.caption{
+	margin-top: 5px;
+	font-size: 12px;
+}
 .buttons-wrapper.home{
 	width: 200px;
+	flex-direction: row;
 	.button{
 		margin: 5px;
 	}
+}
+
+.bold{
+	font-weight: 550;
 }
