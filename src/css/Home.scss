@@ -36,9 +36,12 @@
 	}
 }
 .demo{
-	width: 525px;
-	height: 295px;
+	width: 464px;
+	height: 261px;
 }
 .buttons-wrapper.home{
 	width: 200px;
+	.button{
+		margin: 5px;
+	}
 }
