@@ -19,12 +19,12 @@ import '../css/Night.scss'
 class App extends React.Component {
 	render(){
 		return(
-			<div id="auth" className="App">
+			<React.Fragment>
 				<Route exact path="/" render={() => <Home />} />
 				<Route exact path="/login" render={() => <Login />} />
 				<Route exact path="/register" render={() => <Register />} />
 				<Route exact path="/chat" render={() => <Chatroom /> } />
-			</div>
+			</React.Fragment>
 		)
 	}
 }

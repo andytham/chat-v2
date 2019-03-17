@@ -61,7 +61,8 @@ const config = {
 			{
 				hash: false,
         template: "./index.html",
-        favicon: "./src/images/favicon.ico"
+        favicon: "./src/images/favicon.ico",
+        inject: false
 			}
 		)
   ],
