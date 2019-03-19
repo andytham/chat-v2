@@ -9,16 +9,21 @@ function register(user){
 		dispatch({type: userConstants.REGISTER_REQUEST, user})
 		userService.register(user)
 			.then(data => {
-				console.log(data);
-				let register = [];
-				for (let i = 0; i < data.length; i++){
-					register.push(data[i].msg)
-				}
-				if (data.success){
-					dispatch({type: userConstants.REGISTER_SUCCESS, register})
+				if (data){
+					let register = [];
+					for (let i = 0; i < data.length; i++){
+						register.push(data[i].msg)
+					}
+					if (data.success){
+						dispatch({type: userConstants.REGISTER_SUCCESS, register})
+					} else {
+						dispatch({type: userConstants.REGISTER_FAILURE, register})
+					}
 				} else {
+					let register = ["Connection to server failed, try again later or contact the developer."]
 					dispatch({type: userConstants.REGISTER_FAILURE, register})
 				}
+
 			})
 	}
 }
@@ -28,12 +33,17 @@ function login(username, password) {
 		userService.login(username, password)
 			.then(
 				res => {
-					if (res.success){
-						localStorage.setItem("username", res.username)
-						dispatch(success(res.username));	
-						history.push('/chat')
+					if (res){
+						if (res.success){
+							localStorage.setItem("username", res.username)
+							dispatch(success(res.username));	
+							history.push('/chat')
+						} else {
+						dispatch(failure("Login failed."));
+						}
 					} else {
-					dispatch(failure("Login failed."));
+							let register = ["Connection to server failed, try again later or contact the developer."]
+							dispatch({type: userConstants.REGISTER_FAILURE, register})
 					}
 				},
 				error => {
