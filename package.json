@@ -11,7 +11,7 @@
     "server": "nodemon ./server/app.js",
     "watch": "webpack --watch --mode development",
     "debug": "set DEBUG=express:* node ./server/app.js",
-    "heroku-postbuild": "webpack -p" 
+    "heroku-postbuild": "webpack -p"
   },
   "author": "andytham",
   "license": "ISC",
@@ -27,6 +27,7 @@
     "history": "^4.7.2",
     "jsonwebtoken": "^8.4.0",
     "morgan": "^1.9.1",
+    "pg-promise": "^8.6.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
@@ -48,7 +49,6 @@
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.11.0",
-    "pg-promise": "^8.5.4",
     "sass-loader": "^7.1.0",
     "url-loader": "^1.1.2",
     "webpack": "^4.25.1",
