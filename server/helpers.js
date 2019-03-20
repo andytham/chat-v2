@@ -1,3 +1,9 @@
+let API_URL;
+if (process.env.NODE_ENV === 'production'){
+	API_URL = "http://lounge.andytham.com";
+} else if (process.env.NODE_ENV === 'development'){
+	API_URL = "http://localhost:8080";
+}
 function timeGet(type){
   let t = new Date;
   
@@ -42,7 +48,7 @@ const axios = require('axios');
 
 function chatroom() {
   let chatHistory = [{usr: 'server', msg: 'welcome to the chatroom!', tme: ''}] //fallback
-  axios.get(`/api/history`).then( data => {
+  axios.get(`${API_URL}/api/history`).then( data => {
     chatHistory = data.data;
   }).catch(err => {
     console.log('Most likely no server found');
@@ -51,7 +57,7 @@ function chatroom() {
   function addEntry(entry) {
     chatHistory = chatHistory.concat(entry)
     // console.log('This is the entry being POSTed:', entry);
-    axios.post(`/api/history`,
+    axios.post(`${API_URL}/api/history`,
     {
       usr: entry.usr,
       msg: entry.msg,
@@ -62,7 +68,7 @@ function chatroom() {
     })
     .catch(err => {
       console.log("POST Failed");
-      console.log(err);
+      // console.log(err.response);
     })
   }
 
@@ -153,5 +159,6 @@ module.exports = {
 	timeGet: timeGet,
   cr: chatroom,
   game: game,
-  getRandomColor: getRandomColor
+  getRandomColor: getRandomColor,
+  config: {API_URL: API_URL}
 }
