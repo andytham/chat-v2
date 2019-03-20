@@ -4,6 +4,12 @@ const data = require('./game/level.json')
 const level = data.level;
 const { gravity, friction, jumpHeight, moveSpeed } = data.constants
 const collisionCheck = require('./game/collision.js')
+let API_URL;
+if (process.env.NODE_ENV === 'production'){
+	API_URL = "http://lounge.andytham.com";
+} else if (process.env.NODE_ENV === 'development'){
+	API_URL = "http://localhost:8080";
+}
 
 let Chatroom = cr();
 let usersList = {};
@@ -36,7 +42,7 @@ function startSocket(server){
 				let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`, tme: timeGet()}
 				Chatroom.addEntry(disconnectMsg)
 				io.emit('message',disconnectMsg)
-				axios.patch(`http://localhost:8080/sessions`,
+				axios.patch(`${API_URL}/sessions`,
 				{
 					username: usersList[socket.id],
 					lastOnline: timeGet("full"),
