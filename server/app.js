@@ -41,9 +41,9 @@ app.get('/login', (req,res)=>{
 app.get('/register', (req,res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
-app.get('/chat', (req,res) => {
-	res.sendFile(path.join(__dirname + '../../index.html'))
-})
+// app.get('/chat', (req,res) => {
+// 	res.sendFile(path.join(__dirname + '../../index.html'))
+// })
 app.get('/', (req,res) => {
 	res.sendFile(path.join(__dirname + '../../index.html'))
 })
