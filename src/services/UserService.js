@@ -4,7 +4,7 @@ import axios from 'axios';
 export const userService = {
 	register: function(user){
 		return axios.post(
-			`${config.apiUrl}/users/create`,
+			`${config.API_URL}/users/create`,
 			{...user})
 		.then(res => {
 			console.log(res);
@@ -24,7 +24,7 @@ export const userService = {
 			body: JSON.stringify({ username, password })
 		};
 	
-		return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+		return fetch(`${config.API_URL}/users/authenticate`, requestOptions)
 			.then(handleResponse)
 			.then(data => {
 				let parsed = JSON.parse(data);

@@ -69,7 +69,7 @@ const config = {
   externals: {
     // global app config object
     config: JSON.stringify({
-        apiUrl: 'http://localhost:8080'
+        API_URL: 'http://localhost:8080'
     })
 }
 };
