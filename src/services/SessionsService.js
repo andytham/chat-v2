@@ -18,7 +18,7 @@ function createSession(user){
 	// 	.catch(err => console.log(err))
 
 	if (user.username){
-		axios.post(`${config.apiUrl}/sessions`, {
+		axios.post(`${config.API_URL}/sessions`, {
 			...user
 		})
 			.then(data => {
@@ -35,7 +35,7 @@ async function getSessions(){
 		headers: { 'Content-Type': 'application/json' }
 	};
 	try {
-		let resp = await axios(`${config.apiUrl}/sessions`)
+		let resp = await axios(`${config.API_URL}/sessions`)
 		let data = resp.data;
 		return data
 	} catch (err){
@@ -44,7 +44,7 @@ async function getSessions(){
 }
 
 function patchSession(user){
-	axios.patch(`${config.apiUrl}/sessions`,{...user})
+	axios.patch(`${config.API_URL}/sessions`,{...user})
 		.catch(err => console.log(err))
 }
 
