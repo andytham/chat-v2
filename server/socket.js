@@ -1,4 +1,4 @@
-const { cr, timeGet , getRandomColor, config} = require('./helpers');
+const { cr, timeGet , getRandomColor, API_URL} = require('./helpers');
 let players = {};
 const data = require('./game/level.json')
 const level = data.level;
@@ -37,7 +37,7 @@ function startSocket(server){
 				let disconnectMsg = {usr: "server", msg: `${usersList[socket.id]} has disconnected.`, tme: timeGet()}
 				Chatroom.addEntry(disconnectMsg)
 				io.emit('message',disconnectMsg)
-				axios.patch(`${config.API_URL}/sessions`,
+				axios.patch(`${API_URL}/sessions`,
 				{
 					username: usersList[socket.id],
 					lastOnline: timeGet("full"),

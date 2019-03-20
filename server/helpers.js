@@ -1,9 +1,5 @@
-let API_URL;
-if (process.env.NODE_ENV === 'production'){
-	API_URL = "http://lounge.andytham.com";
-} else if (process.env.NODE_ENV === 'development'){
-	API_URL = "http://localhost:8080";
-}
+const API_URL = process.env.NODE_ENV === 'production' ? "http://lounge.andytham.com" : "http://localhost:8080";
+
 function timeGet(type){
   let t = new Date;
   
@@ -160,5 +156,5 @@ module.exports = {
   cr: chatroom,
   game: game,
   getRandomColor: getRandomColor,
-  config: {API_URL: API_URL}
+  API_URL: API_URL
 }
