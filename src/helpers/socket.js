@@ -6,7 +6,7 @@ export default function() {
 
   function receive(updateChat){
     socket.on('message', msg => {
-      console.log("receive message from serverside",msg);
+      // console.log("receive message from serverside",msg);
       updateChat(msg)
     })
   }
@@ -16,13 +16,12 @@ export default function() {
   }
 
   function whisper(msg){
-    console.log('whisper frontend');
+    // console.log('whisper frontend');
     socket.emit('whisper', msg)
   }
 
   function join(user){
     //when user joins the server
-    console.log(user, 'from socketjs');
     socket.emit("join", user)
   }
 

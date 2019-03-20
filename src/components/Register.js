@@ -28,7 +28,6 @@ class Register extends React.Component{
 
 	onSubmit(e){
 		e.preventDefault();
-		console.log(this.props);
 		const { username, email, password, passwordConfirm } = this.state;
 		const { dispatch } = this.props;
 		

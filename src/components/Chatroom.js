@@ -72,7 +72,6 @@ class Chatroom extends Component {
 		})
 		const { dispatch } = this.props
 		if (msg.usr == "server"){
-			console.log("I should be updating session");
 			setTimeout(poop, 5000)
 		}
 		function poop (){
@@ -110,7 +109,6 @@ class Chatroom extends Component {
 					input: ""
 				})
 			} else if(whisper.includes(cmd)){
-				console.log('attempting whisper');
 				if (split.length <= 2){
 					let msg = {
 						usr: this.props.username,
@@ -138,7 +136,6 @@ class Chatroom extends Component {
 						input: ""
 					})
 				} else if (this.props.allUsers[target] == "online" || this.props.allUsers[target] == "away"){
-					console.log("Whispering", target);
 					let msg = {
 						usr: this.props.username || localStorage.getItem('username'),
 						// usr: this.props.username,

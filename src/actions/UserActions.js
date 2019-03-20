@@ -3,9 +3,7 @@ import { userService } from '../services';
 import { history } from '../helpers/history';
 
 function register(user){
-	console.log("testing");
 	return (dispatch) => {
-		console.log('register action');
 		dispatch({type: userConstants.REGISTER_REQUEST, user})
 		userService.register(user)
 			.then(data => {

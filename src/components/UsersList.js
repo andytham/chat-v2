@@ -25,7 +25,6 @@ class UsersList extends React.Component {
 			myStatus: "online",
 			socket: socket()
 		}
-		this.getTest = this.getTest.bind(this)
 		this.mapUsers = this.mapUsers.bind(this)
 		this.handleList = this.handleList.bind(this)
 		this.handleMyStatus = this.handleMyStatus.bind(this)
@@ -61,13 +60,6 @@ class UsersList extends React.Component {
 			dispatch(sessionsActions.updateSession(user))
 			this.state.socket.updateStatus()
 		}
-	}
-
-	getTest(){
-		const { dispatch } = this.props;
-		dispatch(sessionsActions.getSessions())
-		console.log('props from userslist');
-		console.log(this.props);
 	}
 
 	mapUsers(){

@@ -7,7 +7,6 @@ export const userService = {
 			`${config.API_URL}/users/create`,
 			{...user})
 		.then(res => {
-			console.log(res);
 			if (res.data.success){
 				history.push('/login')
 				return res.data;
