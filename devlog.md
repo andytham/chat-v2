@@ -72,3 +72,8 @@ dark theme hints
 
 add password reset?
 emails?
+
+
+## 
+
+is setting up environment variables necessary for the API? Good for long term perhaps if the backend is hosted elsewhere

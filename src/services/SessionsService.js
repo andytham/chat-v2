@@ -1,5 +1,6 @@
 import config from 'config'; //webpack externals
 import axios from 'axios';
+console.log(`${config.API_URL}/sessions`);
 function createSession(user){
 	const requestOptions = {
 		method: 'POST',
@@ -8,7 +9,7 @@ function createSession(user){
 	}
 	
 	//working fetch version
-	// fetch(`${config.apiUrl}/sessions`, requestOptions)
+	// fetch(`${config.API_URL}/sessions`, requestOptions)
 	// 	.then(data => {
 	// 		console.log("post success?", data);
 	// 	})

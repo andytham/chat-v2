@@ -1,6 +1,11 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const API_URL = {
+  production: 'http://lounge.andytham.com',
+  development: 'http://localhost:8080'
+}
+const environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 const config = {
   entry: [
@@ -69,9 +74,9 @@ const config = {
   externals: {
     // global app config object
     config: JSON.stringify({
-        API_URL: 'http://localhost:8080'
+        'API_URL': API_URL[environment]
     })
-}
+  }
 };
 
 module.exports = config
