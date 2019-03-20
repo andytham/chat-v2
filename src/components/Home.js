@@ -14,7 +14,7 @@ class Home extends Component {
 				<div className="logo-wrapper"><img src={require("../images/lounge.png")} alt="lounge"/></div>
 				<div>The Lounge, created by Andy Tham.</div>
 				<div className="tagline">A place to chat and platform leisurely.</div>
-				<div className="description">Features include real time chatroom and private messaging, user status system, and a mini-game platformer where everyone can climb together. Possible future features and such can be found on the GitHub.</div>
+				<div className="description">Features include real time chatroom and private messaging, user status system, and a mini-game platformer where everyone can climb together. Possible future features and such can be found on the GitHub. <br /> (May run slow due to Heroku/hosting)</div>
 				<div className="tech-wrapper">
 					<div className="tech-list">
 						<div className="tech-header">Front-end:</div>
