@@ -1,14 +1,30 @@
-## live
+## Live At
 
-coming soon to lounge.andytham.com
+http://lounge.andytham.com
 
-## tech
-react
-redux
-express
-jwt
-bcrypt
+## Features
+
+Multiplayer Platformer
+Real time chatroom
+Private messaging
+Registration and login
+
+## Tech Stack
+React
+Redux
+Sass
+Material-UI
+Express
 socket.io
-material-ui
-postgres
+JWT
+bcrypt
+PostgreSQL
 
+## Version History
+### 1.0.0
+- Multiplayer Platformer
+- Real time chatroom
+- Private messaging
+- Registration and login
+
+## TODO

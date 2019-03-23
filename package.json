@@ -1,11 +1,10 @@
 {
-  "name": "chat-v2",
-  "version": "0.0.0",
-  "description": "chat2",
+  "name": "the-lounge",
+  "version": "1.0.0",
+  "description": "chat and plat",
   "main": "./server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "hot": "webpack-dev-server --mode development --hot",
     "start": "node ./server/app.js",
     "build": "webpack",
     "server": "nodemon ./server/app.js",
