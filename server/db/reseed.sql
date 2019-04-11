@@ -1,4 +1,4 @@
-
+CREATE EXTENSION IF NOT EXISTS citext;
 DROP TABLE  IF EXISTS  chat_history CASCADE;
 \! pwd
 \i 'server/db/migrations/history-migration.sql'

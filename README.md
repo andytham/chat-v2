@@ -21,6 +21,9 @@ bcrypt
 PostgreSQL
 
 ## Version History
+### 1.0.1
+- Case sensitive no longer unique in registration
+
 ### 1.0.0
 - Multiplayer Platformer
 - Real time chatroom

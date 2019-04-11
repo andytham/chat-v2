@@ -1,6 +1,6 @@
 {
   "name": "the-lounge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "chat and plat",
   "main": "./server/app.js",
   "scripts": {
