@@ -77,3 +77,7 @@ emails?
 ## 
 
 is setting up environment variables necessary for the API? Good for long term perhaps if the backend is hosted elsewhere
+
+##
+
+citext: http://shuber.io/case-insensitive-unique-constraints-in-postgres/

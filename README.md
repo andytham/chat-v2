@@ -31,3 +31,9 @@ PostgreSQL
 - Registration and login
 
 ## TODO
+
+Powerups/Special effects in minigame?
+Seperate chat channels
+Squelch/ignore
+Profanity filter
+Handle token refresh better (refresh + auth token)
