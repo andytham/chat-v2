@@ -1,10 +1,14 @@
 function collisionCheck(a,b){
+	//
+
 	let vX = (a.x + (a.width / 2)) - (b.x + (b.width / 2)),
 			vY = (a.y + (a.height / 2)) - (b.y + (b.height / 2)),
 			hWidths = (a.width / 2) + (b.width / 2),
 			hHeights = (a.height / 2) + (b.height / 2),
 			collision = null;
 	
+	// collision compares the player position and environment
+	// returns where it is colliding
 	if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights){
 		let oX = hWidths - Math.abs(vX),
 				oY = hHeights - Math.abs(vY)

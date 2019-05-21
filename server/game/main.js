@@ -17,6 +17,8 @@ const canvas = document.getElementById('canvas'),
 
 canvas.width = width;
 canvas.height = height;
+
+// overlay telling the player how to interact with game window
 document.addEventListener('click', function(event){
 	let active = document.activeElement;
 	if(event.target == canvas || event.target == overlay){
@@ -29,6 +31,8 @@ document.addEventListener('click', function(event){
 		}
 	}
 })
+
+// key press, moves game character
 document.addEventListener('keydown', function(event) {
 	let active = document.activeElement;
 	if(active == canvas || active == overlay){
@@ -58,6 +62,7 @@ document.addEventListener('keydown', function(event) {
 	}
 });
 
+// tells logic to stop moving game character on key release
 document.addEventListener('keyup', function(event) {
   switch (event.keyCode) {
 		case 65: // a
@@ -77,7 +82,7 @@ document.addEventListener('keyup', function(event) {
 });
 
 
-
+// creates game character (if doesnt exist)
 socket.emit('game create user', username)
 setInterval(function(){
 	socket.emit('game update', movement, username)
@@ -89,7 +94,8 @@ socket.on('game update', function(players){
 	ctx.clearRect(0, 0, width, height)
 	ctx.beginPath();
 
-	for (var i = 0; i < level.length; i++) {//print level
+	// draws level
+	for (var i = 0; i < level.length; i++) {
 		ctx.fillStyle = level[i].color;
 		ctx.fillRect(level[i].x, level[i].y, level[i].width, level[i].height);
 	}
@@ -102,6 +108,7 @@ socket.on('game update', function(players){
 	let list = Object.entries(players);
 	for(let i = 0;i < list.length; i++){
 		let cPlayer = players[list[i][0]]
+		// draw all characters that are online
 		if (cPlayer.online){
 			ctx.fillStyle = cPlayer.color;
 			ctx.fillRect(cPlayer.x, cPlayer.y, cPlayer.width, cPlayer.height);
